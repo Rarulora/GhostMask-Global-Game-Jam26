@@ -1,186 +1,180 @@
-﻿using Enums;
-using System.Collections;
-using UnityEngine;
+﻿//using Enums;
+//using System.Collections;
+//using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(StatsController))] // Yazdığımız stat sistemi
-public class EnemyBase : MonoBehaviour
-{
-	[Header("Settings")]
-	[SerializeField] protected string enemyName = "Mob";
-	[SerializeField] protected float attackCooldown = 1f;
+//[RequireComponent(typeof(Rigidbody2D))]
+//[RequireComponent(typeof(SpriteRenderer))]
+//public class EnemyBase : MonoBehaviour
+//{
+//	[Header("Settings")]
+//	[SerializeField] protected string enemyName = "Mob";
+//	[SerializeField] protected float attackCooldown = 1f;
 
-	// --- Components ---
-	protected Rigidbody2D rb;
-	protected SpriteRenderer spriteRenderer;
-	protected StatsController stats;
-	protected Transform playerTarget;
+//	protected Rigidbody2D rb;
+//	protected SpriteRenderer spriteRenderer;
+//	protected Transform playerTarget;
 
-	// --- State ---
-	protected bool isDead = false;
-	protected bool canAttack = true;
-	protected bool isStunned = false; // Perkler için (Stun Grenade)
-	protected float currentHealth;
+//	protected bool isDead = false;
+//	protected bool canAttack = true;
+//	protected bool isStunned = false;
+//	protected float currentHealth;
 
-	// --- Mask Logic ---
-	private Color originalColor;
-	private Color invisibleColor;
+//	private Color originalColor;
+//	private Color invisibleColor;
 
-	protected virtual void Awake()
-	{
-		rb = GetComponent<Rigidbody2D>();
-		spriteRenderer = GetComponent<SpriteRenderer>();
-		stats = GetComponent<StatsController>();
+//	protected virtual void Awake()
+//	{
+//		rb = GetComponent<Rigidbody2D>();
+//		spriteRenderer = GetComponent<SpriteRenderer>();
+//		stats = GetComponent<StatsController>();
 
-		originalColor = spriteRenderer.color;
-		invisibleColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0f); // Tam şeffaf
-	}
+//		originalColor = spriteRenderer.color;
+//		invisibleColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0f); // Tam şeffaf
+//	}
 
-	protected virtual void Start()
-	{
-		// Oyuncuyu bul (Singleton veya Tag ile - Jam için Tag uygundur)
-		GameObject p = GameObject.FindGameObjectWithTag("Player");
-		if (p != null) playerTarget = p.transform;
+//	protected virtual void Start()
+//	{
+//		// Oyuncuyu bul (Singleton veya Tag ile - Jam için Tag uygundur)
+//		GameObject p = GameObject.FindGameObjectWithTag("Player");
+//		if (p != null) playerTarget = p.transform;
 
-		// Statları başlat
-		currentHealth = stats.GetValue(StatType.health);
+//		// Statları başlat
+//		currentHealth = stats.GetValue(StatType.health);
 
-		// Maske olayına abone ol (MaskManager Eventi)
-		// MaskManager.OnMaskChanged += HandleMaskVisibility;
 
-		// Başlangıçta maske kapalımı kontrol et
-		// HandleMaskVisibility(MaskManager.IsMaskActive);
-	}
+//		EventManager.OnMaskChanged += HandleMaskVisibility;
 
-	protected virtual void OnDestroy()
-	{
-		// Eventten çıkmayı unutma!
-		// MaskManager.OnMaskChanged -= HandleMaskVisibility;
-	}
 
-	protected virtual void FixedUpdate()
-	{
-		if (isDead || isStunned || playerTarget == null) return;
+//		//HandleMaskVisibility(MaskController.IsMaskActive);
+//	}
 
-		Move();
-	}
+//	protected virtual void OnDestroy()
+//	{
+//		MaskManager.OnMaskChanged -= HandleMaskVisibility;
+//	}
 
-	// --- 1. HAREKET MANTIĞI (Override Edilebilir) ---
-	protected virtual void Move()
-	{
-		// Varsayılan davranış: Oyuncuya dümdüz yürü
-		float speed = stats.GetValue(StatType.moveSpeed);
-		Vector2 direction = (playerTarget.position - transform.position).normalized;
+//	protected virtual void FixedUpdate()
+//	{
+//		if (isDead || isStunned || playerTarget == null) return;
 
-		// Rigidbody ile hareket (Fizik tabanlı, itme/kakma için en iyisi)
-		rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+//		Move();
+//	}
 
-		// Yüzünü dön (Sprite Flip)
-		if (direction.x > 0) spriteRenderer.flipX = false;
-		else if (direction.x < 0) spriteRenderer.flipX = true;
-	}
+//	// --- 1. HAREKET MANTIĞI (Override Edilebilir) ---
+//	protected virtual void Move()
+//	{
+//		// Varsayılan davranış: Oyuncuya dümdüz yürü
+//		float speed = stats.GetValue(StatType.moveSpeed);
+//		Vector2 direction = (playerTarget.position - transform.position).normalized;
 
-	// --- 2. HASAR ALMA SİSTEMİ ---
-	public void TakeDamage(float amount, bool isCritical, Vector2 knockbackDir, float knockbackForce)
-	{
-		if (isDead) return;
+//		// Rigidbody ile hareket (Fizik tabanlı, itme/kakma için en iyisi)
+//		rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
 
-		// Canı azalt
-		currentHealth -= amount;
+//		// Yüzünü dön (Sprite Flip)
+//		if (direction.x > 0) spriteRenderer.flipX = false;
+//		else if (direction.x < 0) spriteRenderer.flipX = true;
+//	}
 
-		// Vuruş Efekti (Flash)
-		StartCoroutine(HitFlashRoutine());
+//	// --- 2. HASAR ALMA SİSTEMİ ---
+//	public void TakeDamage(float amount, bool isCritical, Vector2 knockbackDir, float knockbackForce)
+//	{
+//		if (isDead) return;
 
-		// Knockback (Geri Tepme)
-		if (knockbackForce > 0)
-		{
-			ApplyKnockback(knockbackDir, knockbackForce);
-		}
+//		// Canı azalt
+//		currentHealth -= amount;
 
-		// TODO: Damage Popup
+//		// Vuruş Efekti (Flash)
+//		StartCoroutine(HitFlashRoutine());
 
-		if (currentHealth <= 0)
-		{
-			Die();
-		}
-	}
+//		// Knockback (Geri Tepme)
+//		if (knockbackForce > 0)
+//		{
+//			ApplyKnockback(knockbackDir, knockbackForce);
+//		}
 
-	// --- 3. STATUS ETKİLERİ (Perkler İçin) ---
-	public void ApplyKnockback(Vector2 dir, float force)
-	{
-		// Anlık kuvvet uygula (ForceMode2D.Impulse önemli)
-		rb.AddForce(dir * force, ForceMode2D.Impulse);
+//		// TODO: Damage Popup
 
-		// Kısa bir süre kontrolü kaybet (Stun)
-		StartCoroutine(StunRoutine(0.2f));
-	}
+//		if (currentHealth <= 0)
+//		{
+//			Die();
+//		}
+//	}
 
-	public void Freeze(float duration)
-	{
-		StartCoroutine(StunRoutine(duration));
-		// Opsiyonel: Rengi mavi yap
-	}
+//	// --- 3. STATUS ETKİLERİ (Perkler İçin) ---
+//	public void ApplyKnockback(Vector2 dir, float force)
+//	{
+//		// Anlık kuvvet uygula (ForceMode2D.Impulse önemli)
+//		rb.AddForce(dir * force, ForceMode2D.Impulse);
 
-	private IEnumerator StunRoutine(float duration)
-	{
-		isStunned = true;
-		yield return new WaitForSeconds(duration);
-		isStunned = false;
-		// Hızı sıfırla ki kaymaya devam etmesin
-		rb.linearVelocity = Vector2.zero;
-	}
+//		// Kısa bir süre kontrolü kaybet (Stun)
+//		StartCoroutine(StunRoutine(0.2f));
+//	}
 
-	private IEnumerator HitFlashRoutine()
-	{
-		// Basit beyaz yanıp sönme
-		spriteRenderer.color = Color.white;
-		yield return new WaitForSeconds(0.1f);
-		// Maske durumuna göre eski rengine dön
-		// spriteRenderer.color = MaskManager.IsMaskActive ? originalColor : invisibleColor;
-		spriteRenderer.color = originalColor; // Geçici
-	}
+//	public void Freeze(float duration)
+//	{
+//		StartCoroutine(StunRoutine(duration));
+//		// Opsiyonel: Rengi mavi yap
+//	}
 
-	// --- 4. MASKE MANTIĞI ---
-	// MaskManager eventinden çağırılacak
-	public void HandleMaskVisibility(bool isMaskOn)
-	{
-		if (isMaskOn)
-		{
-			spriteRenderer.color = originalColor; // Görünür
-		}
-		else
-		{
-			spriteRenderer.color = invisibleColor; // Görünmez
-		}
-	}
+//	private IEnumerator StunRoutine(float duration)
+//	{
+//		isStunned = true;
+//		yield return new WaitForSeconds(duration);
+//		isStunned = false;
+//		// Hızı sıfırla ki kaymaya devam etmesin
+//		rb.linearVelocity = Vector2.zero;
+//	}
 
-	// --- 5. ÖLÜM VE LOOT ---
-	public virtual void Die()
-	{
-		isDead = true;
-		rb.linearVelocity = Vector2.zero;
-		GetComponent<Collider2D>().enabled = false;
+//	private IEnumerator HitFlashRoutine()
+//	{
+//		// Basit beyaz yanıp sönme
+//		spriteRenderer.color = Color.white;
+//		yield return new WaitForSeconds(0.1f);
+//		// Maske durumuna göre eski rengine dön
+//		// spriteRenderer.color = MaskManager.IsMaskActive ? originalColor : invisibleColor;
+//		spriteRenderer.color = originalColor; // Geçici
+//	}
 
-		// Altın ve XP düşür (Refik'in sistemi)
-		// LootManager.SpawnLoot(transform.position, EnemyType);
+//	// --- 4. MASKE MANTIĞI ---
+//	// MaskManager eventinden çağırılacak
+//	public void HandleMaskVisibility(bool isMaskOn)
+//	{
+//		if (isMaskOn)
+//		{
+//			spriteRenderer.color = originalColor; // Görünür
+//		}
+//		else
+//		{
+//			spriteRenderer.color = invisibleColor; // Görünmez
+//		}
+//	}
 
-		// Perk Tetiklemesi (Emre'nin eventi)
-		// EventManager.OnEnemyKilled?.Invoke(this);
+//	// --- 5. ÖLÜM VE LOOT ---
+//	public virtual void Die()
+//	{
+//		isDead = true;
+//		rb.linearVelocity = Vector2.zero;
+//		GetComponent<Collider2D>().enabled = false;
 
-		// Efekt ve yok olma
-		Destroy(gameObject, 0.5f); // Animasyon varsa bekle
-	}
+//		// Altın ve XP düşür (Refik'in sistemi)
+//		// LootManager.SpawnLoot(transform.position, EnemyType);
 
-	// --- 6. SALDIRI (Temas Hasarı) ---
-	protected virtual void OnCollisionStay2D(Collision2D collision)
-	{
-		if (isDead) return;
+//		// Perk Tetiklemesi (Emre'nin eventi)
+//		// EventManager.OnEnemyKilled?.Invoke(this);
 
-		if (collision.gameObject.CompareTag("Player"))
-		{
-			// Oyuncuya hasar ver (Zamanlayıcı ile)
-			// PlayerHealth.TakeDamage(stats.GetValue(StatType.Damage));
-		}
-	}
-}
+//		// Efekt ve yok olma
+//		Destroy(gameObject, 0.5f); // Animasyon varsa bekle
+//	}
+
+//	// --- 6. SALDIRI (Temas Hasarı) ---
+//	protected virtual void OnCollisionStay2D(Collision2D collision)
+//	{
+//		if (isDead) return;
+
+//		if (collision.gameObject.CompareTag("Player"))
+//		{
+//			// Oyuncuya hasar ver (Zamanlayıcı ile)
+//			// PlayerHealth.TakeDamage(stats.GetValue(StatType.Damage));
+//		}
+//	}
+//}
