@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Database/CharacterData", fileName = "New_Character_Data")]
+[CreateAssetMenu(menuName = "Database/CharacterData", fileName = "Character Data")]
 public class CharacterDataSO : ScriptableObject
 {
 	[Header("Configuration")]
 	[SerializeField] private int id;
-	[SerializeField] private string name;
+	[SerializeField] private string cname;
 	[SerializeField] private string description;
 
 	[Header("Stats")]
@@ -16,7 +16,7 @@ public class CharacterDataSO : ScriptableObject
 
 
 	public int ID => id;
-	public string Name => name;
+	public string Name => cname;
 	public string Description => description;
 	public float Health => health;
 	public float Damage => damage;

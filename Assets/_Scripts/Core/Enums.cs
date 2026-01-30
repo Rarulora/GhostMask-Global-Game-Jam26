@@ -26,4 +26,20 @@
 		projectileSpeed,
 		pierce
 	}
+
+	public enum AttackType
+	{
+		Melee,
+		Ranged,
+		Dash
+	}
+
+	public enum CharacterType
+	{
+		Raccoon,
+		Platipus,
+		Cat,
+		Monkey,
+		Mouse
+	}
 }
