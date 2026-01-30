@@ -6,12 +6,11 @@ using Enums;
 [Serializable]
 public class PlayerStat
 {
-	public float BaseValue; // Başlangıç değeri (Örn: 10)
+	public float BaseValue;
 
-	protected bool isDirty = true; // Değer değişti mi kontrolü
-	protected float _value; // Hesaplanmış son değer (Cache)
+	protected bool isDirty = true;
+	protected float _value;
 
-	// Modifier listesi
 	protected readonly List<StatModifier> statModifiers;
 	public readonly ReadOnlyCollection<StatModifier> StatModifiers;
 
@@ -26,7 +25,6 @@ public class PlayerStat
 		BaseValue = baseValue;
 	}
 
-	// Dışarıdan değeri okurken bu çağrılır
 	public float Value
 	{
 		get
@@ -47,7 +45,7 @@ public class PlayerStat
 	{
 		isDirty = true;
 		statModifiers.Add(mod);
-		statModifiers.Sort(CompareModifierOrder); // İşlem sırasına göre diz
+		statModifiers.Sort(CompareModifierOrder);
 	}
 
 	public virtual bool RemoveModifier(StatModifier mod)
@@ -60,7 +58,6 @@ public class PlayerStat
 		return false;
 	}
 
-	// Belirli bir kaynaktan gelen tüm bonusları sil (Örn: Kılıcı çıkarınca)
 	public virtual bool RemoveAllModifiersFromSource(object source)
 	{
 		bool didRemove = false;
@@ -84,7 +81,6 @@ public class PlayerStat
 		return 0;
 	}
 
-	// Matematiksel Hesaplama
 	protected virtual float CalculateFinalValue()
 	{
 		float finalValue = BaseValue;
@@ -102,7 +98,6 @@ public class PlayerStat
 			{
 				sumPercentAdd += mod.Value;
 
-				// Eğer listenin sonuna geldiysek veya bir sonraki modifier farklı tipteyse
 				if (i + 1 >= statModifiers.Count || statModifiers[i + 1].Type != StatModType.PercentAdd)
 				{
 					finalValue *= 1 + sumPercentAdd;
@@ -115,7 +110,6 @@ public class PlayerStat
 			}
 		}
 
-		// Rogue-lite oyunlarda küsuratlarla (10.00002 gibi) uğraşmamak için yuvarlama
 		return (float)Math.Round(finalValue, 4);
 	}
 }
