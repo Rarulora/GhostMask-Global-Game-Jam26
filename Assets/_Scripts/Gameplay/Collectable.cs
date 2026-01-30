@@ -34,6 +34,7 @@ public class Collectable : MonoBehaviour
     {
         if (detected && !knockedBack)
         {
+            Debug.Log("Knockedback");
             knockedBack = true;
             KnockBack();
         }
@@ -48,6 +49,7 @@ public class Collectable : MonoBehaviour
 
     private IEnumerator KnockbackRoutine(Vector3 direction)
     {
+        Debug.Log("In knocback coroutine");
         float duration = knockbackDistance / knockBackSpeed;
         float elapsed = 0f;
 
@@ -64,19 +66,23 @@ public class Collectable : MonoBehaviour
     private void StartFollowingPlayer()
     {
         if (player.transform == null) return;
-        currentFollowSpeed += accelerationAmount * Time.deltaTime;
-
-        Vector3 nextPosition = Vector3.MoveTowards(
-            transform.position,
-            player.transform.position,
-            currentFollowSpeed * Time.deltaTime
-        );
-
-        transform.position = nextPosition;
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        if (distanceToPlayer < distanceThreshold)
-            OnReachedPlayer();
+        while (distanceToPlayer > distanceThreshold)
+        {
+            currentFollowSpeed += accelerationAmount * Time.deltaTime;
+
+            Vector3 nextPosition = Vector3.MoveTowards(
+                transform.position,
+                player.transform.position,
+                currentFollowSpeed * Time.deltaTime
+            );
+
+            transform.position = nextPosition;
+            distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);;
+        }
+
+        OnReachedPlayer();
     }
 
     private void OnReachedPlayer()

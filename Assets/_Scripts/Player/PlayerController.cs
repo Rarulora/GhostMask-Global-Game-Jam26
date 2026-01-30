@@ -47,7 +47,11 @@ public class PlayerController : MonoBehaviour
         {
             Collectable collectable = hitColliders[i].GetComponent<Collectable>();
             if (collectable != null)
+            {
                 collectable.MarkAsDetected();
+                Debug.Log("detected");
+            }
+                
         }
     }
 
