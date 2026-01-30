@@ -40,19 +40,16 @@ public class PlayerController : MonoBehaviour
 
     private void CheckForCollectables()
     {
-        Collider[] hitColliders = new Collider[10];
-        int numColliders = Physics.OverlapSphereNonAlloc(transform.position, collectRadius, hitColliders, collectableLayer);
-        Debug.Log(numColliders);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, collectRadius, collectableLayer);
 
-        for (int i = 0; i < numColliders; i++)
+        for (int i = 0; i < hitColliders.Length; i++)
         {
             Collectable collectable = hitColliders[i].GetComponent<Collectable>();
             if (collectable != null)
             {
                 collectable.MarkAsDetected();
                 Debug.Log("detected");
-            }
-                
+            } 
         }
     }
 
