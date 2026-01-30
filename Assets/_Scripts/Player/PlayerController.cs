@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         Collider[] hitColliders = new Collider[10];
         int numColliders = Physics.OverlapSphereNonAlloc(transform.position, collectRadius, hitColliders, collectableLayer);
+        Debug.Log(numColliders);
 
         for (int i = 0; i < numColliders; i++)
         {
