@@ -17,6 +17,16 @@ public class StatsController : MonoBehaviour
 
 	private Dictionary<StatType, PlayerStat> _stats;
 	private List<TimedStatModifier> _timedModifiers = new List<TimedStatModifier>();
+
+	private void OnEnable()
+	{
+		EventManager.OnCharacterChanged += InitializeCharacterData;
+	}
+	private void OnDisable()
+	{
+		EventManager.OnCharacterChanged -= InitializeCharacterData;
+	}
+
 	private void Awake()
 	{
 		if (I != null && I != this)
@@ -62,6 +72,48 @@ public class StatsController : MonoBehaviour
 		}
 	}
 
+	private void InitializeCharacterData(CharacterDataSO data)
+	{
+		PlayerStat health;
+		if (_stats.ContainsKey(StatType.health))
+			health = _stats[StatType.health];
+		else
+		{
+			health = new PlayerStat(0);
+			_stats.Add(StatType.health, health);
+		}
+		health.BaseValue = data.Health;
+
+		PlayerStat damage;
+		if (_stats.ContainsKey(StatType.damage))
+			damage = _stats[StatType.damage];
+		else
+		{
+			damage = new PlayerStat(0);
+			_stats.Add(StatType.damage, damage);
+		}
+		damage.BaseValue = data.Damage;
+
+		PlayerStat attackRate;
+		if (_stats.ContainsKey(StatType.attackRate))
+			attackRate = _stats[StatType.attackRate];
+		else
+		{
+			attackRate = new PlayerStat(0);
+			_stats.Add(StatType.attackRate, attackRate);
+		}
+		attackRate.BaseValue = data.AttackRate;
+
+		PlayerStat moveSpeed;
+		if (_stats.ContainsKey(StatType.moveSpeed))
+			moveSpeed = _stats[StatType.moveSpeed];
+		else
+		{
+			moveSpeed = new PlayerStat(0);
+			_stats.Add(StatType.moveSpeed, moveSpeed);
+		}
+		moveSpeed.BaseValue = data.MoveSpeed;
+	}
 	public void AddTimedModifier(StatType statType, float value, StatModType modType, float duration, string effectID = "")
 	{
 		if (!string.IsNullOrEmpty(effectID))
