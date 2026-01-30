@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +10,24 @@ public class PlayerController : MonoBehaviour
     [Header("Collectable")]
     public float collectRadius = 2f;
     public LayerMask collectableLayer;
+
+    [Header("Levels")]
+    [Tooltip("Level artýþý için üs deðeri.")]
+    public float power = 1.3f;
+    public float baseXP = 10f;
+    public int currentLevel = 1;
+    private int xpNeededForNextLevel;
+
+    [Header("UI")]
+    [SerializeField] private Slider xpSlider;
+    [SerializeField] private TextMeshProUGUI nextLevelXP;
+    [SerializeField] private TextMeshProUGUI currentLevelNumber;
+
+    private void Start()
+    {
+        CalculateNextLevelXP();
+        UpdateUI();
+    }
 
     private void Update()
     {
@@ -22,6 +42,9 @@ public class PlayerController : MonoBehaviour
     public void IncreaseXP(int amount = 1)
     {
         xpCollected += amount;
+
+        CheckLevelUp();
+        UpdateUI();
     }
 
     public void DecreaseGold(int amount = 1)
@@ -36,6 +59,8 @@ public class PlayerController : MonoBehaviour
         xpCollected -= amount;
         if (xpCollected < 0)
             xpCollected = 0;
+
+        UpdateUI();
     }
 
     private void CheckForCollectables()
@@ -44,13 +69,49 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
-            Collectable collectable = hitColliders[i].GetComponent<Collectable>();
-            if (collectable != null)
+            if (hitColliders[i].TryGetComponent(out Collectable collectable))
             {
                 collectable.MarkAsDetected();
-                Debug.Log("detected");
-            } 
+            }
         }
+    }
+
+    private void CheckLevelUp()
+    {
+        while (xpCollected >= xpNeededForNextLevel)
+        {
+            xpCollected -= xpNeededForNextLevel;
+            currentLevel++;
+
+            // TODO: PlayLevelUpEffect(); 
+            CalculateNextLevelXP();
+        }
+    }
+
+    private void CalculateNextLevelXP()
+    {
+        xpNeededForNextLevel = GetXPForNextLevel(currentLevel);
+    }
+
+    public int GetXPForNextLevel(int level)
+    {
+        if (level < 1) return (int)baseXP;
+        return Mathf.RoundToInt(baseXP * Mathf.Pow(level, power));
+    }
+
+    private void UpdateUI()
+    {
+        if (xpSlider != null)
+        {
+            xpSlider.maxValue = xpNeededForNextLevel;
+            xpSlider.value = xpCollected;
+        }
+
+        if (nextLevelXP != null)
+            nextLevelXP.text = $"{xpCollected} / {xpNeededForNextLevel}";
+
+        if (currentLevelNumber != null)
+            currentLevelNumber.text = "Level " + currentLevel.ToString();
     }
 
     public void OnDrawGizmos()
