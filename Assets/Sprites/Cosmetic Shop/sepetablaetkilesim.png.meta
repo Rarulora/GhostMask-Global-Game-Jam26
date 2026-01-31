@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: e649ce98242ef41419b22ee77befbf2a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1139830220166512195
+    second: sepetablaetkilesim_0
+  - first:
+      213: -5967441428000727572
+    second: sepetablaetkilesim_1
+  - first:
+      213: 6908343008989479545
+    second: sepetablaetkilesim_2
+  - first:
+      213: 318754735897597148
+    second: sepetablaetkilesim_3
+  - first:
+      213: -6062704805542811112
+    second: sepetablaetkilesim_4
+  - first:
+      213: 5618928970266662483
+    second: sepetablaetkilesim_5
+  - first:
+      213: -7321708756982276057
+    second: sepetablaetkilesim_6
+  - first:
+      213: -7569230961881345775
+    second: sepetablaetkilesim_7
+  - first:
+      213: 6513332822775466608
+    second: sepetablaetkilesim_8
+  - first:
+      213: -1996792588962925466
+    second: sepetablaetkilesim_9
+  - first:
+      213: 8827627060975413369
+    second: sepetablaetkilesim_10
+  - first:
+      213: -7609558784382649941
+    second: sepetablaetkilesim_11
+  - first:
+      213: -7891222440131634318
+    second: sepetablaetkilesim_12
+  - first:
+      213: -6413949002344234420
+    second: sepetablaetkilesim_13
+  - first:
+      213: -2862998194296704206
+    second: sepetablaetkilesim_14
+  - first:
+      213: 845966029806900406
+    second: sepetablaetkilesim_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sepetablaetkilesim_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34eb741db8d71df00800000000000000
+      internalID: 1139830220166512195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_1
+      rect:
+        serializedVersion: 2
+        x: 1595
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ced111a53a36f2da0800000000000000
+      internalID: -5967441428000727572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_2
+      rect:
+        serializedVersion: 2
+        x: 3172
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9720f5d5d5d5fdf50800000000000000
+      internalID: 6908343008989479545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_3
+      rect:
+        serializedVersion: 2
+        x: 4749
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd456a35eb17c6400800000000000000
+      internalID: 318754735897597148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_4
+      rect:
+        serializedVersion: 2
+        x: 6326
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81a2197d912fcdba0800000000000000
+      internalID: -6062704805542811112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_5
+      rect:
+        serializedVersion: 2
+        x: 7903
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35655eac0227afd40800000000000000
+      internalID: 5618928970266662483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_6
+      rect:
+        serializedVersion: 2
+        x: 9480
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72064377da0146a90800000000000000
+      internalID: -7321708756982276057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_7
+      rect:
+        serializedVersion: 2
+        x: 11057
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1119c2e2b80b4f690800000000000000
+      internalID: -7569230961881345775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_8
+      rect:
+        serializedVersion: 2
+        x: 12634
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07a8c6571b1046a50800000000000000
+      internalID: 6513332822775466608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_9
+      rect:
+        serializedVersion: 2
+        x: 14211
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6647bb448b7f944e0800000000000000
+      internalID: -1996792588962925466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_10
+      rect:
+        serializedVersion: 2
+        x: 15788
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 978a01b8a08028a70800000000000000
+      internalID: 8827627060975413369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_11
+      rect:
+        serializedVersion: 2
+        x: 17365
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba93b6f4a9a656690800000000000000
+      internalID: -7609558784382649941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_12
+      rect:
+        serializedVersion: 2
+        x: 18942
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27bdc5c000fbc7290800000000000000
+      internalID: -7891222440131634318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_13
+      rect:
+        serializedVersion: 2
+        x: 20519
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c420dcb6d531df6a0800000000000000
+      internalID: -6413949002344234420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_14
+      rect:
+        serializedVersion: 2
+        x: 22096
+        y: 0
+        width: 1560
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2333c54af469448d0800000000000000
+      internalID: -2862998194296704206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sepetablaetkilesim_15
+      rect:
+        serializedVersion: 2
+        x: 23673
+        y: 0
+        width: 1559
+        height: 1178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b410ba3f997dbb00800000000000000
+      internalID: 845966029806900406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      sepetablaetkilesim_0: 1139830220166512195
+      sepetablaetkilesim_1: -5967441428000727572
+      sepetablaetkilesim_10: 8827627060975413369
+      sepetablaetkilesim_11: -7609558784382649941
+      sepetablaetkilesim_12: -7891222440131634318
+      sepetablaetkilesim_13: -6413949002344234420
+      sepetablaetkilesim_14: -2862998194296704206
+      sepetablaetkilesim_15: 845966029806900406
+      sepetablaetkilesim_2: 6908343008989479545
+      sepetablaetkilesim_3: 318754735897597148
+      sepetablaetkilesim_4: -6062704805542811112
+      sepetablaetkilesim_5: 5618928970266662483
+      sepetablaetkilesim_6: -7321708756982276057
+      sepetablaetkilesim_7: -7569230961881345775
+      sepetablaetkilesim_8: 6513332822775466608
+      sepetablaetkilesim_9: -1996792588962925466
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
