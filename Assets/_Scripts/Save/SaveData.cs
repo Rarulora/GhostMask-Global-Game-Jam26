@@ -2,9 +2,11 @@ using Enums;
 using UnityEngine;
 
 [System.Serializable]
-public class SaveData : MonoBehaviour
+public class SaveData
 {
     public string Name;
+    public bool hasAChosenName;
+    public bool touchedBoobs;
 
     public int[] purchasedCosmeticIDs;
     public int[] purchasedCharacterIDs;
@@ -19,7 +21,9 @@ public class SaveData : MonoBehaviour
 
     public SaveData()
     {
-        Name = "Guest";
+        Name = "";
+        hasAChosenName = false;
+        touchedBoobs = false;
         purchasedCosmeticIDs = new int[0];
         purchasedCharacterIDs = new int[0];
         gainedAchievementIDs = new int[0];
@@ -30,9 +34,11 @@ public class SaveData : MonoBehaviour
         bestRunData = null; // No highscore
     }
 
-    public SaveData(string Name, int[] purchasedCosmeticIDs, int[] purchasedCharacterIDs, int[] gainedAchievementIDs, int equippedHatID, int equippedWingID, int equippedCharacterID, int gold, HighScoreData bestRunData)
+    public SaveData(string Name, bool hasAChosenName, bool touchedBoobs, int[] purchasedCosmeticIDs, int[] purchasedCharacterIDs, int[] gainedAchievementIDs, int equippedHatID, int equippedWingID, int equippedCharacterID, int gold, HighScoreData bestRunData)
     {
         this.Name = Name;
+        this.hasAChosenName = hasAChosenName;
+        this.touchedBoobs = touchedBoobs;
         this.purchasedCosmeticIDs = purchasedCosmeticIDs;
         this.purchasedCharacterIDs = purchasedCharacterIDs;
         this.gainedAchievementIDs = gainedAchievementIDs;
@@ -43,9 +49,11 @@ public class SaveData : MonoBehaviour
         this.bestRunData = bestRunData;
     }
 
-    public SaveData(string Name, int[] purchasedCosmeticIDs, int[] purchasedCharacterIDs, int[] gainedAchievementIDs, int equippedHatID, int equippedWingID, int equippedCharacterID, int gold, float highScore, CharacterType character, AttackType attackType, string[] selectedPerkNames)
+    public SaveData(string Name, bool hasAChosenName, bool touchedBoobs, int[] purchasedCosmeticIDs, int[] purchasedCharacterIDs, int[] gainedAchievementIDs, int equippedHatID, int equippedWingID, int equippedCharacterID, int gold, float highScore, CharacterType character, AttackType attackType, string[] selectedPerkNames)
     {
         this.Name = Name;
+        this.hasAChosenName = hasAChosenName;
+        this.touchedBoobs = touchedBoobs;
         this.purchasedCosmeticIDs = purchasedCosmeticIDs;
         this.purchasedCharacterIDs = purchasedCharacterIDs;
         this.gainedAchievementIDs = gainedAchievementIDs;

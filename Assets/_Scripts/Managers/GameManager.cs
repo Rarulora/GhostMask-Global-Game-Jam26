@@ -1,6 +1,7 @@
 using UnityEngine;
 using GameStates;
 using UnityEngine.InputSystem;
+using Unity.Services.Analytics;
 
 [System.Serializable]
 public class GameSettings
@@ -45,6 +46,26 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveGame();
+    }
+
+    public void ChangeName(string name)
+    {
+        saveData.Name = name;
+        saveData.hasAChosenName = true;
+        SaveManager.Save(saveData);
+    }
+
+    public bool DidPlayerChooseAName() => saveData.hasAChosenName;
+
+    public void OnTouchBasketLadysBoobs()
+    {
+        if (!saveData.touchedBoobs)
+        {
+            FindAnyObjectByType<SimpleNotification>().Show("I know what you did...", 3);
+            AnalyticsService.Instance.RecordEvent("touched_basket_lady_boobs");
+            saveData.touchedBoobs = true;
+            SaveManager.Save(saveData);
+        }
     }
 
     public void SaveGame()
