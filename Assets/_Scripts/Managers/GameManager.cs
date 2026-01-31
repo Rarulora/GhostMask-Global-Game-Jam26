@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         CurrentState?.UpdateState();
+        Debug.Log(Time.timeScale);
     }
 
     private void OnApplicationQuit()
@@ -74,7 +75,6 @@ public class GameManager : MonoBehaviour
     {
         if (!saveData.touchedBoobs)
         {
-            FindAnyObjectByType<SimpleNotification>().Show("I know what you did...", 3);
             AnalyticsService.Instance.RecordEvent("touched_basket_lady_boobs");
             saveData.touchedBoobs = true;
             SaveManager.Save(saveData);
@@ -101,18 +101,20 @@ public class GameManager : MonoBehaviour
     {
         CurrentState.ExitState();
         CurrentState = newState;
+        Debug.Log(newState.ToString());
         CurrentState.EnterState();
         //GameEvents.RaiseGameStateChanged(CurrentState);
     }
 
     public void Play()
     {
-        SceneTransitionManager.Instance.OpenScene(SceneTransitionManager.GAMEPLAY_SCENE);
         SwitchState(_states.Play());
+        SceneTransitionManager.Instance.OpenScene(SceneTransitionManager.GAMEPLAY_SCENE);
     }
 
     public void MainMenu()
     {
+        SwitchState(_states.MainMenu());
         SceneTransitionManager.Instance.OpenScene(SceneTransitionManager.MAIN_MENU_SCENE);
     }
 
@@ -175,14 +177,11 @@ namespace GameStates
 
         public override void EnterState()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            Time.timeScale = 1f;
         }
 
         public override void ExitState()
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
         }
 
         public override void UpdateState()

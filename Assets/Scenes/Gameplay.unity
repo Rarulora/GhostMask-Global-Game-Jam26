@@ -580,7 +580,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -2924,7 +2924,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d32359ddbfe7b864ab3f7a3be187e787, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -4146,7 +4146,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 82e8845aa000d4447bc9622e8f1f635e, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -4893,7 +4893,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 31262d8ca88f9b6419d08b6929779f14, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -5038,7 +5038,7 @@ MonoBehaviour:
   baseBudget: 20
   budgetGrowth: 1.2
   difficultyGrowth: 1.1
-  waveTime: 30
+  waveTime: 60
   currentWave: 1
 --- !u!4 &1970462184
 Transform:
@@ -5811,6 +5811,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 744540833}
   - {fileID: 76270749}
   - {fileID: 81228126}
   - {fileID: 999336158}
@@ -5832,6 +5833,5 @@ SceneRoots:
   - {fileID: 1970462184}
   - {fileID: 107494302}
   - {fileID: 1392399391}
-  - {fileID: 744540833}
   - {fileID: 610535519}
   - {fileID: 1435301618}

@@ -19,6 +19,9 @@ public class MainMenuManager : MonoBehaviour
     [Header("Language")]
     [SerializeField] private Toggle languageChanger;
 
+    [Header("Buttons")]
+    [SerializeField] private Button playButton;
+
     [Header("Name")]
     public char[] turkishChars = { 'ç', 'ð', 'ý', 'ö', 'þ', 'ü' };
 
@@ -41,6 +44,11 @@ public class MainMenuManager : MonoBehaviour
         {
             DeactivateAllButtons();
             nameInputPanel.Enter();
+        }
+
+        if (playButton != null)
+        {
+            playButton.onClick.AddListener(() => GameManager.Instance.Play());
         }
     }
 

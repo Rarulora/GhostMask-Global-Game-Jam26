@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fac586b42f8a2ff488a1f4747c1a27ca, type: 3}
+  m_Name: Frostbite 3
+  m_EditorClassIdentifier: 
+  ID: 21
+  PerkName: Frostbite III
+  Description: Deals frost damage to enemies with a 100% chance.
+  Icon: {fileID: 0}
+  Trigger: 1
+  Chance: 100
+  Cooldown: 0
+  Effect: 2
+  Value: 5
+  Duration: 2
+  VFX: {fileID: 0}
+  targetIsPlayer: 0
+  RequiresMaskOn: 0
+  RequiresMaskOff: 0
+  HealthThreshold: 0

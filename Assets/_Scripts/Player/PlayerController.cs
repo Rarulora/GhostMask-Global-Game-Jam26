@@ -40,15 +40,15 @@ public class PlayerController : MonoBehaviour
 
         HealthController = GetComponent<PlayerHealthController>();
 
+        CalculateNextLevelXP();
+
         EventManager.RaiseCharacterChanged
             (GameManager.Instance.CharacterDatabase.GetCharacterByID(GameManager.Instance.SaveData.equippedCharacterID));
 	}
 
 	private void Start()
     {
-        CalculateNextLevelXP();
         UpdateUI();
-        onLevelChanged?.Invoke(1);
     }
 
     private void Update()
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
     public int GetXPForNextLevel(int level)
     {
-        if (level < 1) return (int)baseXP;
+        if (level <= 1) return (int)baseXP;
         return Mathf.RoundToInt(baseXP * Mathf.Pow(level, power));
     }
 

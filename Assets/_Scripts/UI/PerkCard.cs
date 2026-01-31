@@ -31,7 +31,8 @@ public class PerkCard : MonoBehaviour
     {
         this.title.text = title;
         this.desc.text = desc;
-        this.perkLogo.sprite = perkLogo;
+        if (perkLogo != null)
+            this.perkLogo.sprite = perkLogo;
     }
 
     public void Setup(PerkBase perk, int index)
