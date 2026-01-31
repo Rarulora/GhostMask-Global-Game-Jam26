@@ -105,6 +105,10 @@ public class PerkManager : MonoBehaviour
 			// Standart daðýtým (Max 1 weapon perk kuralý ile)
 			FillCards(GetBalancedRandomPerks());
 		}
+
+		perk1.Show();
+		perk2.Show();
+		perk3.Show();
 	}
 
 	// --- MEVCUT FONKSÝYONUN (LOGIC EKLENDÝ) ---
@@ -114,11 +118,29 @@ public class PerkManager : MonoBehaviour
 		if (perkIndex >= _currentOfferedPerks.Count) return;
 
 		PerkBase selectedPerk = _currentOfferedPerks[perkIndex];
+		if (PlayerController.I.currentLevel == 2)
+		{
+			switch (selectedPerk.PerkName)
+			{
+				case "Melee":
+					PlayerController.I.attackType = AttackType.Melee;
+					break;
+				case "Ranged":
+                    PlayerController.I.attackType = AttackType.Ranged;
+                    break;
+				case "Dash":
+                    PlayerController.I.attackType = AttackType.Dash;
+                    break;
+            }
+		}
 
 		// 1. Perki Uygula (Inventory'ye ekle, Statlarý iþle)
 		EquipPerk(selectedPerk);
 
 		// 2. Oyunu Devam Ettir
+		perk1.Hide();
+		perk2.Hide();
+		perk3.Hide();
 		GameManager.Instance.StopPerkSelect();
 	}
 

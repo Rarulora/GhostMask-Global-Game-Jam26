@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Cosmetics.unity
     guid: 11da4706e495e60408a3b5ec7a5a932e
   - enabled: 1
-    path: Assets/Scenes/MainMenuRefik.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: b7df10d86ac7aab458e37cc8b9f00a2b
   - enabled: 1
     path: Assets/Scenes/MayhosScene.unity

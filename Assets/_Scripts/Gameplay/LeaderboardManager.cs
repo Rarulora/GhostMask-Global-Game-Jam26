@@ -8,6 +8,7 @@ using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using UnityEngine;
 using Unity.Services.Leaderboards.Exceptions;
+using Enums;
 
 // 1. Structure used to convert TO/FROM JSON for Unity Metadata
 [System.Serializable]
@@ -227,6 +228,76 @@ public class LeaderboardManager : MonoBehaviour
         catch (System.Exception e)
         {
             // 400 Hatasý alýrsan detayýný görmek için:
+            if (e is Unity.Services.Leaderboards.Exceptions.LeaderboardsException lex)
+            {
+                Debug.LogError($"Leaderboard Hatasý: {lex.Reason} - {lex.Message}");
+            }
+            else
+            {
+                Debug.LogException(e);
+            }
+        }
+    }
+
+    public static async Task SubmitScoreAsync(int currentRunScore, int currentRunCharID, int currentRunAtkID)
+    {
+        try
+        {
+            // 1. Servisleri kontrol et
+            await InitializeLeaderboardServicesAsync();
+
+            var saveData = GameManager.Instance.SaveData;
+            if (saveData == null) return;
+
+            // Eðer hiç veri yoksa oluþtur
+            if (saveData.bestRunData == null)
+            {
+                saveData.bestRunData = new HighScoreData(0, 0, 0);
+            }
+
+            HighScoreData savedBestRun = saveData.bestRunData;
+
+            // 2. KARÞILAÞTIRMA: Þu anki skor, kayýtlý en iyi skordan büyük mü?
+            if (currentRunScore > savedBestRun.highScore)
+            {
+                // A. Local SaveData'yý güncelle
+                // (Enum cast iþlemleri senin HighScoreData yapýna göre ayarlandý)
+                saveData.bestRunData.highScore = currentRunScore;
+                saveData.bestRunData.character = (CharacterType)currentRunCharID;
+                saveData.bestRunData.attackType = (AttackType)currentRunAtkID;
+
+                GameManager.Instance.SaveGame(); // Diske kaydet
+
+                // B. Liderlik Tablosu için Hazýrlýk
+                string name = saveData.Name;
+                if (string.IsNullOrWhiteSpace(name))
+                    name = $"Player_{UnityEngine.Random.Range(1000, 9999)}";
+
+                await AuthenticationService.Instance.UpdatePlayerNameAsync(name);
+
+                // Metadata Hazýrla (Ýkonlar için)
+                var metadataDict = new Dictionary<string, string>
+                {
+                    { "charID", currentRunCharID.ToString() },
+                    { "atkID", currentRunAtkID.ToString() }
+                };
+
+                var scoreOptions = new AddPlayerScoreOptions
+                {
+                    Metadata = metadataDict
+                };
+
+                // C. Unity Cloud'a Gönder
+                await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardID, currentRunScore, scoreOptions);
+                Debug.Log($"Liderlik tablosu güncellendi: {currentRunScore}");
+            }
+            else
+            {
+                Debug.Log($"Rekor kýrýlmadý. Mevcut Skor: {currentRunScore}, Rekor: {savedBestRun.highScore}. Liderlik tablosuna gönderilmiyor.");
+            }
+        }
+        catch (System.Exception e)
+        {
             if (e is Unity.Services.Leaderboards.Exceptions.LeaderboardsException lex)
             {
                 Debug.LogError($"Leaderboard Hatasý: {lex.Reason} - {lex.Message}");

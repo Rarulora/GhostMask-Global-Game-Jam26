@@ -16,5 +16,5 @@ MonoBehaviour:
   PerkName: Dash
   Description: Use dash to attack.
   Icon: {fileID: 0}
-  WeaponToUnlock: {fileID: 0}
+  WeaponToUnlock: {fileID: 11400000, guid: 3be852c2793ef494ea83d06a5a34a175, type: 2}
   EventID: 

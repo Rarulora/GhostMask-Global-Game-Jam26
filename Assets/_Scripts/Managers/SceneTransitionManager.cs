@@ -32,7 +32,8 @@ public class SceneTransitionManager : MonoBehaviour
         GetUIElements();
         foreach (var animator in animators)
         {
-            animator.SetBool("Open", true);
+            if (!animator.gameObject.CompareTag("Menu"))
+                animator.SetBool("Open", true);
         }
     }
 
