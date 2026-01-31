@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public GameBaseState CurrentState { get; private set; }
     private GameStateFactory _states;
 
+    private SaveData saveData;
+    public SaveData SaveData => saveData;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -30,12 +33,30 @@ public class GameManager : MonoBehaviour
         _states = new GameStateFactory();
         CurrentState = _states.Play();
         CurrentState.EnterState();
+
+        saveData = LoadGame();
     }
 
     private void Update()
     {
         CurrentState?.UpdateState();
     }
+
+    private void OnApplicationQuit()
+    {
+        SaveGame();
+    }
+
+    public void SaveGame()
+    {
+        SaveManager.Save(saveData);
+    }
+
+    public SaveData LoadGame()
+    {
+        return SaveManager.Load();
+    }
+
     public void SwitchState(GameBaseState newState)
     {
         CurrentState.ExitState();

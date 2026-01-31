@@ -12,17 +12,19 @@ public class Collectable : MonoBehaviour
     [Header("Flags")]
     private bool detected = false;
     private bool knockedBack = false;
+    private bool collected = false;
 
     [Header("Movement")]
-    public float knockBackSpeed = 5f;
-    public float startMoveSpeed = 1f;
-    public float accelerationAmount = 5f; // per second
+    public float knockBackSpeed = 25f;
+    public float startMoveSpeed = 5f;
+    public float accelerationAmount = 25f; // per second
     private float currentFollowSpeed;
 
     [Header("Properties")]
     [SerializeField] public CollectableType type;
-    public float knockbackDistance = 3.5f;
+    public float knockbackDistance = 2f;
     public float distanceThreshold = 0.2f;
+    public int collectableValue = 1;
     private PlayerController player;
 
     private void Awake()
@@ -32,24 +34,18 @@ public class Collectable : MonoBehaviour
 
     private void Update()
     {
-        if (detected && !knockedBack)
+        if (detected && !knockedBack && !collected)
         {
-            Debug.Log("Knockedback");
             knockedBack = true;
-            KnockBack();
+            StartCoroutine(KnockbackRoutine());
         }
     }
 
-    private void KnockBack()
+    private IEnumerator KnockbackRoutine()
     {
-        Vector3 moveDir = InputManager.I.MoveInput.normalized;
-        if (moveDir == Vector3.zero) moveDir = -transform.forward;
-        StartCoroutine(KnockbackRoutine(moveDir));
-    }
+        Vector3 direction = (transform.position - player.transform.position).normalized;
+        if (direction == Vector3.zero) direction = Random.insideUnitSphere.normalized;
 
-    private IEnumerator KnockbackRoutine(Vector3 direction)
-    {
-        Debug.Log("In knocback coroutine");
         float duration = knockbackDistance / knockBackSpeed;
         float elapsed = 0f;
 
@@ -60,26 +56,26 @@ public class Collectable : MonoBehaviour
             yield return null;
         }
 
-        StartFollowingPlayer();
+        StartCoroutine(FollowPlayerRoutine());
     }
 
-    private void StartFollowingPlayer()
+    private IEnumerator FollowPlayerRoutine()
     {
-        if (player.transform == null) return;
+        currentFollowSpeed = startMoveSpeed;
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
         while (distanceToPlayer > distanceThreshold)
         {
             currentFollowSpeed += accelerationAmount * Time.deltaTime;
 
-            Vector3 nextPosition = Vector3.MoveTowards(
+            transform.position = Vector3.MoveTowards(
                 transform.position,
                 player.transform.position,
                 currentFollowSpeed * Time.deltaTime
             );
 
-            transform.position = nextPosition;
-            distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);;
+            distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            yield return null;
         }
 
         OnReachedPlayer();
@@ -90,12 +86,13 @@ public class Collectable : MonoBehaviour
         switch (type)
         {
             case CollectableType.Gold:
-                player.IncreaseGold();
+                player.IncreaseGold(collectableValue);
                 break;
             case CollectableType.XP:
-                player.IncreaseXP();
+                player.IncreaseXP(collectableValue);
                 break;
         }
+        collected = true;
 
         // TODO: pop effect
         Destroy(gameObject);
@@ -104,5 +101,10 @@ public class Collectable : MonoBehaviour
     public void MarkAsDetected()
     {
         detected = true;
+    }
+
+    public void ConfigureCollectableValue(int newValue)
+    {
+        collectableValue = newValue;
     }
 }
