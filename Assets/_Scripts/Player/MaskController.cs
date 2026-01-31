@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class MaskController : MonoBehaviour
 {
 	public static MaskController I;
+	[SerializeField] private SpriteRenderer maskSR;
 	[Header("Madness Settings")]
 	[SerializeField] private float maxMadness = 100f;
 	[SerializeField] private float baseFillSpeed = 10f; // Maske takýlýyken (KÖTÜ) saniyede dolma hýzý
@@ -103,6 +104,7 @@ public class MaskController : MonoBehaviour
 	private void MaskStatusChange(bool isActive)
 	{
 		_isMaskActive = isActive;
+		maskSR?.enabled = _isMaskActive;
 		EventManager.RaiseMaskChanged(_isMaskActive);
 	}
 
