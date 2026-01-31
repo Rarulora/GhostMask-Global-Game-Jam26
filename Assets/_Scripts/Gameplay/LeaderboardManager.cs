@@ -10,15 +10,14 @@ using UnityEngine;
 using Unity.Services.Leaderboards.Exceptions;
 using Enums;
 
-// 1. Structure used to convert TO/FROM JSON for Unity Metadata
+// --- DÜZELTME 1: Deðiþkenler STRING oldu. Çünkü JSON "2" (String) gönderiyor. ---
 [System.Serializable]
 public class LeaderboardMetadata
 {
-    public int charID;
-    public int atkID;
+    public string charID;
+    public string atkID;
 }
 
-// 2. Internal structure to hold downloaded data in memory
 public struct LeaderboardEntryData
 {
     public int score;
@@ -27,7 +26,7 @@ public struct LeaderboardEntryData
 
 public class LeaderboardManager : MonoBehaviour
 {
-    private const string leaderboardID = "leaderboard"; // Must match dashboard ID
+    private const string leaderboardID = "leaderboard";
 
     [Header("Configuration")]
     [SerializeField] private LeaderboardIconDatabase iconDatabase;
@@ -52,10 +51,7 @@ public class LeaderboardManager : MonoBehaviour
     [SerializeField] private Color transparentColor = new Color(1, 1, 1, 0);
     [SerializeField] private Color visibleColor = Color.white;
 
-    // Cache for downloaded leaderboard data
     private Dictionary<string, LeaderboardEntryData> leaderboardCache;
-
-    [Header("Flags")]
     private bool uiNeedsUpdate = true;
     private bool refreshInProgress = false;
 
@@ -88,14 +84,10 @@ public class LeaderboardManager : MonoBehaviour
     public static async Task InitializeLeaderboardServicesAsync()
     {
         if (UnityServices.State != ServicesInitializationState.Initialized)
-        {
             await UnityServices.InitializeAsync();
-        }
 
         if (!AuthenticationService.Instance.IsSignedIn)
-        {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        }
     }
 
     public async Task RefreshLeaderboardAsync()
@@ -107,14 +99,8 @@ public class LeaderboardManager : MonoBehaviour
             leaderboardCache = await GetLeaderboardAsync();
             uiNeedsUpdate = true;
         }
-        catch (System.Exception e)
-        {
-            Debug.LogException(e);
-        }
-        finally
-        {
-            refreshInProgress = false;
-        }
+        catch (System.Exception e) { Debug.LogException(e); }
+        finally { refreshInProgress = false; }
     }
 
     // --- FETCH DATA ---
@@ -124,39 +110,33 @@ public class LeaderboardManager : MonoBehaviour
 
         try
         {
-            int limit = 100; // Unity limit per page
+            int limit = 100;
             int offset = 0;
 
             while (true)
             {
                 var page = await LeaderboardsService.Instance.GetScoresAsync(
                     leaderboardID,
-                    new GetScoresOptions { Limit = limit, Offset = offset }
+                    new GetScoresOptions { Limit = limit, Offset = offset, IncludeMetadata = true }
                 );
 
                 if (page?.Results == null || page.Results.Count == 0) break;
 
                 foreach (var entry in page.Results)
                 {
-                    string playerName = entry.PlayerName ?? "Anonim";
-                    // Handle duplicate names with #1234 tags
+                    string playerName = entry.PlayerName ?? "Anon";
                     int hashIndex = playerName.IndexOf('#');
                     if (hashIndex > 0) playerName = playerName.Substring(0, hashIndex);
 
                     int score = (int)entry.Score;
+                    Debug.Log($"Oyuncu: {playerName}, Gelen Metadata: {entry.Metadata}");
 
-                    // Parse Metadata JSON
+                    // --- DÜZELTME 2: Standart JsonUtility kullanýmý ---
                     LeaderboardMetadata meta = new LeaderboardMetadata();
                     if (!string.IsNullOrEmpty(entry.Metadata))
                     {
-                        try
-                        {
-                            meta = JsonUtility.FromJson<LeaderboardMetadata>(entry.Metadata);
-                        }
-                        catch
-                        {
-                            Debug.LogWarning($"Metadata parse hatasý, ham veri: {entry.Metadata}");
-                        }
+                        // JSON'da "2" string olduðu için Class'ta da string. Artýk okuyabilir.
+                        meta = JsonUtility.FromJson<LeaderboardMetadata>(entry.Metadata);
                     }
 
                     LeaderboardEntryData newData = new LeaderboardEntryData
@@ -165,7 +145,6 @@ public class LeaderboardManager : MonoBehaviour
                         metadata = meta
                     };
 
-                    // Handle duplicates: Keep the better score if name exists
                     if (result.TryGetValue(playerName, out var oldData))
                     {
                         if (score > oldData.score) result[playerName] = newData;
@@ -185,143 +164,59 @@ public class LeaderboardManager : MonoBehaviour
         return result;
     }
 
-
     // --- SUBMIT SCORE ---
-    public static async Task SetNewEntry()
-    {
-        try
-        {
-            await InitializeLeaderboardServicesAsync();
-
-            var saveData = GameManager.Instance.SaveData;
-            if (saveData == null) return;
-
-            if (saveData.bestRunData == null)
-            {
-                saveData.bestRunData = new HighScoreData(0, 0, 0);
-                GameManager.Instance.SaveGame();
-            }
-
-            HighScoreData bestRun = saveData.bestRunData;
-            var metadataDict = new Dictionary<string, string>
-            {
-                { "charID", ((int)bestRun.character).ToString() },
-                { "atkID", ((int)bestRun.attackType).ToString() }
-            };
-
-            string name = saveData.Name;
-            if (string.IsNullOrWhiteSpace(name))
-                name = $"Player_{UnityEngine.Random.Range(1000, 9999)}";
-
-            await AuthenticationService.Instance.UpdatePlayerNameAsync(name);
-
-            int score = Mathf.FloorToInt(bestRun.highScore);
-
-            var scoreOptions = new AddPlayerScoreOptions
-            {
-                Metadata = metadataDict // Artýk Dictionary kabul ediyor
-            };
-
-            await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardID, score, scoreOptions);
-            Debug.Log($"Skor ve Metadata baþarýyla yollandý: {score}");
-        }
-        catch (System.Exception e)
-        {
-            // 400 Hatasý alýrsan detayýný görmek için:
-            if (e is Unity.Services.Leaderboards.Exceptions.LeaderboardsException lex)
-            {
-                Debug.LogError($"Leaderboard Hatasý: {lex.Reason} - {lex.Message}");
-            }
-            else
-            {
-                Debug.LogException(e);
-            }
-        }
-    }
-
     public static async Task SubmitScoreAsync(int currentRunScore, int currentRunCharID, int currentRunAtkID)
     {
         try
         {
-            // 1. Servisleri kontrol et
             await InitializeLeaderboardServicesAsync();
 
             var saveData = GameManager.Instance.SaveData;
             if (saveData == null) return;
 
-            // Eðer hiç veri yoksa oluþtur
             if (saveData.bestRunData == null)
-            {
                 saveData.bestRunData = new HighScoreData(0, 0, 0);
-            }
 
             HighScoreData savedBestRun = saveData.bestRunData;
 
-            // 2. KARÞILAÞTIRMA: Þu anki skor, kayýtlý en iyi skordan büyük mü?
             if (currentRunScore > savedBestRun.highScore)
             {
-                // A. Local SaveData'yý güncelle
-                // (Enum cast iþlemleri senin HighScoreData yapýna göre ayarlandý)
                 saveData.bestRunData.highScore = currentRunScore;
                 saveData.bestRunData.character = (CharacterType)currentRunCharID;
                 saveData.bestRunData.attackType = (AttackType)currentRunAtkID;
 
-                GameManager.Instance.SaveGame(); // Diske kaydet
+                GameManager.Instance.SaveGame();
 
-                // B. Liderlik Tablosu için Hazýrlýk
                 string name = saveData.Name;
                 if (string.IsNullOrWhiteSpace(name))
                     name = $"Player_{UnityEngine.Random.Range(1000, 9999)}";
 
                 await AuthenticationService.Instance.UpdatePlayerNameAsync(name);
 
-                // Metadata Hazýrla (Ýkonlar için)
                 var metadataDict = new Dictionary<string, string>
                 {
                     { "charID", currentRunCharID.ToString() },
                     { "atkID", currentRunAtkID.ToString() }
                 };
 
-                var scoreOptions = new AddPlayerScoreOptions
-                {
-                    Metadata = metadataDict
-                };
+                var scoreOptions = new AddPlayerScoreOptions { Metadata = metadataDict };
 
-                // C. Unity Cloud'a Gönder
                 await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardID, currentRunScore, scoreOptions);
-                Debug.Log($"Liderlik tablosu güncellendi: {currentRunScore}");
-            }
-            else
-            {
-                Debug.Log($"Rekor kýrýlmadý. Mevcut Skor: {currentRunScore}, Rekor: {savedBestRun.highScore}. Liderlik tablosuna gönderilmiyor.");
+                Debug.Log($"Skor yollandý: {currentRunScore}");
             }
         }
-        catch (System.Exception e)
-        {
-            if (e is Unity.Services.Leaderboards.Exceptions.LeaderboardsException lex)
-            {
-                Debug.LogError($"Leaderboard Hatasý: {lex.Reason} - {lex.Message}");
-            }
-            else
-            {
-                Debug.LogException(e);
-            }
-        }
+        catch (System.Exception e) { Debug.LogException(e); }
     }
 
     public async Task<bool> CheckForNameAsync(string nameToCheck)
     {
         if (string.IsNullOrWhiteSpace(nameToCheck)) return false;
-
-        if (leaderboardCache == null)
-            await RefreshLeaderboardAsync();
-
+        if (leaderboardCache == null) await RefreshLeaderboardAsync();
         if (leaderboardCache == null) return false;
 
         string cleanName = nameToCheck;
         int hashIndex = cleanName.IndexOf('#');
-        if (hashIndex > 0)
-            cleanName = cleanName.Substring(0, hashIndex);
+        if (hashIndex > 0) cleanName = cleanName.Substring(0, hashIndex);
 
         return leaderboardCache.ContainsKey(cleanName);
     }
@@ -335,15 +230,13 @@ public class LeaderboardManager : MonoBehaviour
             return;
         }
 
-        // Get current player name for highlighting
         string playerName = GameManager.Instance.SaveData != null ? GameManager.Instance.SaveData.Name : "";
 
-        // Sort by Score Descending
         var entries = leaderboardCache
             .OrderByDescending(kv => kv.Value.score)
             .ThenBy(kv => kv.Key);
 
-        int maxRows = nameFields.Count; // Limit by UI slots
+        int maxRows = nameFields.Count;
         ClearUI();
 
         int idx = 0;
@@ -358,66 +251,67 @@ public class LeaderboardManager : MonoBehaviour
             int currentScore = kvp.Value.score;
             LeaderboardMetadata currentMeta = kvp.Value.metadata;
 
-            // --- FILL LIST ROWS ---
+            // --- 1. LÝSTE SATIRLARI ---
             if (idx < maxRows)
             {
-                // Name
                 if (nameFields[idx])
                 {
                     nameFields[idx].text = currentName;
                     nameFields[idx].color = (currentName == playerName) ? playerColor : defaultNameColor;
                 }
+                if (scoreFields[idx]) scoreFields[idx].text = currentScore.ToString();
 
-                // Score
-                if (scoreFields[idx])
-                    scoreFields[idx].text = currentScore.ToString();
-
-                // Icons (Safe Check for Nulls)
+                // --- DÜZELTME 3: Veri String geldiði için kullanýrken Int'e çeviriyoruz ---
                 if (characterIconFields != null && idx < characterIconFields.Count && characterIconFields[idx])
                 {
-                    Sprite sprite = (currentMeta != null) ? iconDatabase.GetCharacterIcon(currentMeta.charID) : null;
+                    int cID = 0;
+                    if (currentMeta != null) int.TryParse(currentMeta.charID, out cID);
+
+                    Sprite sprite = iconDatabase.GetCharacterIcon(cID);
                     SetIcon(characterIconFields[idx], sprite);
                 }
 
                 if (attackTypeIconFields != null && idx < attackTypeIconFields.Count && attackTypeIconFields[idx])
                 {
-                    Sprite sprite = (currentMeta != null) ? iconDatabase.GetAttackTypeIcon(currentMeta.atkID) : null;
+                    int aID = 0;
+                    if (currentMeta != null) int.TryParse(currentMeta.atkID, out aID);
+
+                    Sprite sprite = iconDatabase.GetAttackTypeIcon(aID);
                     SetIcon(attackTypeIconFields[idx], sprite);
                 }
             }
 
-            // --- FILL PLAYER ROW (If player is found) ---
+            // --- 2. OYUNCU SATIRI ---
             if (currentName == playerName)
             {
                 playerFound = true;
-                if (idx < maxRows)
-                {
-                    playerInRange = true; // Player is already shown in the main list
-                }
+                if (idx < maxRows) playerInRange = true;
                 else
                 {
-                    // Player is not in the top list, show the separate row
                     if (playerRowParent) playerRowParent.SetActive(true);
-
                     if (playerRankField) playerRankField.text = rank.ToString();
-
                     if (playerNameField)
                     {
                         playerNameField.color = playerColor;
                         playerNameField.text = currentName;
                     }
-
                     if (playerScoreField) playerScoreField.text = currentScore.ToString();
 
                     if (playerCharacterIcon)
                     {
-                        Sprite sprite = (currentMeta != null) ? iconDatabase.GetCharacterIcon(currentMeta.charID) : null;
+                        int cID = 0;
+                        if (currentMeta != null) int.TryParse(currentMeta.charID, out cID);
+
+                        Sprite sprite = iconDatabase.GetCharacterIcon(cID);
                         SetIcon(playerCharacterIcon, sprite);
                     }
 
                     if (playerAttackTypeIcon)
                     {
-                        Sprite sprite = (currentMeta != null) ? iconDatabase.GetAttackTypeIcon(currentMeta.atkID) : null;
+                        int aID = 0;
+                        if (currentMeta != null) int.TryParse(currentMeta.atkID, out aID);
+
+                        Sprite sprite = iconDatabase.GetAttackTypeIcon(aID);
                         SetIcon(playerAttackTypeIcon, sprite);
                     }
                 }
@@ -425,7 +319,6 @@ public class LeaderboardManager : MonoBehaviour
             idx++;
         }
 
-        // Hide special row if player is in top list or not found at all
         if (playerRowParent && (playerInRange || !playerFound))
             playerRowParent.SetActive(false);
     }

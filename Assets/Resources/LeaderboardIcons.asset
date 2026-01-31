@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: LeaderboardIcons
   m_EditorClassIdentifier: 
   characterIcons:
-  - {fileID: 21300000, guid: cb9ca4460669cb24ea634f4d4542eecb, type: 3}
-  - {fileID: 21300000, guid: d8d140a4fe961a24481ac2164acdb462, type: 3}
-  - {fileID: 21300000, guid: d253e95d0e563024b9cbc60dbd52469f, type: 3}
-  - {fileID: 21300000, guid: e728a7b410c68364da0a0eadc592a3a6, type: 3}
-  - {fileID: 21300000, guid: 35bd2dce59cf0684a9146938ad599d5f, type: 3}
+  - {fileID: 21300000, guid: 224d4c05cf60c6d41a7435c6b9004204, type: 3}
+  - {fileID: 21300000, guid: 4c12e0e03d4a5f74294ab89e92e7f83d, type: 3}
+  - {fileID: 21300000, guid: bf268906104d22c4d904c2d7cdf08a8e, type: 3}
+  - {fileID: 21300000, guid: 69dad9fe7dde52f4f801b40bf4eaf1a4, type: 3}
+  - {fileID: 21300000, guid: 40d05a13466743342a65607073221e56, type: 3}
   attackTypeIcons:
-  - {fileID: 21300000, guid: 4bada64a106ac5c418f861567d63106e, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -7573694343354198120, guid: d6a307aafe837f746b03d7039c20c235, type: 3}
+  - {fileID: -4041009300170039426, guid: d98309325cbe74e40b0ed116dbd4c25f, type: 3}
+  - {fileID: 21300000, guid: 5527aa59bb5d9fb47b708e377302c445, type: 3}
