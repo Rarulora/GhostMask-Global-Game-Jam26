@@ -14,6 +14,8 @@ public class PerkCard : MonoBehaviour
     [SerializeField] private Image perkLogo;
     [SerializeField] private Button selectButton;
 
+    private int _index = 0;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -25,20 +27,25 @@ public class PerkCard : MonoBehaviour
         selectButton.interactable = true;
     }
 
-    public void Initialize(string title, string desc, Sprite perkLogo)
+    public void Setup(string title, string desc, Sprite perkLogo)
     {
         this.title.text = title;
         this.desc.text = desc;
         this.perkLogo.sprite = perkLogo;
     }
 
-    public void Initialize(/*Perk nesnesi*/)
+    public void Setup(PerkBase perk, int index)
     {
-        
-    }
+        _index = index;
+		Setup(perk.PerkName, perk.Description, perk.Icon);
+	}
 
-    public void OnClick()
-    {
+	public void OnClick()
+	{
+		// PerkManager singleton olduðu için direkt ulaþabiliriz
+		PerkManager.I.OnClickPerk(_index);
 
-    }
+		// Týklanýnca butonlarý kapatabiliriz çift týklamayý önlemek için
+		selectButton.interactable = false;
+	}
 }

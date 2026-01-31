@@ -17,6 +17,7 @@ public class EnemyStats : MonoBehaviour
 	// Ödüller
 	public int XPReward { get; private set; }
 	public int GoldReward { get; private set; }
+	public float GoldDropChance { get; private set; }
 
 	// Durum Kontrolü
 	public bool IsDead => CurrentHealth <= 0;
@@ -45,6 +46,7 @@ public class EnemyStats : MonoBehaviour
 
 		XPReward = Mathf.RoundToInt(_data.XPDrop * difficultyMultiplier);
 		GoldReward = _data.GoldDrop;
+		GoldDropChance = _data.GoldDropChance;
 
 		SetupPhysics();
 	}

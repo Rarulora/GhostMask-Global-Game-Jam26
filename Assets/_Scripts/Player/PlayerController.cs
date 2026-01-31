@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController I;
     private int goldCollected = 0;
     private int xpCollected = 0;
 
@@ -28,6 +29,12 @@ public class PlayerController : MonoBehaviour
 
 	private void Awake()
 	{
+        if (I != null && I != this)
+        {
+            Destroy(this);
+            return;
+        }
+        I = this;
         EventManager.RaiseCharacterChanged
             (GameManager.Instance.CharacterDatabase.GetCharacterByID(GameManager.Instance.SaveData.equippedCharacterID));
 	}
