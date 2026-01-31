@@ -18,9 +18,12 @@ MonoBehaviour:
   maxHealth: 5
   moveSpeed: 3
   damage: 1
-  attackRate: 2
+  attackRate: 0.2
   attackRange: 1.5
+  projectileSpeed: 5
+  pierce: 0
   xpDrop: 1
   goldDrop: 1
+  goldDropChance: 0.03
   mass: 5
   immuneToKnockback: 0
