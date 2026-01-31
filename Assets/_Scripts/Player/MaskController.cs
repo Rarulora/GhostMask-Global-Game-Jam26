@@ -104,7 +104,7 @@ public class MaskController : MonoBehaviour
 	private void MaskStatusChange(bool isActive)
 	{
 		_isMaskActive = isActive;
-		maskSR?.enabled = _isMaskActive;
+		if(maskSR != null) maskSR.enabled = _isMaskActive;
 		EventManager.RaiseMaskChanged(_isMaskActive);
 	}
 
