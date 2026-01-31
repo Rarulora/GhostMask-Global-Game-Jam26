@@ -7,7 +7,7 @@ public class LeaderboardMenu : MonoBehaviour
     private Animator anim;
     private AudioSource audioSource;
     //private MainMenuManager mainMenuManager;
-    private LeaderboardManager leaderboardManager;
+    [SerializeField] private LeaderboardManager leaderboardManager;
 
     [Header("UI")]
 
@@ -28,28 +28,26 @@ public class LeaderboardMenu : MonoBehaviour
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        //mainMenuManager = GameObject.FindGameObjectWithTag("MainMenuManager").GetComponent<MainMenuManager>();
-        leaderboardManager = GameObject.FindGameObjectWithTag("LeaderboardManager").GetComponent<LeaderboardManager>();
     }
 
     private void Update()
     {
         if (opened && Input.GetKeyDown(KeyCode.Escape))
         {
-            Exit();
+            gameObject.SetActive(false);
         }
     }
 
     /*
      * desc: brings the leaderboard to the scene
      */
-    public async void Enter()
+    public async void OnEnable()
     {
         await leaderboardManager.RefreshLeaderboardAsync();
 
         opened = true;
-        anim.SetBool("Open", true);
-        ActivateBackButton();
+		anim.SetBool("Open", true);
+		ActivateBackButton();
 
         //audioSource.PlayOneShot(fissSound);
 
@@ -59,7 +57,7 @@ public class LeaderboardMenu : MonoBehaviour
     /*
      * desc: removes the leaderboard from the scene
      */
-    public void Exit()
+    public void OnDisable()
     {
         opened = false;
         anim.SetBool("Open", false);

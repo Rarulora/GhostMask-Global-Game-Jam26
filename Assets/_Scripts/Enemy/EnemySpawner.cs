@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        SpawnEnemiesForLevel(1);
+        timer = waveTime - 10;
     }
 
     private void OnEnable()

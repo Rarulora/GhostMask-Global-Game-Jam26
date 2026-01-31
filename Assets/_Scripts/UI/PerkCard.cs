@@ -27,11 +27,17 @@ public class PerkCard : MonoBehaviour
         selectButton.interactable = true;
     }
 
+    public void Hide()
+    {
+        anim.SetBool("Open", false);
+    }
+
     public void Setup(string title, string desc, Sprite perkLogo)
     {
         this.title.text = title;
         this.desc.text = desc;
-        this.perkLogo.sprite = perkLogo;
+        if (perkLogo != null)
+            this.perkLogo.sprite = perkLogo;
     }
 
     public void Setup(PerkBase perk, int index)
@@ -42,10 +48,9 @@ public class PerkCard : MonoBehaviour
 
 	public void OnClick()
 	{
-		// PerkManager singleton olduðu için direkt ulaþabiliriz
-		PerkManager.I.OnClickPerk(_index);
+        selectButton.interactable = false;
 
-		// Týklanýnca butonlarý kapatabiliriz çift týklamayý önlemek için
-		selectButton.interactable = false;
+        // PerkManager singleton olduðu için direkt ulaþabiliriz
+        PerkManager.I.OnClickPerk(_index);
 	}
 }

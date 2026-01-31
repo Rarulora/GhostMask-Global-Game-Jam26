@@ -9,6 +9,7 @@ TagManager:
   - MainMenuManager
   - Projectile
   - Wall
+  - Menu
   layers:
   - Default
   - TransparentFX

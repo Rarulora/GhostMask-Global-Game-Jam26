@@ -1,3 +1,4 @@
+using Enums;
 using System;
 using TMPro;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public static PlayerController I;
     private int goldCollected = 0;
     private int xpCollected = 0;
+    public CharacterType character;
+    public AttackType attackType;
 
     [Header("Collectable")]
     public float collectRadius = 2f;
@@ -40,15 +43,16 @@ public class PlayerController : MonoBehaviour
 
         HealthController = GetComponent<PlayerHealthController>();
 
+        EventManager.OnPlayerDeath += Die;
+        CalculateNextLevelXP();
+
         EventManager.RaiseCharacterChanged
             (GameManager.Instance.CharacterDatabase.GetCharacterByID(GameManager.Instance.SaveData.equippedCharacterID));
 	}
 
 	private void Start()
     {
-        CalculateNextLevelXP();
         UpdateUI();
-        onLevelChanged?.Invoke(1);
     }
 
     private void Update()
@@ -122,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
     public int GetXPForNextLevel(int level)
     {
-        if (level < 1) return (int)baseXP;
+        if (level <= 1) return (int)baseXP;
         return Mathf.RoundToInt(baseXP * Mathf.Pow(level, power));
     }
 
@@ -139,6 +143,16 @@ public class PlayerController : MonoBehaviour
 
         if (currentLevelNumber != null)
             currentLevelNumber.text = "Level " + currentLevel.ToString();
+    }
+
+    private void Die()
+    {
+        // TODO: Die animation
+        int finalScore = Mathf.FloorToInt(ScoreManager.Instance.CurrentScore);
+        int charID = (int)character;
+        int atkID = (int)attackType;
+
+        _ = LeaderboardManager.SubmitScoreAsync(finalScore, charID, atkID);
     }
 
     public float GetLostHealth() => HealthController.MaxHealth - HealthController.CurrentHealth;

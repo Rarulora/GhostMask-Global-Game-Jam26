@@ -2,6 +2,7 @@ using UnityEngine;
 using GameStates;
 using UnityEngine.InputSystem;
 using Unity.Services.Analytics;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class GameSettings
@@ -28,7 +29,10 @@ public class GameManager : MonoBehaviour
 
     public CharacterDatabase CharacterDatabase => characterDatabase;
 
-    private void Awake()
+	public const string MAIN_MENU_SCENE = "MainMenu";
+	public const string GAMEPLAY_SCENE = "Gameplay";
+	public const string COSMETICS_SCENE = "Cosmetics";
+	private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -74,7 +78,6 @@ public class GameManager : MonoBehaviour
     {
         if (!saveData.touchedBoobs)
         {
-            FindAnyObjectByType<SimpleNotification>().Show("I know what you did...", 3);
             AnalyticsService.Instance.RecordEvent("touched_basket_lady_boobs");
             saveData.touchedBoobs = true;
             SaveManager.Save(saveData);
@@ -101,19 +104,21 @@ public class GameManager : MonoBehaviour
     {
         CurrentState.ExitState();
         CurrentState = newState;
+        Debug.Log(newState.ToString());
         CurrentState.EnterState();
         //GameEvents.RaiseGameStateChanged(CurrentState);
     }
 
     public void Play()
     {
-        SceneTransitionManager.Instance.OpenScene(SceneTransitionManager.GAMEPLAY_SCENE);
-        SwitchState(_states.Play());
+		SceneManager.LoadScene(GAMEPLAY_SCENE);
+		SwitchState(_states.Play());
     }
 
     public void MainMenu()
     {
-        SceneTransitionManager.Instance.OpenScene(SceneTransitionManager.MAIN_MENU_SCENE);
+		SceneManager.LoadScene(MAIN_MENU_SCENE);
+		SwitchState(_states.MainMenu());
     }
 
     public void Pause() => SwitchState(_states.Pause());
@@ -175,14 +180,11 @@ namespace GameStates
 
         public override void EnterState()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            Time.timeScale = 1f;
         }
 
         public override void ExitState()
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
         }
 
         public override void UpdateState()
