@@ -18,15 +18,14 @@ public class RangedWeapon : WeaponBase
 			float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 			Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
-			GameObject proj = ProjectilePoolManager.Instance.Get(data.ProjectilePrefab, playerTransform.position, rotation);
+			GameObject proj = ProjectilePoolManager.Instance.Get(data.ProjectilePrefab, firePoint.position, rotation);
 
 			Projectile pScript = proj.GetComponent<Projectile>();
 			if (pScript != null)
 			{
-				pScript.Initialize(data.Damage, direction, "Enemy", StatsController.I.GetStat(Enums.StatType.projectileSpeed).Value);
+				pScript.Initialize(GetStat(Enums.StatType.damage), direction, "Enemy", StatsController.I.GetStat(Enums.StatType.projectileSpeed).Value);
 			}
 		}
 
-		Debug.Log($"{data.WeaponName} fırlatıldı!");
 	}
 }

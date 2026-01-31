@@ -3,57 +3,80 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+	[Header("Configurations")]
+	public Transform firePoint;
 	[Header("Weapon Database")]
-	// Tüm olası silahların Data dosyalarını buraya sürükle (Inspector)
-	private WeaponData[] allWeapons;
-	private WeaponData startWeapon;
+	[SerializeField] private WeaponData startWeapon;
 
+	private WeaponData[] allWeapons;
 	private WeaponBase currentWeaponBehavior;
 	private WeaponData currentWeaponData;
 
 	private Rigidbody2D rb;
+	private Camera mainCam; // Performans için kamerayı cache'liyoruz
 
 	private void Awake()
 	{
-		rb = GetComponent<Rigidbody2D>();
-
+		rb = GetComponentInParent<Rigidbody2D>();
 		allWeapons = Resources.LoadAll<WeaponData>("Weapons");
+		mainCam = Camera.main; // Kamerayı al
 	}
+
 	private void Start()
 	{
 		EquipWeapon(startWeapon);
 	}
+
 	private void OnEnable()
 	{
 		// EventManager dinlemeye başla
-		// Not: EventManager'da OnPerkSelected(string perkName) veya benzeri bir yapı olduğunu varsayıyorum.
 	}
 
 	private void OnDisable()
 	{
+		// EventManager dinlemeyi bırak
 	}
 
 	private void Update()
 	{
-		// Sol tık ile saldırı
+		// 1. ROTASYON MANTIĞI (YENİ EKLENEN KISIM)
+		HandleRotation();
+
+		// 2. SALDIRI MANTIĞI
 		if (Input.GetMouseButton(0) && currentWeaponBehavior != null)
 		{
 			currentWeaponBehavior.Attack();
 		}
 	}
 
+	// --- SİLAH DÖNDÜRME FONKSİYONU ---
+	private void HandleRotation()
+	{
+		// Eğer oyun duraklatıldıysa veya karakter ölü ise dönmesin (Opsiyonel kontrol eklenebilir)
+
+		// A. Mouse Pozisyonunu Bul
+		Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+		// B. Yön Vektörünü Hesapla (Mouse - Silah Pozisyonu)
+		Vector3 direction = transform.position - mousePos;
+
+		// C. Açıyı Hesapla (Radyan -> Derece)
+		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
+
+		// D. Rotasyonu Uygula
+		transform.rotation = Quaternion.Euler(0, 0, angle);
+
+	}
 
 	public void EquipWeapon(WeaponData newData)
 	{
-		// Eski silahı temizle
 		if (currentWeaponBehavior != null)
 		{
-			Destroy(currentWeaponBehavior); // Component'i siliyoruz
+			Destroy(currentWeaponBehavior);
 		}
 
 		currentWeaponData = newData;
 
-		// Yeni silahın türüne göre doğru Script'i AddComponent yapıyoruz
 		switch (newData.Category)
 		{
 			case WeaponCategory.Melee:
@@ -67,26 +90,14 @@ public class WeaponController : MonoBehaviour
 				break;
 		}
 
-		// Silahı başlat
 		if (currentWeaponBehavior != null)
 		{
-			currentWeaponBehavior.Initialize(newData, transform, rb);
+			currentWeaponBehavior.Initialize(newData, transform, firePoint, rb);
+
+			// Yeni silah geldiğinde scale'i sıfırla ki ters kalmasın
+			transform.localScale = Vector3.one;
+
 			Debug.Log($"Silah Kuşandı: {newData.WeaponName}");
 		}
-	}
-
-	// Basit bir arama fonksiyonu (Bunu geliştirebilirsin)
-	private WeaponData FindWeaponByPerk(string perkName)
-	{
-		foreach (var w in allWeapons)
-		{
-			// Data dosyasındaki isimle perk ismini eşleştiriyoruz
-			// Örn: Perk adı "Sword" ise, WeaponData adı da "Sword" olmalı.
-			if (perkName.Contains(w.WeaponName))
-			{
-				return w;
-			}
-		}
-		return null;
 	}
 }
