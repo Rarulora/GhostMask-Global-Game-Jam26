@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         _states = new GameStateFactory();
-        CurrentState = _states.Play();
+        CurrentState = _states.MainMenu();
         CurrentState.EnterState();
 
         saveData = LoadGame();

@@ -31,7 +31,7 @@ public class SaveData
         equippedWingID = 0;
         equippedCharacterID = 0;
         gold = 0;
-        bestRunData = null; // No highscore
+        bestRunData = new HighScoreData(0, (CharacterType)0, (AttackType)0);
     }
 
     public SaveData(string Name, bool hasAChosenName, bool touchedBoobs, int[] purchasedCosmeticIDs, int[] purchasedCharacterIDs, int[] gainedAchievementIDs, int equippedHatID, int equippedWingID, int equippedCharacterID, int gold, HighScoreData bestRunData)

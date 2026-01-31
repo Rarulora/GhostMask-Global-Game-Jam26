@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 333780902}
   - component: {fileID: 333780904}
   - component: {fileID: 333780903}
+  - component: {fileID: 333780905}
   m_Layer: 5
   m_Name: EyeBebek
   m_TagString: Untagged
@@ -449,6 +450,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333780901}
   m_CullTransparentMesh: 1
+--- !u!114 &333780905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333780901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52e77c7fbe89694abd2a02f0b2020f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyeWhiteRect: {fileID: 273167397}
+  maxRadiusX: 20
+  maxRadiusY: 20
+  smoothSpeed: 15
 --- !u!1 &482689552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,6 +1265,7 @@ GameObject:
   - component: {fileID: 803000770}
   - component: {fileID: 803000772}
   - component: {fileID: 803000771}
+  - component: {fileID: 803000773}
   m_Layer: 5
   m_Name: EyeBebek
   m_TagString: Untagged
@@ -1312,6 +1330,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803000769}
   m_CullTransparentMesh: 1
+--- !u!114 &803000773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803000769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52e77c7fbe89694abd2a02f0b2020f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyeWhiteRect: {fileID: 2109584645}
+  maxRadiusX: 20
+  maxRadiusY: 20
+  smoothSpeed: 15
 --- !u!1 &865914288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,6 +1357,7 @@ GameObject:
   - component: {fileID: 865914289}
   - component: {fileID: 865914291}
   - component: {fileID: 865914290}
+  - component: {fileID: 865914292}
   m_Layer: 5
   m_Name: EyeBebek
   m_TagString: Untagged
@@ -1387,6 +1422,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865914288}
   m_CullTransparentMesh: 1
+--- !u!114 &865914292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865914288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52e77c7fbe89694abd2a02f0b2020f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyeWhiteRect: {fileID: 494517388}
+  maxRadiusX: 20
+  maxRadiusY: 20
+  smoothSpeed: 15
 --- !u!1 &984332183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,6 +1871,7 @@ GameObject:
   - component: {fileID: 1507048758}
   - component: {fileID: 1507048760}
   - component: {fileID: 1507048759}
+  - component: {fileID: 1507048761}
   m_Layer: 5
   m_Name: EyeBebek
   m_TagString: Untagged
@@ -1884,6 +1936,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507048757}
   m_CullTransparentMesh: 1
+--- !u!114 &1507048761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507048757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52e77c7fbe89694abd2a02f0b2020f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyeWhiteRect: {fileID: 1238771359}
+  maxRadiusX: 20
+  maxRadiusY: 20
+  smoothSpeed: 15
 --- !u!1 &1534175702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2350,6 +2418,7 @@ GameObject:
   - component: {fileID: 1875049100}
   - component: {fileID: 1875049102}
   - component: {fileID: 1875049101}
+  - component: {fileID: 1875049103}
   m_Layer: 5
   m_Name: EyeBebek
   m_TagString: Untagged
@@ -2414,6 +2483,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875049099}
   m_CullTransparentMesh: 1
+--- !u!114 &1875049103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875049099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52e77c7fbe89694abd2a02f0b2020f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyeWhiteRect: {fileID: 518775295}
+  maxRadiusX: 20
+  maxRadiusY: 20
+  smoothSpeed: 15
 --- !u!1 &1884581502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,6 +2602,7 @@ GameObject:
   - component: {fileID: 1924487231}
   - component: {fileID: 1924487233}
   - component: {fileID: 1924487232}
+  - component: {fileID: 1924487234}
   m_Layer: 5
   m_Name: EyeBebek
   m_TagString: Untagged
@@ -2581,6 +2667,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924487230}
   m_CullTransparentMesh: 1
+--- !u!114 &1924487234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924487230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52e77c7fbe89694abd2a02f0b2020f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyeWhiteRect: {fileID: 588102489}
+  maxRadiusX: 20
+  maxRadiusY: 20
+  smoothSpeed: 15
 --- !u!1 &1963878763
 GameObject:
   m_ObjectHideFlags: 0

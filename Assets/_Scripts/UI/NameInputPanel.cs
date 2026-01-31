@@ -77,6 +77,8 @@ public class NameInputPanel : MonoBehaviour
         anim.SetBool("Open", true);
         if (fissSound != null)
             audioSource.PlayOneShot(fissSound);
+
+        submitButton.interactable = true;
     }
 
     /*
