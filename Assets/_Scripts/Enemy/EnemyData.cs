@@ -18,6 +18,7 @@ public class EnemyData : ScriptableObject
 	[Header("Rewards")]
 	[SerializeField] private int xpDrop = 1;
 	[SerializeField] private int goldDrop = 1;
+	[SerializeField] private float goldDropChance = 0.03f;
 
 	[Header("Settings")]
 	[SerializeField] private float mass = 1f;
@@ -33,6 +34,7 @@ public class EnemyData : ScriptableObject
 	public float AttackRange => attackRange;
 	public int XPDrop => xpDrop;
 	public int GoldDrop => goldDrop;
+	public float GoldDropChance => goldDropChance;
 	public float Mass => mass;
 	public bool ImmuneToKnockback => immuneToKnockback;
 }
