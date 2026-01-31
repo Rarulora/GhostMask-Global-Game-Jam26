@@ -24,8 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nextLevelXP;
     [SerializeField] private TextMeshProUGUI currentLevelNumber;
 
-    [Header("Actions")]
-    public Action<int> onLevelChanged;
+    public static event Action<int> onLevelChanged;
 
     private void Start()
     {

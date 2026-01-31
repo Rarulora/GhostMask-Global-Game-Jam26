@@ -107,6 +107,10 @@ public class GameManager : MonoBehaviour
 
     public void Resume() => SwitchState(_states.Play());
 
+    public void StartPerkSelect() => SwitchState(_states.StartPerkSelect());
+
+    public void StopPerkSelect() => SwitchState(_states.Play());
+
     public bool IsCurrentState<T>() where T : GameBaseState
     {
         return CurrentState is T;
@@ -126,12 +130,13 @@ namespace GameStates
 
     public class GameStateFactory
     {
-        private GameBaseState _mainMenu, _gameplay, _pause, _gameOver;
+        private GameBaseState _mainMenu, _gameplay, _pause, _gameOver, _perkSelect;
 
         public GameBaseState MainMenu() => _mainMenu ??= new MainMenuState(this);
         public GameBaseState Play() => _gameplay ??= new GameplayState(this);
         public GameBaseState Pause() => _pause ??= new PauseState(this);
         public GameBaseState GameOver() => _gameOver ??= new GameOverState(this);
+        public GameBaseState StartPerkSelect() => _perkSelect ??= new PerkSelectState(this);
     }
 
     public class MainMenuState : GameBaseState
@@ -198,6 +203,25 @@ namespace GameStates
             {
                 GameManager.Instance.Resume();
             }
+        }
+    }
+
+    public class PerkSelectState : GameBaseState
+    {
+        public PerkSelectState(GameStateFactory factory) : base(factory) { }
+
+        public override void EnterState()
+        {
+            Time.timeScale = 0.0f;
+        }
+
+        public override void ExitState()
+        {
+            Time.timeScale = 1.0f;
+        }
+
+        public override void UpdateState()
+        {
         }
     }
 
