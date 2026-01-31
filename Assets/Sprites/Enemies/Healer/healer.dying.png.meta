@@ -1,10 +1,40 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: e6f8e699d2492974f8fdd4ab30f425ea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: -2249799685698128082
+    second: healer.dying_0
+  - first:
+      213: 377272433524688681
+    second: healer.dying_1
+  - first:
+      213: 8075168492441807793
+    second: healer.dying_2
+  - first:
+      213: 4829461116403482424
+    second: healer.dying_3
+  - first:
+      213: 6715237426353330870
+    second: healer.dying_4
+  - first:
+      213: -2519409471205878325
+    second: healer.dying_5
+  - first:
+      213: 3139373926683714066
+    second: healer.dying_6
+  - first:
+      213: -1280882134368699607
+    second: healer.dying_7
+  - first:
+      213: -3623030809489399704
+    second: healer.dying_8
+  - first:
+      213: -9016543837865507013
+    second: healer.dying_9
+  - first:
+      213: -8812576790541984431
+    second: healer.dying_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +76,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,23 +156,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: healer.dying_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 65
+        y: 362
+        width: 794
+        height: 1025
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: e277d261b1b17c0e0800000000000000
+      internalID: -2249799685698128082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.dying_1
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 104
+        width: 757
+        height: 920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92749c787475c3500800000000000000
+      internalID: 377272433524688681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.dying_3
+      rect:
+        serializedVersion: 2
+        x: 1979
+        y: 26
+        width: 729
+        height: 965
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83f7acb3c41b50340800000000000000
+      internalID: 4829461116403482424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.dying_5
+      rect:
+        serializedVersion: 2
+        x: 2936
+        y: 60
+        width: 695
+        height: 865
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc5d4013f62490dd0800000000000000
+      internalID: -2519409471205878325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.dying_7
+      rect:
+        serializedVersion: 2
+        x: 3827
+        y: 30
+        width: 738
+        height: 829
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92b3fc53c74693ee0800000000000000
+      internalID: -1280882134368699607
       vertices: []
       indices: 
       edges: []
@@ -151,7 +269,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: ea71e30e1e487b44ab7ff739177a5705
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +279,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      healer.dying_0: -2249799685698128082
+      healer.dying_1: 377272433524688681
+      healer.dying_10: -8812576790541984431
+      healer.dying_2: 8075168492441807793
+      healer.dying_3: 4829461116403482424
+      healer.dying_4: 6715237426353330870
+      healer.dying_5: -2519409471205878325
+      healer.dying_6: 3139373926683714066
+      healer.dying_7: -1280882134368699607
+      healer.dying_8: -3623030809489399704
+      healer.dying_9: -9016543837865507013
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

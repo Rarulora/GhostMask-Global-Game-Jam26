@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: fefb74e6e876a1c46acf2c6c4f3fcf95
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: -2574145605196506634
+    second: tank.idle_0
+  - first:
+      213: 3977312732173818094
+    second: tank.idle_1
+  - first:
+      213: -5276535319084211383
+    second: tank.idle_2
+  - first:
+      213: 67221779526310278
+    second: tank.idle_3
+  - first:
+      213: 9155350806383637246
+    second: tank.idle_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +138,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: tank.idle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 65
+        y: 21
+        width: 816
+        height: 728
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +153,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: 6f91122e53cc64cd0800000000000000
+      internalID: -2574145605196506634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank.idle_1
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 21
+        width: 772
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee8dbd17bd0423730800000000000000
+      internalID: 3977312732173818094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank.idle_2
+      rect:
+        serializedVersion: 2
+        x: 1913
+        y: 21
+        width: 794
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 943ee25651bf5c6b0800000000000000
+      internalID: -5276535319084211383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank.idle_3
+      rect:
+        serializedVersion: 2
+        x: 2837
+        y: 21
+        width: 794
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 689d5d13ad1dee000800000000000000
+      internalID: 67221779526310278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank.idle_4
+      rect:
+        serializedVersion: 2
+        x: 3761
+        y: 21
+        width: 838
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef235902d075e0f70800000000000000
+      internalID: 9155350806383637246
       vertices: []
       indices: 
       edges: []
@@ -151,7 +251,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +261,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      tank.idle_0: -2574145605196506634
+      tank.idle_1: 3977312732173818094
+      tank.idle_2: -5276535319084211383
+      tank.idle_3: 67221779526310278
+      tank.idle_4: 9155350806383637246
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: 6966392d9d61fc148b43c543f718f67d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: 4661975432993097779
+    second: ranger.skill1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: ranger.skill1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 32
-        height: 32
+        y: 101
+        width: 749
+        height: 818
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: 338c623c4f9a2b040800000000000000
+      internalID: 4661975432993097779
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      ranger.skill1_0: 4661975432993097779
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

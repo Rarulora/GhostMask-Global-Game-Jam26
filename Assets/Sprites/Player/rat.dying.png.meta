@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: d313ef2ec8c36dc4b8ad5220b83f0974
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: -2487381198778178251
+    second: rat.dying_0
+  - first:
+      213: -6189649017592390128
+    second: rat.dying_1
+  - first:
+      213: 6528005614053162261
+    second: rat.dying_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +132,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: rat.dying_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 41
+        y: 62
+        width: 401
+        height: 632
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +147,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: 53567d97afb0b7dd0800000000000000
+      internalID: -2487381198778178251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rat.dying_1
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 62
+        width: 401
+        height: 506
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01e5f0e3303f91aa0800000000000000
+      internalID: -6189649017592390128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rat.dying_2
+      rect:
+        serializedVersion: 2
+        x: 2435
+        y: 0
+        width: 653
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51df465e482289a50800000000000000
+      internalID: 6528005614053162261
       vertices: []
       indices: 
       edges: []
@@ -151,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +211,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      rat.dying_0: -2487381198778178251
+      rat.dying_1: -6189649017592390128
+      rat.dying_2: 6528005614053162261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

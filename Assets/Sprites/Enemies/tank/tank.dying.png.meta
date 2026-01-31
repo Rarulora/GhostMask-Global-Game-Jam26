@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: 3f869429756362640a6c9f5f4cbba1d3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: -7696047301464615305
+    second: tank.dying_0
+  - first:
+      213: 8013103754448430507
+    second: tank.dying_1
+  - first:
+      213: -4385917198213313763
+    second: tank.dying_2
+  - first:
+      213: -511911172403150662
+    second: tank.dying_3
+  - first:
+      213: -7016153538977863857
+    second: tank.dying_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +138,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: tank.dying_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 45
+        y: 22
+        width: 853
+        height: 761
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +153,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: 776199531c5223590800000000000000
+      internalID: -7696047301464615305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank.dying_1
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 68
+        width: 738
+        height: 669
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba56f30d863443f60800000000000000
+      internalID: 8013103754448430507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank.dying_2
+      rect:
+        serializedVersion: 2
+        x: 1977
+        y: 68
+        width: 623
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1b083abb871223c0800000000000000
+      internalID: -4385917198213313763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank.dying_3
+      rect:
+        serializedVersion: 2
+        x: 2943
+        y: 114
+        width: 508
+        height: 531
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab04b5c308355e8f0800000000000000
+      internalID: -511911172403150662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank.dying_4
+      rect:
+        serializedVersion: 2
+        x: 3909
+        y: 252
+        width: 393
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f47ef9b878d91ae90800000000000000
+      internalID: -7016153538977863857
       vertices: []
       indices: 
       edges: []
@@ -151,7 +251,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +261,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      tank.dying_0: -7696047301464615305
+      tank.dying_1: 8013103754448430507
+      tank.dying_2: -4385917198213313763
+      tank.dying_3: -511911172403150662
+      tank.dying_4: -7016153538977863857
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

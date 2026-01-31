@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: fbb297ac77ec9b743b50fef0edd161af
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: -2629725801109267820
+    second: bomber.dying_0
+  - first:
+      213: -1157164885517450126
+    second: bomber.dying_1
+  - first:
+      213: 1371536988577029969
+    second: bomber.dying_2
+  - first:
+      213: 5273473575817928886
+    second: bomber.dying_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: bomber.dying_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 69
+        y: 69
+        width: 772
+        height: 667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +150,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: 49ad3381156518bd0800000000000000
+      internalID: -2629725801109267820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber.dying_1
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 104
+        width: 667
+        height: 632
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2744d24eaace0ffe0800000000000000
+      internalID: -1157164885517450126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber.dying_2
+      rect:
+        serializedVersion: 2
+        x: 1889
+        y: 69
+        width: 772
+        height: 667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15f5178df9da80310800000000000000
+      internalID: 1371536988577029969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber.dying_3
+      rect:
+        serializedVersion: 2
+        x: 2834
+        y: 104
+        width: 667
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b06903f6442f2940800000000000000
+      internalID: 5273473575817928886
       vertices: []
       indices: 
       edges: []
@@ -151,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +236,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      bomber.dying_0: -2629725801109267820
+      bomber.dying_1: -1157164885517450126
+      bomber.dying_2: 1371536988577029969
+      bomber.dying_3: 5273473575817928886
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

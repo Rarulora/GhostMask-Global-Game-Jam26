@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: d4d35c221904f6745a8a7b08f1ced026
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: -1439384106852259786
+    second: melee.dying_0
+  - first:
+      213: -4609097842507492683
+    second: melee.dying_1
+  - first:
+      213: -1568323885603184195
+    second: melee.dying_2
+  - first:
+      213: -5894715197791487086
+    second: melee.dying_3
+  - first:
+      213: 3247509492925785690
+    second: melee.dying_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +138,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: melee.dying_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 107
+        y: 53
+        width: 704
+        height: 1190
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +153,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: 6386abfe7c7460ce0800000000000000
+      internalID: -1439384106852259786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: melee.dying_1
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 269
+        width: 596
+        height: 920
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b2525aaee13900c0800000000000000
+      internalID: -4609097842507492683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: melee.dying_2
+      rect:
+        serializedVersion: 2
+        x: 2051
+        y: 377
+        width: 542
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db1acd14cb13c3ae0800000000000000
+      internalID: -1568323885603184195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: melee.dying_3
+      rect:
+        serializedVersion: 2
+        x: 2969
+        y: 485
+        width: 488
+        height: 488
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29bba8752c3c13ea0800000000000000
+      internalID: -5894715197791487086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: melee.dying_4
+      rect:
+        serializedVersion: 2
+        x: 3887
+        y: 539
+        width: 326
+        height: 380
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a56ec828da8711d20800000000000000
+      internalID: 3247509492925785690
       vertices: []
       indices: 
       edges: []
@@ -151,7 +251,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +261,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      melee.dying_0: -1439384106852259786
+      melee.dying_1: -4609097842507492683
+      melee.dying_2: -1568323885603184195
+      melee.dying_3: -5894715197791487086
+      melee.dying_4: 3247509492925785690
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

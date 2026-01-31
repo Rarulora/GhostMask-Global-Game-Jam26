@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: 3533ac5017dde8f47b651bf16befef0f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: -3658556903597675211
+    second: assasin.dying_0
+  - first:
+      213: -5886682204307544663
+    second: assasin.dying_1
+  - first:
+      213: 1687248911995433770
+    second: assasin.dying_2
+  - first:
+      213: -825267210231910646
+    second: assasin.dying_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: assasin.dying_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 129
+        y: 64
+        width: 652
+        height: 847
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +150,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: 53de18a41e13a3dc0800000000000000
+      internalID: -3658556903597675211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assasin.dying_1
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 129
+        width: 457
+        height: 652
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a5a2a269bd4e4ea0800000000000000
+      internalID: -5886682204307544663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assasin.dying_2
+      rect:
+        serializedVersion: 2
+        x: 2014
+        y: 194
+        width: 392
+        height: 587
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23f62f22ff4a6710800000000000000
+      internalID: 1687248911995433770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assasin.dying_3
+      rect:
+        serializedVersion: 2
+        x: 3054
+        y: 259
+        width: 262
+        height: 522
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0f695148df0c84f0800000000000000
+      internalID: -825267210231910646
       vertices: []
       indices: 
       edges: []
@@ -151,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +236,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      assasin.dying_0: -3658556903597675211
+      assasin.dying_1: -5886682204307544663
+      assasin.dying_2: 1687248911995433770
+      assasin.dying_3: -825267210231910646
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

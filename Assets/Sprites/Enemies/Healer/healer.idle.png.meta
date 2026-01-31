@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: 521caedda59e4a64e9d6bdc3bbf50e90
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: -7925814154488431256
+    second: healer.idle_0
+  - first:
+      213: 5182154881311650040
+    second: healer.idle_1
+  - first:
+      213: -8234278316896134632
+    second: healer.idle_2
+  - first:
+      213: 1037341664019830375
+    second: healer.idle_3
+  - first:
+      213: -517890833405989414
+    second: healer.idle_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +138,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: healer.idle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 89
+        y: 59
+        width: 722
+        height: 932
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +153,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: 86d34fde40ad10290800000000000000
+      internalID: -7925814154488431256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.idle_1
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 89
+        width: 722
+        height: 902
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f033a78866bae740800000000000000
+      internalID: 5182154881311650040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.idle_2
+      rect:
+        serializedVersion: 2
+        x: 1889
+        y: 119
+        width: 722
+        height: 872
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81a54b37f77f9bd80800000000000000
+      internalID: -8234278316896134632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.idle_3
+      rect:
+        serializedVersion: 2
+        x: 2789
+        y: 89
+        width: 722
+        height: 902
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7665d925fb0656e00800000000000000
+      internalID: 1037341664019830375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.idle_4
+      rect:
+        serializedVersion: 2
+        x: 3689
+        y: 59
+        width: 722
+        height: 932
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adda76ae70510d8f0800000000000000
+      internalID: -517890833405989414
       vertices: []
       indices: 
       edges: []
@@ -151,7 +251,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +261,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      healer.idle_0: -7925814154488431256
+      healer.idle_1: 5182154881311650040
+      healer.idle_2: -8234278316896134632
+      healer.idle_3: 1037341664019830375
+      healer.idle_4: -517890833405989414
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

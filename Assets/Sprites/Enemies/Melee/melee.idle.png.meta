@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: 83c3401fb79d5f74a8b236e1785eaa89
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: 7608876146054083782
+    second: melee.idle_0
+  - first:
+      213: 7712972232293742788
+    second: melee.idle_1
+  - first:
+      213: 5503609983864875495
+    second: melee.idle_2
+  - first:
+      213: -3695239208673008753
+    second: melee.idle_3
+  - first:
+      213: -4703198287790348215
+    second: melee.idle_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +138,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: melee.idle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 199
+        y: 39
+        width: 522
+        height: 882
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +153,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: 6c43f719a88289960800000000000000
+      internalID: 7608876146054083782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: melee.idle_1
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 79
+        width: 522
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c8f154516bf90b60800000000000000
+      internalID: 7712972232293742788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: melee.idle_2
+      rect:
+        serializedVersion: 2
+        x: 2039
+        y: 119
+        width: 522
+        height: 802
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e92f86fe10c06c40800000000000000
+      internalID: 5503609983864875495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: melee.idle_3
+      rect:
+        serializedVersion: 2
+        x: 2959
+        y: 199
+        width: 522
+        height: 722
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8323f6948fd7bcc0800000000000000
+      internalID: -3695239208673008753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: melee.idle_4
+      rect:
+        serializedVersion: 2
+        x: 3879
+        y: 79
+        width: 522
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 948e70c6312eabeb0800000000000000
+      internalID: -4703198287790348215
       vertices: []
       indices: 
       edges: []
@@ -151,7 +251,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +261,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      melee.idle_0: 7608876146054083782
+      melee.idle_1: 7712972232293742788
+      melee.idle_2: 5503609983864875495
+      melee.idle_3: -3695239208673008753
+      melee.idle_4: -4703198287790348215
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

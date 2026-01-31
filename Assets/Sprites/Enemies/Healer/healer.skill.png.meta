@@ -1,10 +1,25 @@
 fileFormatVersion: 2
-guid: 9dcd156c4ceab1946b2f8356d0035f4e
+guid: 77b9d81ede7f21242ba6a2efe5d09815
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2903848411162822477
-    second: Heal_0
+      213: -2625335569106526416
+    second: healer.skill_0
+  - first:
+      213: 8989103819575957998
+    second: healer.skill_1
+  - first:
+      213: 406236242851469926
+    second: healer.skill_2
+  - first:
+      213: 1574423285242452664
+    second: healer.skill_3
+  - first:
+      213: -6565170054171172260
+    second: healer.skill_4
+  - first:
+      213: 2501965517598354155
+    second: healer.skill_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +61,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heal_0
+      name: healer.skill_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 32
+        y: 32
+        width: 959
+        height: 1025
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +156,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4741f4aeba8c4820800000000000000
-      internalID: 2903848411162822477
+      spriteID: 03f1533a53fe09bd0800000000000000
+      internalID: -2625335569106526416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.skill_1
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 65
+        width: 959
+        height: 992
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee99eee2c46bfbc70800000000000000
+      internalID: 8989103819575957998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.skill_2
+      rect:
+        serializedVersion: 2
+        x: 2078
+        y: 98
+        width: 959
+        height: 959
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66a1d06e5bd33a500800000000000000
+      internalID: 406236242851469926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.skill_3
+      rect:
+        serializedVersion: 2
+        x: 3101
+        y: 65
+        width: 959
+        height: 992
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8badaf2e2a979d510800000000000000
+      internalID: 1574423285242452664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.skill_4
+      rect:
+        serializedVersion: 2
+        x: 4124
+        y: 65
+        width: 959
+        height: 992
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5268179e94d3e4a0800000000000000
+      internalID: -6565170054171172260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healer.skill_5
+      rect:
+        serializedVersion: 2
+        x: 5147
+        y: 32
+        width: 959
+        height: 1025
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beae9bcd164c8b220800000000000000
+      internalID: 2501965517598354155
       vertices: []
       indices: 
       edges: []
@@ -151,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +286,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heal_0: 2903848411162822477
+      healer.skill_0: -2625335569106526416
+      healer.skill_1: 8989103819575957998
+      healer.skill_2: 406236242851469926
+      healer.skill_3: 1574423285242452664
+      healer.skill_4: -6565170054171172260
+      healer.skill_5: 2501965517598354155
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
