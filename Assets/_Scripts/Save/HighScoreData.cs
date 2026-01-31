@@ -1,13 +1,15 @@
-using Enums;
+using Enums; // Enumlarýn olduðu namespace
 using UnityEngine;
 
 [System.Serializable]
-public class HighScoreData : MonoBehaviour
+public class HighScoreData
 {
-    private float highScore;
-    private CharacterType character;
-    private AttackType attackType;
-    private string[] selectedPerkNames;
+    public float highScore;
+    public CharacterType character;
+    public AttackType attackType;
+    public string[] selectedPerkNames;
+
+    public HighScoreData() { }
 
     public HighScoreData(float highScore, CharacterType character, AttackType attackType, string[] selectedPerkNames)
     {
@@ -22,6 +24,6 @@ public class HighScoreData : MonoBehaviour
         this.highScore = highScore;
         this.character = character;
         this.attackType = attackType;
-        selectedPerkNames = null;
+        this.selectedPerkNames = null;
     }
 }

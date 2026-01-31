@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private GameStateFactory _states;
 
     private SaveData saveData;
+    public SaveData SaveData => saveData;
 
     private void Awake()
     {

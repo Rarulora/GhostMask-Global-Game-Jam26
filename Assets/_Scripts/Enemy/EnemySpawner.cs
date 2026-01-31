@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (data.Prefab == null)
         {
-            Debug.LogError($"HATA: {data.name} datasýnýn içinde Prefab yok!");
+            Debug.LogError($"There are no prefab in {data.name} data!");
             return;
         }
 

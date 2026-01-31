@@ -39,15 +39,15 @@ public class DamagePopup : MonoBehaviour
 
         if (!isCritical)
         {
-            // Normal
+            // Normal (Red)
             textMesh.fontSize = 4;
-            textColor = new Color(1f, 0.8f, 0.2f, 1f);
+            textColor = new Color(1f, 0.2f, 0.2f, 1f);
         }
         else
         {
-            // Critical (Red)
+            // Critical
             textMesh.fontSize = 6;
-            textColor = new Color(1f, 0.2f, 0.2f, 1f);
+            textColor = new Color(1f, 0.8f, 0.2f, 1f);
             textMesh.text += "!";
         }
 

@@ -26,28 +26,4 @@
 		projectileSpeed,
 		pierce
 	}
-
-	public enum AttackType
-	{
-		Melee,
-		Ranged,
-		Dash
-	}
-
-	public enum CharacterType
-	{
-		Raccoon,
-		Platipus,
-		Cat,
-		Monkey,
-		Mouse
-	}
-
-	public enum EnemyType
-	{
-		Melee,
-		Ranged,
-		Bomber,
-		Healer
-	}
 }
