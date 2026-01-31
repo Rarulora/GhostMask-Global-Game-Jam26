@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc03e3c28dbf81a44b62d2511e44f854, type: 3}
   m_Name: Enemy_Bomber
   m_EditorClassIdentifier: 
+  id: 2
+  spawnValue: 7
   maxHealth: 5
   moveSpeed: 3
   damage: 1

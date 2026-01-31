@@ -42,4 +42,12 @@
 		Monkey,
 		Mouse
 	}
+
+	public enum EnemyType
+	{
+		Melee,
+		Ranged,
+		Bomber,
+		Healer
+	}
 }
