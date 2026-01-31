@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,10 +24,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nextLevelXP;
     [SerializeField] private TextMeshProUGUI currentLevelNumber;
 
+    [Header("Actions")]
+    public Action<int> onLevelChanged;
+
     private void Start()
     {
         CalculateNextLevelXP();
         UpdateUI();
+        onLevelChanged?.Invoke(1);
     }
 
     private void Update()
@@ -78,14 +83,19 @@ public class PlayerController : MonoBehaviour
 
     private void CheckLevelUp()
     {
+        bool levelUp = false;
         while (xpCollected >= xpNeededForNextLevel)
         {
             xpCollected -= xpNeededForNextLevel;
             currentLevel++;
+            levelUp = true;
 
             // TODO: PlayLevelUpEffect(); 
             CalculateNextLevelXP();
         }
+
+        if (levelUp)
+            onLevelChanged?.Invoke(currentLevel);
     }
 
     private void CalculateNextLevelXP()
