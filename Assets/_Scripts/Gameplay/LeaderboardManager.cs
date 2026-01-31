@@ -234,6 +234,23 @@ public class LeaderboardManager : MonoBehaviour
         }
     }
 
+    public async Task<bool> CheckForNameAsync(string nameToCheck)
+    {
+        if (string.IsNullOrWhiteSpace(nameToCheck)) return false;
+
+        if (leaderboardCache == null)
+            await RefreshLeaderboardAsync();
+
+        if (leaderboardCache == null) return false;
+
+        string cleanName = nameToCheck;
+        int hashIndex = cleanName.IndexOf('#');
+        if (hashIndex > 0)
+            cleanName = cleanName.Substring(0, hashIndex);
+
+        return leaderboardCache.ContainsKey(cleanName);
+    }
+
     // --- UPDATE UI ---
     private void UpdateUI()
     {

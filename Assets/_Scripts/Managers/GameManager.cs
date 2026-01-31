@@ -68,6 +68,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetSaveData(SaveData save)
+    {
+        saveData = save;
+        SaveGame();
+    }
+
     public void SaveGame()
     {
         SaveManager.Save(saveData);
