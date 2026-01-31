@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c8d1e9ceb192184091e6d06ccf2edb3, type: 3}
-  m_Name: New_Weapon
+  m_Name: Bow
   m_EditorClassIdentifier: 
-  WeaponName: dash
+  WeaponName: Bow
   Category: 2
   Style: 3
   Icon: {fileID: 0}
