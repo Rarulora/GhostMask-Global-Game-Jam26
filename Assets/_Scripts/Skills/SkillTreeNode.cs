@@ -46,6 +46,8 @@ public class SkillTreeNode : MonoBehaviour
 
     public void Purchase()
     {
+        GameManager.Instance.SaveData.gold -= skill.price;
+
         gained = true;
         onGained?.Invoke();
 

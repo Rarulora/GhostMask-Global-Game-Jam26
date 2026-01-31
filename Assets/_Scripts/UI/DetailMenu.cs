@@ -28,9 +28,16 @@ public class DetailMenu : MonoBehaviour
     {
         if (node != null && !node.gained)
         {
-            // Parasý yetiyor mu kontrolü
-            node.Purchase();
-            Close();
+            if (GameManager.Instance.SaveData.gold >= node.skill.price)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.cash);
+                node.Purchase();
+                Close();
+            }
+            else
+            {
+                buyButton.GetComponent<Animator>().SetTrigger("Vibrate");
+            }
         }
     }
 

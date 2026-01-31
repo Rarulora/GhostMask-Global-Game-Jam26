@@ -15,6 +15,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip mainMenuMusic;
     public List<AudioClip> gameplayMusics;
 
+    [Header("Sound Effects")]
+    public AudioClip cash;
+
     [Header("Settings")]
     public float fadeDuration = 1.5f;
     public string mainMenuSceneName = "MainMenu";

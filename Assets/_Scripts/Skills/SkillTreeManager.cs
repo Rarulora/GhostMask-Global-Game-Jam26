@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,10 +14,16 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] private SkillTreeNode[] economyNodes;
 
     [SerializeField] private DetailMenu detailMenu;
+    [SerializeField] private TextMeshProUGUI goldText;
 
     private void Start()
     {
         Initialize();
+    }
+
+    private void Update()
+    {
+        goldText.text = GameManager.Instance.SaveData.gold.ToString();
     }
 
     private void Initialize()
