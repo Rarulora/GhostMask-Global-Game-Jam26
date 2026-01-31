@@ -244,7 +244,7 @@ public class PerkManager : MonoBehaviour
 
 			// Þans Kontrolü
 			if (Random.Range(0f, 100f) > perk.Chance) continue;
-
+			if (perk.targetIsPlayer) target = PlayerController.I.HealthController;
 			// Efekti Uygula
 			ApplyEffect(perk, target, pos);
 		}
@@ -276,6 +276,9 @@ public class PerkManager : MonoBehaviour
 				var hits = Physics2D.OverlapCircleAll(pos, 3f);
 				foreach (var hit in hits) if (hit.CompareTag("Enemy"))
 						hit.GetComponent<IDamageable>()?.TakeDamage(perk.Value, false, Vector2.zero, 0);
+				break;
+			case EffectType.Madness:
+				MaskController.I.IncreaseMadness(perk.Value);
 				break;
 		}
 	}

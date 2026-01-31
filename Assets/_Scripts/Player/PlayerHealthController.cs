@@ -21,6 +21,7 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
 	// Componentler
 	private Rigidbody2D rb;
 
+	public IDamageable damageable => this;
 
 	private void Awake()
 	{

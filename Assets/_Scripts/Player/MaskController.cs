@@ -101,7 +101,10 @@ public class MaskController : MonoBehaviour
 			UpdateMadnessUI();
 		}
 	}
-
+	public void IncreaseMadness(float value)
+	{
+		_currentMadness = Mathf.Clamp(_currentMadness + value,0, maxMadness);
+	}
 	private void MaskStatusChange(bool isActive)
 	{
 		_isMaskActive = isActive;

@@ -25,7 +25,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nextLevelXP;
     [SerializeField] private TextMeshProUGUI currentLevelNumber;
 
-    public static event Action<int> onLevelChanged;
+    public PlayerHealthController HealthController { get; private set; }
+
+	public static event Action<int> onLevelChanged;
 
 	private void Awake()
 	{
@@ -35,6 +37,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
         I = this;
+
+        HealthController = GetComponent<PlayerHealthController>();
+
         EventManager.RaiseCharacterChanged
             (GameManager.Instance.CharacterDatabase.GetCharacterByID(GameManager.Instance.SaveData.equippedCharacterID));
 	}

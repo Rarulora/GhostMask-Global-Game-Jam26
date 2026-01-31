@@ -15,6 +15,7 @@ public class EffectPerk : PerkBase
 	public float Duration;  // For DOTs or Buffs
 	public GameObject VFX;  // Optional Visual Effect
 
+	public bool targetIsPlayer = false;
 	// Conditions (Optional)
 	public bool RequiresMaskOn;
 	public bool RequiresMaskOff;

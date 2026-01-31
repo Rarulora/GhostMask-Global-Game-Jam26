@@ -87,6 +87,7 @@
 		Explosion,
 		Heal,
 		Knockback,
-		Invincibility
+		Invincibility,
+		Madness
 	}
 }
