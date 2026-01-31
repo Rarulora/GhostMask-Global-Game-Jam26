@@ -22,6 +22,11 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
 	private Rigidbody2D rb;
 
 	public IDamageable damageable => this;
+	public float CurrentHealth => _currentHealth;
+	public float MaxHealth => _maxHealth;
+
+	bool isInvinsible = false;
+	Coroutine invinsibleRoutine;
 
 	private void Awake()
 	{
@@ -95,6 +100,26 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
 
 	}
 
+	public bool CanTakeDamage()
+	{
+		return !isInvinsible;
+	}
+
+	public void MakeInvinsible(float duration)
+	{
+		if (invinsibleRoutine != null)
+		{
+			StopCoroutine(invinsibleRoutine);
+			invinsibleRoutine = null;
+		}
+		invinsibleRoutine = StartCoroutine(InvinsibleCoroutine(duration));
+	}
+	IEnumerator InvinsibleCoroutine(float duration)
+	{
+		isInvinsible = true;
+		yield return new WaitForSeconds(duration);
+		isInvinsible = false;
+	}
 	// --- YARDIMCI RUTİNLER ---
 
 	private void ApplyKnockback(Vector2 dir, float force)

@@ -112,4 +112,6 @@ public class PlayerStat
 
 		return (float)Math.Round(finalValue, 4);
 	}
+
+	public void SetDirty() => isDirty = true;
 }

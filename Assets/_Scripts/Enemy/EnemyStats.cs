@@ -9,7 +9,7 @@ public class EnemyStats : MonoBehaviour
 
 	public float CurrentHealth { get; private set; }
 	public float MaxHealth { get; private set; }
-	public float MoveSpeed { get; private set; }
+	public float MoveSpeed { get; set; }
 	public float Damage { get; private set; }
 	public float AttackRate { get; private set; }
 	public float AttackRange { get; private set; }
