@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿using Enums;
 using System.Collections;
+using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
@@ -34,5 +35,9 @@ public abstract class WeaponBase : MonoBehaviour
 		float result = 0f;
 		if (StatsController.I != null) result = StatsController.I.GetStat(type).Value;
 		return result;
+	}
+	protected bool IsCrit()
+	{
+		return (Random.value * 100f) <= StatsController.I.GetValue(StatType.critChance);
 	}
 }

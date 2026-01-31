@@ -13,10 +13,13 @@ public class EnemyStats : MonoBehaviour
 	public float Damage { get; private set; }
 	public float AttackRate { get; private set; }
 	public float AttackRange { get; private set; }
+	public float ProjectileSpeed { get; private set; }
+	public int Pierce {  get; private set; }
 
 	// Ödüller
 	public int XPReward { get; private set; }
 	public int GoldReward { get; private set; }
+	public float GoldDropChance { get; private set; }
 
 	// Durum Kontrolü
 	public bool IsDead => CurrentHealth <= 0;
@@ -42,9 +45,12 @@ public class EnemyStats : MonoBehaviour
 		MoveSpeed = _data.MoveSpeed;
 		AttackRate = _data.AttackRate;
 		AttackRange = _data.AttackRange;
+		ProjectileSpeed = _data.ProjectileSpeed;
+		Pierce = _data.Pierce;
 
 		XPReward = Mathf.RoundToInt(_data.XPDrop * difficultyMultiplier);
 		GoldReward = _data.GoldDrop;
+		GoldDropChance = _data.GoldDropChance;
 
 		SetupPhysics();
 	}

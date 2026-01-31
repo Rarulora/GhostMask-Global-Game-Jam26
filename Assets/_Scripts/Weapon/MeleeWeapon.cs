@@ -28,11 +28,11 @@ public class MeleeWeapon : WeaponBase
 
 					// 2. Açı Hesabı: Artık ofsetli "facingDir" ile karşılaştırıyoruz
 					float angleToTarget = Vector2.Angle(facingDir, dirToTarget);
-
+					bool isCrit = IsCrit();
 					if (angleToTarget < attackAngle / 2f)
 					{
 						Vector2 knockbackDir = (hit.transform.position - playerTransform.position).normalized;
-						enemy.TakeDamage(GetStat(Enums.StatType.damage), false, knockbackDir, GetStat(Enums.StatType.knockbackForce));
+						enemy.TakeDamage(GetStat(Enums.StatType.damage), isCrit, knockbackDir, GetStat(Enums.StatType.knockbackForce));
 					}
 				}
 			}

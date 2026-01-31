@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController I;
     private int goldCollected = 0;
     private int xpCollected = 0;
 
@@ -24,10 +25,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nextLevelXP;
     [SerializeField] private TextMeshProUGUI currentLevelNumber;
 
-    public static event Action<int> onLevelChanged;
+    public PlayerHealthController HealthController { get; private set; }
+
+	public static event Action<int> onLevelChanged;
 
 	private void Awake()
 	{
+        if (I != null && I != this)
+        {
+            Destroy(this);
+            return;
+        }
+        I = this;
+
+        HealthController = GetComponent<PlayerHealthController>();
+
         EventManager.RaiseCharacterChanged
             (GameManager.Instance.CharacterDatabase.GetCharacterByID(GameManager.Instance.SaveData.equippedCharacterID));
 	}

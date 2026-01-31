@@ -15,6 +15,7 @@ public class MaskController : MonoBehaviour
 	private bool _isMaskActive = false;
 
 	public bool IsMaskActive => _isMaskActive;
+	public float CurrentMadness => _currentMadness;
 	private void Awake()
 	{
 		if (I != null && I != this)
@@ -100,7 +101,10 @@ public class MaskController : MonoBehaviour
 			UpdateMadnessUI();
 		}
 	}
-
+	public void IncreaseMadness(float value)
+	{
+		_currentMadness = Mathf.Clamp(_currentMadness + value,0, maxMadness);
+	}
 	private void MaskStatusChange(bool isActive)
 	{
 		_isMaskActive = isActive;

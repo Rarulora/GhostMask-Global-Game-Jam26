@@ -113,7 +113,6 @@ public class Enemy_Ranged : EnemyBase
 		if (projectilePrefab == null || playerTarget == null) return;
 
 		Transform firePoint = currentFirePointIndex == 0 ? firePoint0 : firePoint1;
-
 		// Pool'dan mermi çek
 		GameObject proj = ProjectilePoolManager.Instance.Get(
 			projectilePrefab,
@@ -125,7 +124,7 @@ public class Enemy_Ranged : EnemyBase
 		if (pScript != null)
 		{
 			Vector3 dir = (playerTarget.position - transform.position).normalized;
-			pScript.Initialize(stats.Damage, dir, "Player");
+			pScript.Initialize(stats.Damage, dir, "Player", stats.ProjectileSpeed, stats.Pierce, false);
 		}
 
 		currentFirePointIndex = currentFirePointIndex == 0 ? 1 : 0;
