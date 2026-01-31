@@ -16,7 +16,7 @@ MonoBehaviour:
   Category: 2
   Style: 0
   Icon: {fileID: 0}
-  ProjectilePrefab: {fileID: 3595906661893404382, guid: 5c0ebda3ede8a9c4188826e690b37271, type: 3}
+  ProjectilePrefab: {fileID: 3680412643784362783, guid: ca1ae0d5780cda5428801c9352c297b2, type: 3}
   HitVFX: {fileID: 0}
   DashSpeed: 21.6
   DashDuration: 0.21

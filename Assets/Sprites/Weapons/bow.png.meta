@@ -154,8 +154,8 @@ TextureImporter:
         y: 311
         width: 353
         height: 353
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.024394957, y: 0.024394784}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -169,37 +169,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_1
-      rect:
-        serializedVersion: 2
-        x: 1325
-        y: 350
-        width: 314
-        height: 314
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a532ca5df987c3c70800000000000000
-      internalID: 8952162787185664858
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: bow_2
       rect:
         serializedVersion: 2
-        x: 1364
-        y: 389
-        width: 392
-        height: 392
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1328
+        y: 356
+        width: 428
+        height: 429
+      alignment: 9
+      pivot: {x: -0.02909894, y: -0.046068028}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -213,37 +191,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_3
-      rect:
-        serializedVersion: 2
-        x: 2183
-        y: 233
-        width: 431
-        height: 431
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6965917a6d114bf00800000000000000
-      internalID: 1131549020000966294
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: bow_4
       rect:
         serializedVersion: 2
-        x: 2222
-        y: 272
-        width: 548
-        height: 548
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2185
+        y: 236
+        width: 585
+        height: 584
+      alignment: 9
+      pivot: {x: 0.0928761, y: 0.08549322}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -264,8 +220,8 @@ TextureImporter:
         y: 155
         width: 665
         height: 665
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.182952, y: 0.17120986}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -282,12 +238,12 @@ TextureImporter:
       name: bow_6
       rect:
         serializedVersion: 2
-        x: 4055
+        x: 4059
         y: 155
         width: 665
         height: 665
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.16533864, y: 0.14185357}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -308,8 +264,8 @@ TextureImporter:
         y: 155
         width: 665
         height: 665
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.1418534, y: 0.14185335}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -326,7 +282,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 61bf2ecc9e13b504b9d4ec185d8b344b
     internalID: 0
     vertices: []
     indices: 
