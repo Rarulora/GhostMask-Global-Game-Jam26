@@ -16,11 +16,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameSettings gameSettings = new();
+
+    [Header("Databases")]
+    [SerializeField] private CharacterDatabase characterDatabase;
+
     public GameBaseState CurrentState { get; private set; }
     private GameStateFactory _states;
 
     private SaveData saveData;
     public SaveData SaveData => saveData;
+
+    public CharacterDatabase CharacterDatabase => characterDatabase;
 
     private void Awake()
     {
@@ -30,6 +36,8 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        InitDatabases();
 
         _states = new GameStateFactory();
         CurrentState = _states.MainMenu();
@@ -47,8 +55,13 @@ public class GameManager : MonoBehaviour
     {
         SaveGame();
     }
+    private void InitDatabases()
+    {
+        if (characterDatabase == null)
+            characterDatabase = Resources.Load<CharacterDatabase>("CharacterDatabase");
+    }
 
-    public void ChangeName(string name)
+	public void ChangeName(string name)
     {
         saveData.Name = name;
         saveData.hasAChosenName = true;

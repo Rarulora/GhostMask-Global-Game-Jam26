@@ -59,7 +59,8 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
 		ApplyKnockback(knockbackDir, knockbackForce);
 		StartCoroutine(InvincibilityRoutine());
 	}
-
+	public void TakeDamage(float amount) => TakeDamage(amount, false, Vector2.zero, 0);
+	public void TakeDamage(float amount, bool isCritical) => TakeDamage(amount, isCritical, Vector2.zero, 0);
 	// --- CAN YENİLEME (Potion vb. için) ---
 	public void Heal(float amount)
 	{

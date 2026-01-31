@@ -9,13 +9,7 @@ public class Enemy_Ranged : EnemyBase
 	[Header("Animator Settings")]
 	[SerializeField] private string attackAnimationStateName = "Attack_";
 	private int currentFirePointIndex = 0;
-	private Animator animator; // Animator referansý
-
-	protected override void Awake()
-	{
-		base.Awake(); // Base'deki iþlemleri (Stats, RB alýmý) yap
-		animator = GetComponentInChildren<Animator>(); // Animator'u al
-	}
+	
 
 	// --- 1. HAREKET VE DÖNME (AYNEN KORUNDU) ---
 	protected override void Move()
@@ -99,11 +93,11 @@ public class Enemy_Ranged : EnemyBase
 	// Base sýnýf süresi dolunca burayý çaðýrýr.
 	protected override void PerformAttack()
 	{
-		if (animator != null)
+		if (anim != null)
 		{
 			// Eðer Animator varsa, sadece animasyonu baþlat.
 			// Mermiyi oluþturma iþini Animasyon Event'i (ShootProjectile) yapacak.
-			animator.SetTrigger(attackAnimationStateName + currentFirePointIndex);
+			anim.SetTrigger(attackAnimationStateName + currentFirePointIndex);
 		}
 		else
 		{
