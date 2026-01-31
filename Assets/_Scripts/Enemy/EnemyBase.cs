@@ -196,10 +196,9 @@ public class EnemyBase : MonoBehaviour, IDamageable
 		flashRoutine = StartCoroutine(HitFlashRoutine());
 
 		ApplyKnockback(knockbackDir, knockbackForce);
+        DamagePopup.Create(transform.position, amount, isCritical);
 
-		// TODO: Damage Pop-up
-
-		if (stats.IsDead)
+        if (stats.IsDead)
 		{
 			Die();
 		}
