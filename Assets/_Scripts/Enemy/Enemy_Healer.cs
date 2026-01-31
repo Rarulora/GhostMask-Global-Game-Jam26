@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Enemy_Healer : EnemyBase
 {
@@ -6,6 +7,7 @@ public class Enemy_Healer : EnemyBase
 	[SerializeField] private float healRadius = 4f;
 	[SerializeField] private GameObject healVFX;
 
+	WaitForSeconds vfxDuration = new WaitForSeconds(1f);
 	protected override void FixedUpdate()
 	{
 		if (isDead || isStunned || playerTarget == null) return;
@@ -59,10 +61,15 @@ public class Enemy_Healer : EnemyBase
 
 		if (didHeal && healVFX)
 		{
-			Instantiate(healVFX, transform.position, Quaternion.identity);
+			StartCoroutine(VFXRoutine());
 		}
 	}
-
+	IEnumerator VFXRoutine()
+	{
+		healVFX.SetActive(true);
+		yield return vfxDuration;
+		healVFX.SetActive(false);
+	}
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.green;

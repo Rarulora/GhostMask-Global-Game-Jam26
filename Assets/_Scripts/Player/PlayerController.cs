@@ -141,6 +141,9 @@ public class PlayerController : MonoBehaviour
             currentLevelNumber.text = "Level " + currentLevel.ToString();
     }
 
+    public float GetLostHealth() => HealthController.MaxHealth - HealthController.CurrentHealth;
+    public float GetCurrentHealth() => HealthController.CurrentHealth;
+    public float GetCurrentMadness() => MaskController.I.CurrentMadness;
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

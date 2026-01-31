@@ -9,7 +9,7 @@ public class DynamicStatPerk : PerkBase
 	public float Multiplier = 0.5f; // How much does source affect target?
 
 	// Special flag for Madness since it's not a standard stat
-	public bool UseMadnessAsSource;
+	public SourceExtension sourceExtensionStat;
 
 	public override void OnEquip(GameObject player)
 	{
@@ -42,10 +42,20 @@ public class DynamicPerkHandler : MonoBehaviour
 	{
 		float sourceValue = 0;
 
-		if (_data.UseMadnessAsSource)
+		if (_data.sourceExtensionStat == SourceExtension.currentMadness)
 		{
 			// You need to expose current madness via property in MaskController
 			sourceValue = _maskController != null ? _maskController.CurrentMadness : 0;
+		}
+		else if (_data.sourceExtensionStat == SourceExtension.currentHealth)
+		{
+			// You need to expose current madness via property in MaskController
+			sourceValue = PlayerController.I != null ? PlayerController.I.GetCurrentHealth() : 0;
+		}
+		else if (_data.sourceExtensionStat == SourceExtension.lostHealth)
+		{
+			// You need to expose current madness via property in MaskController
+			sourceValue = PlayerController.I != null ? PlayerController.I.GetLostHealth() : 0;
 		}
 		else
 		{
@@ -56,10 +66,8 @@ public class DynamicPerkHandler : MonoBehaviour
 		// E.g., Momentum: Damage += Speed * 0.5
 		_modifier.Value = sourceValue * _data.Multiplier;
 
-		// Force stat to recalculate (Dirty flag handled by your Stat system?)
-		// If your PlayerStat only recalculates on access, this is fine. 
-		// If it needs a manual trigger:
-		// _stats.GetStat(_data.TargetStat).SetDirty(); 
+
+		_stats.GetStat(_data.TargetStat).SetDirty();
 	}
 
 	private void OnDestroy()

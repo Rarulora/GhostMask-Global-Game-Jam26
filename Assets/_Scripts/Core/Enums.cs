@@ -86,8 +86,14 @@
 		Stun,
 		Explosion,
 		Heal,
-		Knockback,
 		Invincibility,
 		Madness
+	}
+
+	public enum SourceExtension
+	{
+		currentMadness,
+		lostHealth,
+		currentHealth
 	}
 }
