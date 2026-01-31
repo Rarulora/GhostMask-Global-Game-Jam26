@@ -244,7 +244,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 6827956170030059714, guid: 60919279f686fcd41bceb9e48b1e9b1a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -466,6 +466,7 @@ MonoBehaviour:
   maxRadiusX: 20
   maxRadiusY: 20
   smoothSpeed: 15
+  blinkSpeed: 0.15
 --- !u!1 &482689552
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +752,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 6827956170030059714, guid: 60919279f686fcd41bceb9e48b1e9b1a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -841,7 +842,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 6827956170030059714, guid: 60919279f686fcd41bceb9e48b1e9b1a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -931,7 +932,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 6827956170030059714, guid: 60919279f686fcd41bceb9e48b1e9b1a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -959,6 +960,7 @@ GameObject:
   - component: {fileID: 615707204}
   - component: {fileID: 615707203}
   - component: {fileID: 615707202}
+  - component: {fileID: 615707205}
   m_Layer: 5
   m_Name: Eye (1)
   m_TagString: Untagged
@@ -1021,7 +1023,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 6827956170030059714, guid: 60919279f686fcd41bceb9e48b1e9b1a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1037,6 +1039,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615707200}
   m_CullTransparentMesh: 1
+--- !u!114 &615707205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615707200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &707601062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,6 +1362,7 @@ MonoBehaviour:
   maxRadiusX: 20
   maxRadiusY: 20
   smoothSpeed: 15
+  blinkSpeed: 0.15
 --- !u!1 &865914288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,6 +1455,7 @@ MonoBehaviour:
   maxRadiusX: 20
   maxRadiusY: 20
   smoothSpeed: 15
+  blinkSpeed: 0.15
 --- !u!1 &984332183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,7 +1651,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 6827956170030059714, guid: 60919279f686fcd41bceb9e48b1e9b1a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1952,6 +1970,7 @@ MonoBehaviour:
   maxRadiusX: 20
   maxRadiusY: 20
   smoothSpeed: 15
+  blinkSpeed: 0.15
 --- !u!1 &1534175702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,6 +2293,7 @@ MonoBehaviour:
   maxRadiusX: 20
   maxRadiusY: 20
   smoothSpeed: 15
+  blinkSpeed: 0.15
 --- !u!1 &1740980926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2499,6 +2519,7 @@ MonoBehaviour:
   maxRadiusX: 20
   maxRadiusY: 20
   smoothSpeed: 15
+  blinkSpeed: 0.15
 --- !u!1 &1884581502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2683,6 +2704,7 @@ MonoBehaviour:
   maxRadiusX: 20
   maxRadiusY: 20
   smoothSpeed: 15
+  blinkSpeed: 0.15
 --- !u!1 &1963878763
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,7 +3356,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 6827956170030059714, guid: 60919279f686fcd41bceb9e48b1e9b1a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

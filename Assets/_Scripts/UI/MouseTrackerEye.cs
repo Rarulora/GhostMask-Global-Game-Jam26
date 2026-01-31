@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,12 @@ public class MouseTrackerEye : MonoBehaviour
     public float maxRadiusY = 30f;
     public float smoothSpeed = 15f;
 
+    [Header("Blink Settings")]
+    public float blinkSpeed = 0.15f;
+    private float initialHeight;
+    private float initialWidth;
+    private Coroutine currentBlinkCoroutine;
+
     private Canvas parentCanvas;
 
     void Start()
@@ -25,12 +32,21 @@ public class MouseTrackerEye : MonoBehaviour
 
         if (eyeWhiteRect == null)
             enabled = false;
+
+        initialHeight = eyeWhiteRect.sizeDelta.y;
+        initialWidth = eyeWhiteRect.sizeDelta.x;
     }
 
     void Update()
     {
         Vector2 targetLocalPosition = GetClampedMousePosition();
         pupilRect.anchoredPosition = Vector2.Lerp(pupilRect.anchoredPosition, targetLocalPosition, Time.deltaTime * smoothSpeed);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (currentBlinkCoroutine != null) StopCoroutine(currentBlinkCoroutine);
+            currentBlinkCoroutine = StartCoroutine(Blink());
+        }
     }
 
     Vector2 GetClampedMousePosition()
@@ -57,6 +73,40 @@ public class MouseTrackerEye : MonoBehaviour
             localMousePos /= magnitude;
 
         return localMousePos;
+    }
+
+    private IEnumerator Blink()
+    {
+        float timer = 0f;
+        float startH = eyeWhiteRect.sizeDelta.y;
+
+        while (timer < blinkSpeed)
+        {
+            timer += Time.deltaTime;
+            float t = timer / blinkSpeed;
+
+            float newHeight = Mathf.Lerp(startH, 0f, t);
+            eyeWhiteRect.sizeDelta = new Vector2(initialWidth, newHeight);
+
+            yield return null;
+        }
+
+        eyeWhiteRect.sizeDelta = new Vector2(initialWidth, 0f);
+
+        timer = 0f;
+        while (timer < blinkSpeed)
+        {
+            timer += Time.deltaTime;
+            float t = timer / blinkSpeed;
+
+            float newHeight = Mathf.Lerp(0f, initialHeight, t);
+            eyeWhiteRect.sizeDelta = new Vector2(initialWidth, newHeight);
+
+            yield return null;
+        }
+
+        eyeWhiteRect.sizeDelta = new Vector2(initialWidth, initialHeight);
+        currentBlinkCoroutine = null;
     }
 
     void OnDrawGizmosSelected()
