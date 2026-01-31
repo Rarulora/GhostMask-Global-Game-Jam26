@@ -148,7 +148,6 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         // TODO: Die animation
-
         int finalScore = Mathf.FloorToInt(ScoreManager.Instance.CurrentScore);
         int charID = (int)character;
         int atkID = (int)attackType;

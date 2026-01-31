@@ -134,11 +134,11 @@ GameObject:
   - component: {fileID: 4592065}
   m_Layer: 5
   m_Name: PauseMenu
-  m_TagString: Untagged
+  m_TagString: Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4592062
 RectTransform:
   m_ObjectHideFlags: 0
@@ -246,6 +246,8 @@ GameObject:
   - component: {fileID: 27066779}
   - component: {fileID: 27066778}
   - component: {fileID: 27066781}
+  - component: {fileID: 27066783}
+  - component: {fileID: 27066782}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -440,6 +442,39 @@ MonoBehaviour:
   madnessThreshold: 75
   madnessScoreMultiplier: 2
   maxCombo: 500
+--- !u!114 &27066782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27066774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0737730c41a0fce4faa9b823b1bcd82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maskSR: {fileID: 0}
+  maxMadness: 100
+  baseFillSpeed: 10
+  baseDrainSpeed: 5
+  minFillSpeed: 0.5
+--- !u!114 &27066783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27066774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167545062ed431a42bb5d16f7ab4375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  iFrameDuration: 0.2
+  spriteRenderer: {fileID: 0}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &34797865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,11 +1372,11 @@ GameObject:
   - component: {fileID: 365864126}
   m_Layer: 5
   m_Name: GameOverMenu
-  m_TagString: Untagged
+  m_TagString: Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &365864125
 RectTransform:
   m_ObjectHideFlags: 0

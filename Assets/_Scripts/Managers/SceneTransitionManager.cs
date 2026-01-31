@@ -40,12 +40,6 @@ public class SceneTransitionManager : MonoBehaviour
     private void GetUIElements()
     {
         animators = FindObjectsByType<Animator>(FindObjectsSortMode.None).ToList();
-        foreach (var animator in animators)
-        {
-            if (animator.GetComponent<Menu>() != null)
-                animators.Remove(animator);
-        }
-
         uiDirty = false;
     }
     public void OpenScene(string name)
