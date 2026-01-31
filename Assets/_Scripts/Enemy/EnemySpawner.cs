@@ -4,6 +4,9 @@ using System.Linq;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Player")]
+    private PlayerController player;
+
     [Header("Spawn Points")]
     public Transform[] spawnPoints;
 
@@ -17,6 +20,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player.onLevelChanged += SpawnEnemiesForLevel;
+
         enemyDatabase = Resources.Load<EnemyDatabase>("EnemyDatabase");
         if (enemyDatabase == null) 
             Debug.LogError("EnemyDatabase couldn't be found!");

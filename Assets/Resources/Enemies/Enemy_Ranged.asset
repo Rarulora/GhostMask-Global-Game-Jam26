@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Enemy_Ranged
   m_EditorClassIdentifier: 
   id: 1
+  spawnValue: 5
+  prefab: {fileID: 5173128343731849277, guid: 8b4bdbbde5b7be745a282c05e79bfb4f, type: 3}
   maxHealth: 2
   moveSpeed: 3
   damage: 1
