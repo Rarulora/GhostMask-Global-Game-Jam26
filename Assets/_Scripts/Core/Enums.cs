@@ -42,4 +42,23 @@
 		Monkey,
 		Mouse
 	}
+
+	public enum WeaponCategory
+	{
+		None,
+		Melee,
+		Ranged,
+		Dash
+	}
+
+	public enum WeaponStyle
+	{
+		Base,   // Kategori seçildi ama alt kategori seçilmedi (Örn: Düz Sopalar)
+		Sword,  // Melee Alt
+		Hammer, // Melee Alt
+		Bow,    // Ranged Alt
+		Orb,    // Ranged Alt
+		Fast,   // Dash Alt
+		Strong  // Dash Alt
+	}
 }

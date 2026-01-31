@@ -127,11 +127,11 @@ public class Enemy_Ranged : EnemyBase
 			firePoint != null ? firePoint.rotation : transform.rotation
 		);
 
-		EnemyProjectile pScript = proj.GetComponent<EnemyProjectile>();
+		Projectile pScript = proj.GetComponent<Projectile>();
 		if (pScript != null)
 		{
 			Vector3 dir = (playerTarget.position - transform.position).normalized;
-			pScript.Initialize(stats.Damage, dir);
+			pScript.Initialize(stats.Damage, dir, "Player");
 		}
 
 		currentFirePointIndex = currentFirePointIndex == 0 ? 1 : 0;
