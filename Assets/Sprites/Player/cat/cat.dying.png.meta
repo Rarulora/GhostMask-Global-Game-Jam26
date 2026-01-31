@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 5527aa59bb5d9fb47b708e377302c445
+guid: b5afe4b6d8469244994c6b9a04209497
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2214683806062304926
-    second: orb_0
+      213: 989829080740413055
+    second: cat.dying_0
+  - first:
+      213: 3680357345836245590
+    second: cat.dying_1
+  - first:
+      213: -6857296051719578525
+    second: cat.dying_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +52,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 450
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,13 +132,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: orb_0
+      name: cat.dying_0
       rect:
         serializedVersion: 2
-        x: 63
-        y: 63
-        width: 578
-        height: 578
+        x: 59
+        y: 89
+        width: 572
+        height: 842
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +147,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e9e572e00332cbe10800000000000000
-      internalID: 2214683806062304926
+      spriteID: f7e32e9fd449cbd00800000000000000
+      internalID: 989829080740413055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat.dying_1
+      rect:
+        serializedVersion: 2
+        x: 1649
+        y: 89
+        width: 542
+        height: 722
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 652a115b181431330800000000000000
+      internalID: 3680357345836245590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat.dying_2
+      rect:
+        serializedVersion: 2
+        x: 3479
+        y: 0
+        width: 812
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36cd09d829df5d0a0800000000000000
+      internalID: -6857296051719578525
       vertices: []
       indices: 
       edges: []
@@ -151,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +211,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      orb_0: 2214683806062304926
+      cat.dying_0: 989829080740413055
+      cat.dying_1: 3680357345836245590
+      cat.dying_2: -6857296051719578525
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
