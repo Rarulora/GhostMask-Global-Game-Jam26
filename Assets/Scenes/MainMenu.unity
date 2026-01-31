@@ -5814,7 +5814,7 @@ MonoBehaviour:
   playerCharacterIcon: {fileID: 0}
   playerAttackTypeIcon: {fileID: 0}
   playerColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  defaultNameColor: {r: 1, g: 1, b: 1, a: 1}
+  defaultNameColor: {r: 0, g: 0, b: 0, a: 1}
   transparentColor: {r: 1, g: 1, b: 1, a: 0}
   visibleColor: {r: 1, g: 1, b: 1, a: 1}
   leaderboardUpdateTime: 90

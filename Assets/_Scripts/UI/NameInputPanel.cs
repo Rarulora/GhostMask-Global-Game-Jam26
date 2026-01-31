@@ -8,36 +8,39 @@ public class NameInputPanel : MonoBehaviour
     private Animator anim;
     private AudioSource audioSource;
     private MainMenuManager mainMenuManager;
+    // LeaderboardManager singleton veya static olduðu için referansa gerek kalmayabilir ama tag ile buluyorsan kalsýn.
     private LeaderboardManager leaderboardManager;
 
     [Header("UI")]
-
-    [SerializeField]
-    private TMP_InputField inputField;
-
-    [SerializeField]
-    private Button submitButton;
+    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private Button submitButton;
 
     [Header("Audio")]
-
-    [SerializeField]
-    private AudioClip fissSound;
+    [SerializeField] private AudioClip fissSound;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        mainMenuManager = GameObject.FindGameObjectWithTag("MainMenuManager").GetComponent<MainMenuManager>();
-        leaderboardManager = GameObject.FindGameObjectWithTag("LeaderboardManager").GetComponent<LeaderboardManager>();
+        // Taglerin Unity Editör'de "MainMenuManager" ve "LeaderboardManager" olarak atandýðýndan emin ol!
+        GameObject mainMenuObj = GameObject.FindGameObjectWithTag("MainMenuManager");
+        if (mainMenuObj) mainMenuManager = mainMenuObj.GetComponent<MainMenuManager>();
+
+        GameObject lbObj = GameObject.FindGameObjectWithTag("LeaderboardManager");
+        if (lbObj) leaderboardManager = lbObj.GetComponent<LeaderboardManager>();
     }
 
     private void Update()
     {
-        if (inputField.text.IndexOfAny(mainMenuManager.turkishChars) >= 0 || inputField.text.Length < 3)
-            submitButton.interactable = false;
-        else
-            submitButton.interactable = true;
+        // Null check ekledik, manager bulunamazsa hata vermesin
+        if (mainMenuManager != null)
+        {
+            if (inputField.text.IndexOfAny(mainMenuManager.turkishChars) >= 0 || inputField.text.Length < 3)
+                submitButton.interactable = false;
+            else
+                submitButton.interactable = true;
+        }
     }
 
     /*
@@ -47,19 +50,48 @@ public class NameInputPanel : MonoBehaviour
     {
         try
         {
-            SaveData newPlayer = new SaveData();
-            newPlayer.Name = inputField.text;
-            newPlayer.hasAChosenName = true;
+            // --- DÜZELTME 1: Yeni SaveData oluþturmak yerine mevcut olana yazýyoruz ---
+            // Böylece diðer ayarlar (Ses, Dil vb.) kaybolmaz.
+            SaveData currentSave = GameManager.Instance.SaveData;
 
-            bool containsSameName = await leaderboardManager.CheckForNameAsync(newPlayer.Name);
-            if (containsSameName)
+            // Eðer SaveData null ise (çok düþük ihtimal ama) yeni oluþtur
+            if (currentSave == null)
             {
-                newPlayer.Name = newPlayer.Name + "_";
-                // TODO: Yeni isim seçtirsin
+                currentSave = new SaveData();
+                GameManager.Instance.SetSaveData(currentSave);
             }
 
-            GameManager.Instance.SetSaveData(newPlayer);
-            _ = LeaderboardManager.SetNewEntry();
+            string tempName = inputField.text;
+
+            // Ýsim kontrolü (Basit versiyon)
+            if (leaderboardManager != null)
+            {
+                bool containsSameName = await leaderboardManager.CheckForNameAsync(tempName);
+                if (containsSameName)
+                {
+                    // Basit bir çözüm: Sonuna rastgele sayý ekle
+                    tempName = tempName + "_" + Random.Range(10, 99);
+                }
+            }
+
+            currentSave.Name = tempName;
+            currentSave.hasAChosenName = true;
+
+            // BestRunData yoksa (ilk defa giriyorsa) 0 puanla oluþtur
+            if (currentSave.bestRunData == null)
+            {
+                // Score: 0, CharID: 0, AtkID: 0 (Varsayýlanlar)
+                currentSave.bestRunData = new HighScoreData(0, 0, 0);
+            }
+
+            GameManager.Instance.SaveGame();
+
+            // --- DÜZELTME 2: Yeni Leaderboard Metodunu Çaðýrýyoruz ---
+            // Oyuncu ilk kez isim girdiðinde skoru 0'dýr. 
+            // Bu yüzden tabloya 0 puan, 0 karakter, 0 atak tipi ile kayýt açýyoruz.
+
+            // Fire-and-forget (await kullanmadýk çünkü void fonksiyon, async olsa bile UI donmasýn)
+            _ = LeaderboardManager.SubmitScoreAsync(0, 0, 0);
 
             Exit();
         }
@@ -74,11 +106,11 @@ public class NameInputPanel : MonoBehaviour
      */
     public void Enter()
     {
-        anim.SetBool("Open", true);
-        if (fissSound != null)
+        if (anim != null) anim.SetBool("Open", true);
+        if (fissSound != null && audioSource != null)
             audioSource.PlayOneShot(fissSound);
 
-        submitButton.interactable = true;
+        if (submitButton != null) submitButton.interactable = true;
     }
 
     /*
@@ -86,7 +118,9 @@ public class NameInputPanel : MonoBehaviour
      */
     public void Exit()
     {
-        anim.SetBool("Open", false);
-        mainMenuManager.ActivateAllButtons();
+        if (anim != null) anim.SetBool("Open", false);
+
+        if (mainMenuManager != null)
+            mainMenuManager.ActivateAllButtons();
     }
 }

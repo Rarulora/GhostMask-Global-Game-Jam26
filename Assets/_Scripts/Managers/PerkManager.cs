@@ -120,17 +120,20 @@ public class PerkManager : MonoBehaviour
 		PerkBase selectedPerk = _currentOfferedPerks[perkIndex];
 		if (PlayerController.I.currentLevel == 2)
 		{
-			switch (selectedPerk.PerkName)
+			if (selectedPerk.PerkName.Equals("Melee"))
 			{
-				case "Melee":
-					PlayerController.I.attackType = AttackType.Melee;
-					break;
-				case "Ranged":
-                    PlayerController.I.attackType = AttackType.Ranged;
-                    break;
-				case "Dash":
-                    PlayerController.I.attackType = AttackType.Dash;
-                    break;
+                PlayerController.I.attackType = AttackType.Melee;
+                Debug.Log("Melee");
+            }
+			else if (selectedPerk.PerkName.Equals("Ranged"))
+			{
+                PlayerController.I.attackType = AttackType.Ranged;
+				Debug.Log("Ranged");
+            }
+			else
+			{
+                PlayerController.I.attackType = AttackType.Dash;
+                Debug.Log("Dash");
             }
 		}
 
