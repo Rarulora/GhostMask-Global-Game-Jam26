@@ -10,12 +10,6 @@ public class WeaponData : ScriptableObject
 	public WeaponStyle Style;
 	public Sprite Icon;
 
-	[Header("Combat Stats")]
-	public float Damage;
-	public float AttackRate; // Saniye başı saldırı
-	public float Range;      // Melee için alan, Ranged için menzil
-	public float Force;      // Knockback gücü
-
 	[Header("Visuals & Prefabs")]
 	public GameObject ProjectilePrefab; // Ranged için
 	public GameObject HitVFX;

@@ -7,6 +7,7 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using UnityEngine;
+using Unity.Services.Leaderboards.Exceptions;
 
 // 1. Structure used to convert TO/FROM JSON for Unity Metadata
 [System.Serializable]
@@ -153,7 +154,7 @@ public class LeaderboardManager : MonoBehaviour
                         }
                         catch
                         {
-                            Debug.LogWarning($"Metadata JSON error for player: {playerName}");
+                            Debug.LogWarning($"Metadata parse hatasý, ham veri: {entry.Metadata}");
                         }
                     }
 
@@ -183,6 +184,7 @@ public class LeaderboardManager : MonoBehaviour
         return result;
     }
 
+
     // --- SUBMIT SCORE ---
     public static async Task SetNewEntry()
     {
@@ -190,48 +192,67 @@ public class LeaderboardManager : MonoBehaviour
         {
             await InitializeLeaderboardServicesAsync();
 
-            // 1. Get Best Run Data from Save System
-            // Make sure GameManager.Instance.SaveData.bestRunData is NOT null before accessing
             var saveData = GameManager.Instance.SaveData;
-            if (saveData == null || saveData.bestRunData == null)
+            if (saveData == null) return;
+
+            if (saveData.bestRunData == null)
             {
-                Debug.LogWarning("SaveData or BestRunData is null. Cannot submit score.");
-                return;
+                saveData.bestRunData = new HighScoreData(0, 0, 0);
+                GameManager.Instance.SaveGame();
             }
 
             HighScoreData bestRun = saveData.bestRunData;
-
-            // 2. Prepare Metadata Package
-            LeaderboardMetadata meta = new LeaderboardMetadata
+            var metadataDict = new Dictionary<string, string>
             {
-                charID = (int)bestRun.character,   // Cast Enum to Int
-                atkID = (int)bestRun.attackType    // Cast Enum to Int
+                { "charID", ((int)bestRun.character).ToString() },
+                { "atkID", ((int)bestRun.attackType).ToString() }
             };
-            
-            string jsonMeta = JsonUtility.ToJson(meta);
 
-            // 3. Handle Player Name
             string name = saveData.Name;
             if (string.IsNullOrWhiteSpace(name))
                 name = $"Player_{UnityEngine.Random.Range(1000, 9999)}";
 
             await AuthenticationService.Instance.UpdatePlayerNameAsync(name);
 
-            // 4. Submit Score + Metadata
             int score = Mathf.FloorToInt(bestRun.highScore);
 
-            var scoreOptions = new AddPlayerScoreOptions 
-            { 
-                Metadata = jsonMeta 
+            var scoreOptions = new AddPlayerScoreOptions
+            {
+                Metadata = metadataDict // Artýk Dictionary kabul ediyor
             };
 
             await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardID, score, scoreOptions);
-            Debug.Log($"Score Submitted: {score} | CharID: {meta.charID} | AtkID: {meta.atkID}");
+            Debug.Log($"Skor ve Metadata baþarýyla yollandý: {score}");
         }
         catch (System.Exception e)
         {
-            Debug.LogException(e);
+            // 400 Hatasý alýrsan detayýný görmek için:
+            if (e is Unity.Services.Leaderboards.Exceptions.LeaderboardsException lex)
+            {
+                Debug.LogError($"Leaderboard Hatasý: {lex.Reason} - {lex.Message}");
+            }
+            else
+            {
+                Debug.LogException(e);
+            }
         }
+    }
+
+    public async Task<bool> CheckForNameAsync(string nameToCheck)
+    {
+        if (string.IsNullOrWhiteSpace(nameToCheck)) return false;
+
+        if (leaderboardCache == null)
+            await RefreshLeaderboardAsync();
+
+        if (leaderboardCache == null) return false;
+
+        string cleanName = nameToCheck;
+        int hashIndex = cleanName.IndexOf('#');
+        if (hashIndex > 0)
+            cleanName = cleanName.Substring(0, hashIndex);
+
+        return leaderboardCache.ContainsKey(cleanName);
     }
 
     // --- UPDATE UI ---

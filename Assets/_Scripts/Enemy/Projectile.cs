@@ -18,7 +18,6 @@ public class Projectile : MonoBehaviour
 		damage = dmg;
 		direction = dir.normalized;
 		targetTag = tagToHit;
-
 		// Eğer özel bir hız verilmişse onu kullan, yoksa varsayılanı (10) kullan
 		if (speedOverride > 0) speed = speedOverride;
 		else speed = 10f;

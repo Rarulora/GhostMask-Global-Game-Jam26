@@ -24,10 +24,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nextLevelXP;
     [SerializeField] private TextMeshProUGUI currentLevelNumber;
 
-    [Header("Actions")]
-    public Action<int> onLevelChanged;
+    public static event Action<int> onLevelChanged;
 
-    private void Start()
+	private void Awake()
+	{
+        EventManager.RaiseCharacterChanged
+            (GameManager.Instance.CharacterDatabase.GetCharacterByID(GameManager.Instance.SaveData.equippedCharacterID));
+	}
+
+	private void Start()
     {
         CalculateNextLevelXP();
         UpdateUI();

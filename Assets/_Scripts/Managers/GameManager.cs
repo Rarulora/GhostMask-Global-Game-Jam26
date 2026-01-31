@@ -1,6 +1,7 @@
 using UnityEngine;
 using GameStates;
 using UnityEngine.InputSystem;
+using Unity.Services.Analytics;
 
 [System.Serializable]
 public class GameSettings
@@ -15,11 +16,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameSettings gameSettings = new();
+
+    [Header("Databases")]
+    [SerializeField] private CharacterDatabase characterDatabase;
+
     public GameBaseState CurrentState { get; private set; }
     private GameStateFactory _states;
 
     private SaveData saveData;
     public SaveData SaveData => saveData;
+
+    public CharacterDatabase CharacterDatabase => characterDatabase;
 
     private void Awake()
     {
@@ -30,8 +37,10 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
 
+        InitDatabases();
+
         _states = new GameStateFactory();
-        CurrentState = _states.Play();
+        CurrentState = _states.MainMenu();
         CurrentState.EnterState();
 
         saveData = LoadGame();
@@ -44,6 +53,37 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        SaveGame();
+    }
+    private void InitDatabases()
+    {
+        if (characterDatabase == null)
+            characterDatabase = Resources.Load<CharacterDatabase>("CharacterDatabase");
+    }
+
+	public void ChangeName(string name)
+    {
+        saveData.Name = name;
+        saveData.hasAChosenName = true;
+        SaveManager.Save(saveData);
+    }
+
+    public bool DidPlayerChooseAName() => saveData.hasAChosenName;
+
+    public void OnTouchBasketLadysBoobs()
+    {
+        if (!saveData.touchedBoobs)
+        {
+            FindAnyObjectByType<SimpleNotification>().Show("I know what you did...", 3);
+            AnalyticsService.Instance.RecordEvent("touched_basket_lady_boobs");
+            saveData.touchedBoobs = true;
+            SaveManager.Save(saveData);
+        }
+    }
+
+    public void SetSaveData(SaveData save)
+    {
+        saveData = save;
         SaveGame();
     }
 
@@ -80,6 +120,10 @@ public class GameManager : MonoBehaviour
 
     public void Resume() => SwitchState(_states.Play());
 
+    public void StartPerkSelect() => SwitchState(_states.StartPerkSelect());
+
+    public void StopPerkSelect() => SwitchState(_states.Play());
+
     public bool IsCurrentState<T>() where T : GameBaseState
     {
         return CurrentState is T;
@@ -99,12 +143,13 @@ namespace GameStates
 
     public class GameStateFactory
     {
-        private GameBaseState _mainMenu, _gameplay, _pause, _gameOver;
+        private GameBaseState _mainMenu, _gameplay, _pause, _gameOver, _perkSelect;
 
         public GameBaseState MainMenu() => _mainMenu ??= new MainMenuState(this);
         public GameBaseState Play() => _gameplay ??= new GameplayState(this);
         public GameBaseState Pause() => _pause ??= new PauseState(this);
         public GameBaseState GameOver() => _gameOver ??= new GameOverState(this);
+        public GameBaseState StartPerkSelect() => _perkSelect ??= new PerkSelectState(this);
     }
 
     public class MainMenuState : GameBaseState
@@ -171,6 +216,25 @@ namespace GameStates
             {
                 GameManager.Instance.Resume();
             }
+        }
+    }
+
+    public class PerkSelectState : GameBaseState
+    {
+        public PerkSelectState(GameStateFactory factory) : base(factory) { }
+
+        public override void EnterState()
+        {
+            Time.timeScale = 0.0f;
+        }
+
+        public override void ExitState()
+        {
+            Time.timeScale = 1.0f;
+        }
+
+        public override void UpdateState()
+        {
         }
     }
 

@@ -36,11 +36,11 @@
 
 	public enum CharacterType
 	{
+		Mouse,
 		Raccoon,
 		Platipus,
 		Cat,
-		Monkey,
-		Mouse
+		Monkey
 	}
 
 	public enum WeaponCategory

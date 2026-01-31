@@ -3,7 +3,7 @@
 public class EnemyStats : MonoBehaviour
 {
 	[Header("Configuration")]
-	[SerializeField] private ParticleSystem healVFX;
+	[SerializeField] private ParticleSystem[] healVFXs;
 	[Header("Data Source")]
 	[SerializeField] private EnemyData _data;
 
@@ -85,7 +85,10 @@ public class EnemyStats : MonoBehaviour
 		CurrentHealth += amount;
 		if (CurrentHealth > MaxHealth) CurrentHealth = MaxHealth;
 
-		healVFX?.Play();
+		if (healVFXs.Length > 0)
+		{
+			foreach(var kvp in healVFXs) kvp.Play();
+		}
 	}
 
 	public void ModifySpeed(float multiplier)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677ebb038d353f14fab1252bde63aa90, type: 3}
   m_Name: Monkey
   m_EditorClassIdentifier: 
-  id: 3
+  id: 4
   cname: Monkey
   description: siker
   health: 5

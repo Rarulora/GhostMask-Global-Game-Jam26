@@ -14,18 +14,39 @@ public class EnemySpawner : MonoBehaviour
     public int baseBudget = 20;
     public float budgetGrowth = 1.2f;
     public float difficultyGrowth = 1.1f; // Düþmanlar her level %10 güçlenir (ve pahalanýr)
+    public float waveTime = 30f;
 
+    private float timer = 0f;
     private EnemyDatabase enemyDatabase;
     private const int MAX_ATTEMPTS = 50;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        player.onLevelChanged += SpawnEnemiesForLevel;
 
         enemyDatabase = Resources.Load<EnemyDatabase>("EnemyDatabase");
         if (enemyDatabase == null) 
             Debug.LogError("EnemyDatabase couldn't be found!");
+    }
+
+    private void OnEnable()
+    {
+        //PlayerController.onLevelChanged += SpawnEnemiesForLevel;
+    }
+
+    private void OnDisable()
+    {
+        //PlayerController.onLevelChanged -= SpawnEnemiesForLevel;
+    }
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= waveTime)
+        {
+            SpawnEnemiesForLevel(player.currentLevel);
+            timer = 0f;
+        }
     }
 
     public void SpawnEnemiesForLevel(int currentLevel)
