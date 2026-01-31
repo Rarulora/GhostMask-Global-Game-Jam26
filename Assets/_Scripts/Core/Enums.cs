@@ -61,4 +61,32 @@
 		Fast,   // Dash Alt
 		Strong  // Dash Alt
 	}
+
+	public enum TriggerType
+	{
+		None,
+		OnHit,          // Hit enemy
+		OnKill,         // Enemy dies
+		OnTakeDamage,   // Player takes damage
+		OnDashStart,    // Dash begins
+		OnDashEnd,      // Dash ends
+		OnTouch,        // Collision with enemy (Thorns)
+		OnDeath,        // Player dies (Phoenix)
+		ConstantUpdate  // For things like "Momentum" (Damage based on Speed)
+	}
+
+	public enum EffectType
+	{
+		None,
+		Burn,
+		Freeze,
+		Slow,
+		Poison,
+		Bleed,
+		Stun,
+		Explosion,
+		Heal,
+		Knockback,
+		Invincibility
+	}
 }

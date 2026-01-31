@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Enums;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(EnemyStats))]
-public class EnemyBase : MonoBehaviour, IDamageable
+public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 {
 	[Header("Movement Settings")]
 	[SerializeField] protected float separationRadius = 2.0f;
@@ -228,6 +229,14 @@ public class EnemyBase : MonoBehaviour, IDamageable
 			Die();
 		}
 	}
+
+	public void ApplyStatus(EffectType type, float duration, float potency)
+	{
+		// Buraya daha önceki adımlarda yazdığımız status mantığı gelecek (Freeze, Burn vs.)
+		// Eğer o kodu henüz yazmadıysan geçici olarak boş bırakabilirsin:
+		Debug.Log($"Enemy Status Applied: {type}");
+	}
+
 
 	private void ApplyKnockback(Vector2 dir, float force)
 	{

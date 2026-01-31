@@ -15,6 +15,7 @@ public class MaskController : MonoBehaviour
 	private bool _isMaskActive = false;
 
 	public bool IsMaskActive => _isMaskActive;
+	public float CurrentMadness => _currentMadness;
 	private void Awake()
 	{
 		if (I != null && I != this)
