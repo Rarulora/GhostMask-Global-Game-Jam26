@@ -102,9 +102,10 @@ public class DashWeapon : WeaponBase
 				IDamageable enemy = hit.collider.GetComponent<IDamageable>();
 				if (enemy != null)
 				{
+					bool isCrit = IsCrit();
 					// Tek seferlik, sert hasar.
 					// Knockback yok (0), çünkü içinden geçip kestik.
-					enemy.TakeDamage(GetStat(Enums.StatType.damage), false, Vector2.zero, 0);
+					enemy.TakeDamage(GetStat(Enums.StatType.damage), isCrit, Vector2.zero, 0);
 
 					// VFX İPUCU: Burada düşman üzerinde "Slash" efekti oluşturabilirsin.
 					// Instantiate(SlashVFX, hit.transform.position, ...);

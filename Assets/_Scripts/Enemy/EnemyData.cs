@@ -14,7 +14,8 @@ public class EnemyData : ScriptableObject
 	[SerializeField] private float damage = 1f;
 	[SerializeField] private float attackRate = 2f;
 	[SerializeField] private float attackRange = 1.5f;
-
+	[SerializeField] private float projectileSpeed = 5f;
+	[SerializeField] private int pierce = 0;
 	[Header("Rewards")]
 	[SerializeField] private int xpDrop = 1;
 	[SerializeField] private int goldDrop = 1;
@@ -32,6 +33,8 @@ public class EnemyData : ScriptableObject
 	public float Damage => damage;
 	public float AttackRate => attackRate;
 	public float AttackRange => attackRange;
+	public float ProjectileSpeed => projectileSpeed;
+	public int Pierce => pierce;
 	public int XPDrop => xpDrop;
 	public int GoldDrop => goldDrop;
 	public float GoldDropChance => goldDropChance;

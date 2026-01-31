@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0737730c41a0fce4faa9b823b1bcd82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maskSR: {fileID: 0}
   maxMadness: 100
   baseFillSpeed: 10
   baseDrainSpeed: 5
@@ -1790,6 +1791,12 @@ MonoBehaviour:
   startingStats:
   - Type: 1
     BaseValue: 5
+  - Type: 13
+    BaseValue: 5
+  - Type: 14
+    BaseValue: 5
+  - Type: 15
+    BaseValue: 2
 --- !u!1 &2091343191
 GameObject:
   m_ObjectHideFlags: 0
