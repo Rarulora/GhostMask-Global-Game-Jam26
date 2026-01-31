@@ -51,7 +51,7 @@ public class LeaderboardMenu : MonoBehaviour
         anim.SetBool("Open", true);
         ActivateBackButton();
 
-        audioSource.PlayOneShot(fissSound);
+        //audioSource.PlayOneShot(fissSound);
 
         //GameManager.Instance.SetState(GameState.Leaderboard);
     }

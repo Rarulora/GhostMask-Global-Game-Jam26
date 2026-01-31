@@ -14,7 +14,7 @@ public class MouseTrackerEye : MonoBehaviour
     public float smoothSpeed = 15f;
 
     [Header("Blink Settings")]
-    public float blinkSpeed = 0.15f;
+    public float blinkDuration = 0.15f; // Tam kapanma veya açýlma süresi
     private float initialHeight;
     private float initialWidth;
     private Coroutine currentBlinkCoroutine;
@@ -31,33 +31,79 @@ public class MouseTrackerEye : MonoBehaviour
         parentCanvas = GetComponentInParent<Canvas>();
 
         if (eyeWhiteRect == null)
+        {
             enabled = false;
+            return;
+        }
 
+        // Baþlangýç boyutlarýný kaydet
         initialHeight = eyeWhiteRect.sizeDelta.y;
         initialWidth = eyeWhiteRect.sizeDelta.x;
     }
 
     void Update()
     {
+        // 1. Göz Bebeði Takibi
         Vector2 targetLocalPosition = GetClampedMousePosition();
         pupilRect.anchoredPosition = Vector2.Lerp(pupilRect.anchoredPosition, targetLocalPosition, Time.deltaTime * smoothSpeed);
 
+        // 2. Týklama ile Kýrpma Kontrolü
+
+        // Mouse'a BASILDIÐINDA -> Kapatmaya baþla
         if (Input.GetMouseButtonDown(0))
         {
             if (currentBlinkCoroutine != null) StopCoroutine(currentBlinkCoroutine);
-            currentBlinkCoroutine = StartCoroutine(Blink());
+            currentBlinkCoroutine = StartCoroutine(AnimateEye(0f)); // Hedef: 0 (Kapalý)
         }
+
+        // Mouse BIRAKILDIÐINDA -> Açmaya baþla
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (currentBlinkCoroutine != null) StopCoroutine(currentBlinkCoroutine);
+            currentBlinkCoroutine = StartCoroutine(AnimateEye(initialHeight)); // Hedef: Orijinal Yükseklik (Açýk)
+        }
+    }
+
+    // Tek bir Coroutine hem açma hem kapama iþini yapar
+    // targetHeight: 0 gelirse kapanýr, initialHeight gelirse açýlýr
+    private IEnumerator AnimateEye(float targetHeight)
+    {
+        float timer = 0f;
+        float startHeight = eyeWhiteRect.sizeDelta.y; // Harekete þimdiki boyuttan baþla (Kaldýðý yerden)
+
+        // Animasyonun ne kadar süreceðini mesafeye göre ayarlayabiliriz 
+        // ama sabit süre genellikle daha "snappy" hissettirir.
+
+        while (timer < blinkDuration)
+        {
+            timer += Time.deltaTime;
+            float t = timer / blinkDuration;
+
+            // Daha doðal bir hareket için SmoothStep (Yavaþ baþla, yavaþ bitir)
+            // Ýstersen Mathf.Lerp olarak býrakabilirsin.
+            float smoothedT = Mathf.SmoothStep(0f, 1f, t);
+
+            float newHeight = Mathf.Lerp(startHeight, targetHeight, smoothedT);
+
+            // Geniþliði koru, yüksekliði deðiþtir
+            eyeWhiteRect.sizeDelta = new Vector2(initialWidth, newHeight);
+
+            yield return null;
+        }
+
+        // Döngü bitince tam hedefe kilitle
+        eyeWhiteRect.sizeDelta = new Vector2(initialWidth, targetHeight);
+        currentBlinkCoroutine = null;
     }
 
     Vector2 GetClampedMousePosition()
     {
+        if (parentCanvas == null) return Vector2.zero;
+
         Vector2 localMousePos;
-        Camera cam = null;
+        Camera cam = (parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay) ? null : parentCanvas.worldCamera;
 
-        if (parentCanvas.renderMode != RenderMode.ScreenSpaceOverlay)
-            cam = parentCanvas.worldCamera;
-
-        bool isInside = RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
             eyeWhiteRect,
             Input.mousePosition,
             cam,
@@ -73,49 +119,5 @@ public class MouseTrackerEye : MonoBehaviour
             localMousePos /= magnitude;
 
         return localMousePos;
-    }
-
-    private IEnumerator Blink()
-    {
-        float timer = 0f;
-        float startH = eyeWhiteRect.sizeDelta.y;
-
-        while (timer < blinkSpeed)
-        {
-            timer += Time.deltaTime;
-            float t = timer / blinkSpeed;
-
-            float newHeight = Mathf.Lerp(startH, 0f, t);
-            eyeWhiteRect.sizeDelta = new Vector2(initialWidth, newHeight);
-
-            yield return null;
-        }
-
-        eyeWhiteRect.sizeDelta = new Vector2(initialWidth, 0f);
-
-        timer = 0f;
-        while (timer < blinkSpeed)
-        {
-            timer += Time.deltaTime;
-            float t = timer / blinkSpeed;
-
-            float newHeight = Mathf.Lerp(0f, initialHeight, t);
-            eyeWhiteRect.sizeDelta = new Vector2(initialWidth, newHeight);
-
-            yield return null;
-        }
-
-        eyeWhiteRect.sizeDelta = new Vector2(initialWidth, initialHeight);
-        currentBlinkCoroutine = null;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        if (eyeWhiteRect != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.matrix = eyeWhiteRect.localToWorldMatrix;
-            Gizmos.DrawWireCube(Vector3.zero, new Vector3(maxRadiusX * 2, maxRadiusY * 2, 1));
-        }
     }
 }

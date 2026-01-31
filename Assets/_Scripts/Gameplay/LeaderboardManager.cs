@@ -202,16 +202,11 @@ public class LeaderboardManager : MonoBehaviour
             }
 
             HighScoreData bestRun = saveData.bestRunData;
-
-            // --- DÜZELTME BAÞLANGICI ---
-            // JsonUtility.ToJson yerine Dictionary kullanýyoruz.
-            // ÖNEMLÝ: Deðerleri string olarak göndermemiz gerekiyor (.ToString() ekledik).
             var metadataDict = new Dictionary<string, string>
-        {
-            { "charID", ((int)bestRun.character).ToString() },
-            { "atkID", ((int)bestRun.attackType).ToString() }
-        };
-            // --- DÜZELTME BÝTÝÞÝ ---
+            {
+                { "charID", ((int)bestRun.character).ToString() },
+                { "atkID", ((int)bestRun.attackType).ToString() }
+            };
 
             string name = saveData.Name;
             if (string.IsNullOrWhiteSpace(name))

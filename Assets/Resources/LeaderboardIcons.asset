@@ -13,15 +13,12 @@ MonoBehaviour:
   m_Name: LeaderboardIcons
   m_EditorClassIdentifier: 
   characterIcons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: cb9ca4460669cb24ea634f4d4542eecb, type: 3}
+  - {fileID: 21300000, guid: d8d140a4fe961a24481ac2164acdb462, type: 3}
+  - {fileID: 21300000, guid: d253e95d0e563024b9cbc60dbd52469f, type: 3}
+  - {fileID: 21300000, guid: e728a7b410c68364da0a0eadc592a3a6, type: 3}
+  - {fileID: 21300000, guid: 35bd2dce59cf0684a9146938ad599d5f, type: 3}
   attackTypeIcons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 4bada64a106ac5c418f861567d63106e, type: 3}
   - {fileID: 0}
   - {fileID: 0}
