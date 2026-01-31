@@ -21,6 +21,10 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Buttons")]
     [SerializeField] private Button playButton;
+    [SerializeField] private Button leaderboardButton;
+
+    [Header("Panels")]
+    [SerializeField] private GameObject leaderboardPanel;
 
     [Header("Name")]
     public char[] turkishChars = { 'ç', 'ð', 'ý', 'ö', 'þ', 'ü' };
@@ -50,16 +54,12 @@ public class MainMenuManager : MonoBehaviour
         {
             playButton.onClick.AddListener(() => GameManager.Instance.Play());
         }
-    }
+		if (leaderboardButton != null)
+		{
+            leaderboardButton.onClick.AddListener(() => leaderboardPanel.SetActive(true));
+		}
+	}
 
-    /*
-     * desc: Loads a scene with given name
-     * param1 sceneName: name of scene to be loaded
-    */
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
 
     /*
      * desc: Applies the change made in the specified slider to the mixer
@@ -104,22 +104,16 @@ public class MainMenuManager : MonoBehaviour
     */
     public void ActivateAllButtons()
     {
-        Button[] buttons = FindObjectsByType<Button>(FindObjectsSortMode.None);
-        foreach (var button in buttons)
-        {
-            button.interactable = true;
-        }
-    }
+		playButton.interactable = true;
+		leaderboardButton.interactable = true;
+	}
 
     /*
      * desc: Makes all buttons' interactable flag false
     */
     public void DeactivateAllButtons()
     {
-        Button[] buttons = FindObjectsByType<Button>(FindObjectsSortMode.None);
-        foreach (var button in buttons)
-        {
-            button.interactable = false;
-        }
+        playButton.interactable = false;
+        leaderboardButton.interactable = false;
     }
 }

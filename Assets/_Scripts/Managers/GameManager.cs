@@ -2,6 +2,7 @@ using UnityEngine;
 using GameStates;
 using UnityEngine.InputSystem;
 using Unity.Services.Analytics;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class GameSettings
@@ -28,7 +29,10 @@ public class GameManager : MonoBehaviour
 
     public CharacterDatabase CharacterDatabase => characterDatabase;
 
-    private void Awake()
+	public const string MAIN_MENU_SCENE = "MainMenu";
+	public const string GAMEPLAY_SCENE = "Gameplay";
+	public const string COSMETICS_SCENE = "Cosmetics";
+	private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -49,7 +53,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         CurrentState?.UpdateState();
-        Debug.Log(Time.timeScale);
     }
 
     private void OnApplicationQuit()
@@ -108,14 +111,14 @@ public class GameManager : MonoBehaviour
 
     public void Play()
     {
-        SwitchState(_states.Play());
-        SceneTransitionManager.Instance.OpenScene(SceneTransitionManager.GAMEPLAY_SCENE);
+		SceneManager.LoadScene(GAMEPLAY_SCENE);
+		SwitchState(_states.Play());
     }
 
     public void MainMenu()
     {
-        SwitchState(_states.MainMenu());
-        SceneTransitionManager.Instance.OpenScene(SceneTransitionManager.MAIN_MENU_SCENE);
+		SceneManager.LoadScene(MAIN_MENU_SCENE);
+		SwitchState(_states.MainMenu());
     }
 
     public void Pause() => SwitchState(_states.Pause());
