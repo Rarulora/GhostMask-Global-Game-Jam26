@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94ded5125b6796148a3d1bb0f9291873, type: 3}
-  m_Name: SkillData
+  m_Name: EconomySkill3
   m_EditorClassIdentifier: 
-  ID: 0
-  value: 0
-  price: 0
+  ID: 14
+  value: 1.3
+  price: 100
   icon: {fileID: 0}
-  title: 
-  desc: 
-  affectedStat: 0
-  affectType: 0
-  type: 0
+  title: Gold Multiplier
+  desc: Increases the gold gained by 30 percent.
+  affectedStat: 9
+  affectType: 300
+  type: 1
