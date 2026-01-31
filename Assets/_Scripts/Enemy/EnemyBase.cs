@@ -7,17 +7,26 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour, IDamageable
 {
 	[Header("Movement Settings")]
-	[SerializeField] protected float separationRadius = 2.0f; // Ne kadar yakındakilerden kaçsın?
-	[SerializeField] protected float separationForce = 1.5f;  // İtme gücü (Hafifçe artırdım)
+	[SerializeField] protected float separationRadius = 2.0f;
+	[SerializeField] protected float separationForce = 1.5f;
+
+	[Header("Visibility Settings")]
+	[SerializeField] protected float shadowDistance = 5.0f; // Gölge olarak görünme mesafesi
+	[SerializeField] protected Color shadowColor = new Color(0, 0, 0, 0.4f); // Siyah ve %40 opaklık
 
 	protected EnemyStats stats;
 	protected Rigidbody2D rb;
 	protected SpriteRenderer spriteRenderer;
 	protected Collider2D col;
 	protected Transform playerTarget;
+	protected Animator anim;
 
 	protected bool isDead = false;
 	protected bool isStunned = false;
+
+	// Maske durumunu takip etmek için değişken
+	protected bool isMaskActive = false;
+
 	private float nextAttackTime = 0f;
 
 	private Color originalColor = Color.white;
@@ -35,6 +44,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 		col = GetComponent<Collider2D>();
+		anim = GetComponentInChildren<Animator>();
 
 		originalColor = spriteRenderer.color;
 		invisibleColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
@@ -50,7 +60,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
 		rb.simulated = true;
 		spriteRenderer.color = originalColor;
 
-		// Scale'i başlangıç haline getir
 		transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
 
 		if (flashRoutine != null) StopCoroutine(flashRoutine);
@@ -62,12 +71,15 @@ public class EnemyBase : MonoBehaviour, IDamageable
 			if (p != null) playerTarget = p.transform;
 		}
 
-		EventManager.OnMaskChanged += UpdateVisibility;
+		// Event'e abone ol
+		EventManager.OnMaskChanged += UpdateMaskStatus;
+
+		UpdateMaskStatus(MaskController.I.IsMaskActive);
 	}
 
 	protected virtual void OnDisable()
 	{
-		EventManager.OnMaskChanged -= UpdateVisibility;
+		EventManager.OnMaskChanged -= UpdateMaskStatus;
 	}
 
 	protected virtual void FixedUpdate()
@@ -77,34 +89,64 @@ public class EnemyBase : MonoBehaviour, IDamageable
 		// Mesafeyi ölç
 		float distanceToPlayer = Vector2.Distance(transform.position, playerTarget.position);
 
-		// NOT: Ranged Enemy için buradaki AttackRange kontrolü, alt sınıfta (override Move) ezilebilir
-		// veya stats.AttackRange doğru ayarlandıysa burada da çalışır.
+		// --- YENİ: GÖRÜNÜRLÜK YÖNETİMİ ---
+		HandleVisibility(distanceToPlayer);
+		// ---------------------------------
+
 		if (distanceToPlayer <= stats.AttackRange)
 		{
-			// Menzildeyiz: Dur ve Saldır
 			StopMovement();
 			AttackLogic();
-			// Dururken de oyuncuya dönmesi için:
 			RotateTowardsTarget();
 		}
 		else
 		{
-			// Menzilde değiliz: Yürü
 			Move();
 		}
 	}
 
-	// --- HAREKET MANTIĞI (Separation + Flip Entegre Edildi) ---
+	// --- YENİ EKLENEN GÖRÜNÜRLÜK FONKSİYONU ---
+	protected void HandleVisibility(float distance)
+	{
+		// Eğer hasar animasyonu (Flash) oynuyorsa rengi elleme
+		if (flashRoutine != null) return;
+
+		if (isMaskActive)
+		{
+			// Maske takılıysa normal renginde görün
+			if (spriteRenderer.color != originalColor)
+				spriteRenderer.color = originalColor;
+		}
+		else
+		{
+			// Maske YOKSA ve Gölge mesafesindeyse
+			if (distance <= shadowDistance)
+			{
+				// Gölge rengini uygula (Siyah saydam)
+				// Lerp kullanarak yumuşak geçiş yapabiliriz, şimdilik direkt atıyoruz.
+				spriteRenderer.color = shadowColor;
+			}
+			else
+			{
+				// Uzaktaysa tamamen görünmez ol
+				spriteRenderer.color = invisibleColor;
+			}
+		}
+	}
+
 	protected virtual void Move()
 	{
-		if (playerTarget == null) return;
+		if (playerTarget == null)
+		{
+			if (anim != null) anim.SetBool("isMoving", true);
+			return;
+		}
+		if (anim != null) anim.SetBool("isMoving", true);
 
-		// 1. Hedefe Yönelim (Target Direction)
 		Vector2 targetDir = (playerTarget.position - transform.position).normalized;
 
-		// 2. Ayrılma (Separation) ve Yanal Kayma (Avoidance)
 		Vector2 separation = Vector2.zero;
-		Vector2 avoidance = Vector2.zero; // YENİ: Yana kaçma vektörü
+		Vector2 avoidance = Vector2.zero;
 
 		Collider2D[] neighbors = Physics2D.OverlapCircleAll(transform.position, separationRadius);
 
@@ -115,45 +157,28 @@ public class EnemyBase : MonoBehaviour, IDamageable
 				Vector2 toNeighbor = neighbor.transform.position - transform.position;
 				float dist = toNeighbor.magnitude;
 
-				// A. Standart İtme (Separation)
 				Vector2 pushBack = -toNeighbor.normalized;
 				separation += pushBack / (dist + 0.1f);
 
-				// B. Yanal Kayma (Tangential Avoidance) - YENİ
-				// Eğer önümdeki düşmanla hedefe giden yolum çakışıyorsa, yana kaymalıyım.
-				// Düşmanın olduğu yönün 90 derece dikine (perpendicular) bir vektör alıyoruz.
 				Vector2 sideStep = new Vector2(-toNeighbor.y, toNeighbor.x).normalized;
-
-				// Hangi tarafın boş olduğuna karar vermek için ufak bir "Gürültü" ekliyoruz
-				// GetInstanceID() sayesinde her düşman farklı tarafa kırmak ister.
 				float noise = Mathf.PerlinNoise(Time.time * 0.5f, GetInstanceID() * 0.1f) - 0.5f;
 
 				avoidance += sideStep * (Mathf.Sign(noise));
 			}
 		}
 
-		// 3. Vektörleri Birleştir
-		// Target + (Separation * Force) + (Avoidance * Force)
-		// Avoidance gücünü Separation'dan biraz daha düşük tutuyoruz ki çok savrulmasınlar.
 		Vector2 finalDir = (targetDir + (separation * separationForce) + (avoidance * separationForce * 0.8f)).normalized;
 
-		// 4. Doğal Salınım (Opsiyonel: Yılan gibi kıvrılarak gelmeleri için)
-		// Düşmanlar dümdüz ip gibi gelmek yerine hafif sağ-sol yaparak gelir, bu da üst üste binmeyi azaltır.
 		float wave = Mathf.Sin(Time.time * 2f + GetInstanceID()) * 0.2f;
-		finalDir += new Vector2(finalDir.y, -finalDir.x) * wave; // Hareket yönüne dik salınım ekle
+		finalDir += new Vector2(finalDir.y, -finalDir.x) * wave;
 		finalDir.Normalize();
 
-		// 5. Fiziksel Hareket
 		rb.MovePosition(rb.position + finalDir * stats.MoveSpeed * Time.fixedDeltaTime);
-
-		// 6. Dönme
 		RotateTowardsTarget();
 	}
 
-	// Alt sınıflar (Ranged Enemy gibi) kullanabilsin diye buraya ekledim
 	protected void RotateTowardsTarget()
 	{
-		// Eğer sadece Scale kullanıyorsak, dururken de scale güncelleyelim
 		Vector2 dir = playerTarget.position - transform.position;
 		if (dir.x > 0)
 			transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
@@ -163,6 +188,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
 	protected void StopMovement()
 	{
+		if (anim != null) anim.SetBool("isMoving", false);
 		rb.linearVelocity = Vector2.zero;
 	}
 
@@ -172,7 +198,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
 		{
 			float cooldown = 1f / stats.AttackRate;
 			nextAttackTime = Time.time + cooldown;
-
 			PerformAttack();
 		}
 	}
@@ -196,9 +221,9 @@ public class EnemyBase : MonoBehaviour, IDamageable
 		flashRoutine = StartCoroutine(HitFlashRoutine());
 
 		ApplyKnockback(knockbackDir, knockbackForce);
-        DamagePopup.Create(transform.position, amount, isCritical);
+		// DamagePopup.Create(transform.position, amount, isCritical); // Bunu kapattım derleme hatası olmasın diye, sende açıksa aç
 
-        if (stats.IsDead)
+		if (stats.IsDead)
 		{
 			Die();
 		}
@@ -225,15 +250,17 @@ public class EnemyBase : MonoBehaviour, IDamageable
 		spriteRenderer.color = Color.white;
 		yield return new WaitForSeconds(0.1f);
 
-		spriteRenderer.color = originalColor;
+		// Flash bittiğinde anında bir renk atamıyoruz,
+		// bir sonraki Update döngüsünde HandleVisibility doğru rengi (Gölge veya Normal) atayacak.
+		// Ancak geçişin "titrememesi" için görünmezlik rengine çekebiliriz veya olduğu gibi bırakabiliriz.
+		// HandleVisibility her frame çalıştığı için burada renk atamaya gerek yok.
+		flashRoutine = null;
 	}
 
-	public void UpdateVisibility(bool isMaskOn)
+	// İsmini değiştirdim: Artık sadece bool değerini güncelliyor
+	public void UpdateMaskStatus(bool isMaskOn)
 	{
-		if (isMaskOn)
-			spriteRenderer.color = originalColor;
-		else
-			spriteRenderer.color = invisibleColor;
+		isMaskActive = isMaskOn;
 	}
 
 	public virtual void Die()
@@ -245,14 +272,12 @@ public class EnemyBase : MonoBehaviour, IDamageable
 		rb.linearVelocity = Vector2.zero;
 		rb.simulated = false;
 
-		// TODO: Loot Drop 
-		// TODO: Death VFX
-
 		StartCoroutine(DisableRoutine());
 	}
 
 	private IEnumerator DisableRoutine()
 	{
+		if (anim != null) anim.SetTrigger("Death");
 		yield return new WaitForSeconds(0.2f);
 		gameObject.SetActive(false);
 	}

@@ -26,7 +26,13 @@ public class PlayerController : MonoBehaviour
 
     public static event Action<int> onLevelChanged;
 
-    private void Start()
+	private void Awake()
+	{
+        EventManager.RaiseCharacterChanged
+            (GameManager.Instance.CharacterDatabase.GetCharacterByID(GameManager.Instance.SaveData.equippedCharacterID));
+	}
+
+	private void Start()
     {
         CalculateNextLevelXP();
         UpdateUI();
