@@ -34,14 +34,14 @@ public class LeaderboardMenu : MonoBehaviour
     {
         if (opened && Input.GetKeyDown(KeyCode.Escape))
         {
-            gameObject.SetActive(false);
+            Exit();
         }
     }
 
     /*
      * desc: brings the leaderboard to the scene
      */
-    public async void OnEnable()
+    public async void Enter()
     {
         await leaderboardManager.RefreshLeaderboardAsync();
 
@@ -57,7 +57,7 @@ public class LeaderboardMenu : MonoBehaviour
     /*
      * desc: removes the leaderboard from the scene
      */
-    public void OnDisable()
+    public void Exit()
     {
         opened = false;
         anim.SetBool("Open", false);

@@ -979,7 +979,7 @@ MonoBehaviour:
   languageChanger: {fileID: 0}
   playButton: {fileID: 915382647}
   leaderboardButton: {fileID: 1137865154}
-  leaderboardPanel: {fileID: 1660792245}
+  leaderboardPanel: {fileID: 1660792250}
   turkishChars: e7001f013101f6005f01fc00
 --- !u!4 &121138167
 Transform:
@@ -3320,10 +3320,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1660792245}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1660792250}
+        m_TargetAssemblyTypeName: LeaderboardMenu, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7489,6 +7489,7 @@ MonoBehaviour:
   gameSettings:
     MouseSensitivity: 1
   characterDatabase: {fileID: 11400000, guid: 84e916229f7f33f429438c8c0e677557, type: 2}
+  cosmeticDatabase: {fileID: 0}
 --- !u!4 &984332185
 Transform:
   m_ObjectHideFlags: 0
@@ -10035,13 +10036,14 @@ GameObject:
   - component: {fileID: 1534175706}
   - component: {fileID: 1534175705}
   - component: {fileID: 1534175704}
+  - component: {fileID: 1534175707}
   m_Layer: 5
   m_Name: NameInputPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1534175703
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10117,6 +10119,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534175702}
   m_CullTransparentMesh: 1
+--- !u!95 &1534175707
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534175702}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce3cd0005a30e604280ce0a52167d649, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1535964272
 GameObject:
   m_ObjectHideFlags: 0
@@ -10619,7 +10643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1660792246
 RectTransform:
   m_ObjectHideFlags: 0

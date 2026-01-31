@@ -24,7 +24,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Button leaderboardButton;
 
     [Header("Panels")]
-    [SerializeField] private GameObject leaderboardPanel;
+    [SerializeField] private LeaderboardMenu leaderboardPanel;
 
     [Header("Name")]
     public char[] turkishChars = { 'ç', 'ð', 'ý', 'ö', 'þ', 'ü' };
@@ -56,7 +56,7 @@ public class MainMenuManager : MonoBehaviour
         }
 		if (leaderboardButton != null)
 		{
-            leaderboardButton.onClick.AddListener(() => leaderboardPanel.SetActive(true));
+            leaderboardButton.onClick.AddListener(() => leaderboardPanel.Enter());
 		}
 	}
 
