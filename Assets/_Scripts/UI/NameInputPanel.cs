@@ -75,7 +75,8 @@ public class NameInputPanel : MonoBehaviour
     public void Enter()
     {
         anim.SetBool("Open", true);
-        audioSource.PlayOneShot(fissSound);
+        if (fissSound != null)
+            audioSource.PlayOneShot(fissSound);
     }
 
     /*

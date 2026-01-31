@@ -24,9 +24,11 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
+        /*
         masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1f);
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        */
     }
 
     private void Start()
@@ -57,6 +59,7 @@ public class MainMenuManager : MonoBehaviour
     */
     public void OnSliderValueChange(Slider slider)
     {
+        /*
         if (slider == masterSlider)
         {
             PlayerPrefs.SetFloat("MasterVolume", slider.value);
@@ -74,6 +77,7 @@ public class MainMenuManager : MonoBehaviour
         }
 
         PlayerPrefs.Save();
+        */
     }
 
     /*
