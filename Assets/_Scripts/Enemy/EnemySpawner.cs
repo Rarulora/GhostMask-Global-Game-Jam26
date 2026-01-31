@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -14,11 +15,16 @@ public class EnemySpawner : MonoBehaviour
     public int baseBudget = 20;
     public float budgetGrowth = 1.2f;
     public float difficultyGrowth = 1.1f; // Düþmanlar her level %10 güçlenir (ve pahalanýr)
-    public float waveTime = 30f;
+
+    [Header("Wave")]
+    public float waveTime = 60f;
+    public int currentWave = 1;
 
     private float timer = 0f;
     private EnemyDatabase enemyDatabase;
     private const int MAX_ATTEMPTS = 50;
+
+    public Action<int> onWaveEnd; // mevcut dalga numarasý
 
     private void Awake()
     {
@@ -27,6 +33,11 @@ public class EnemySpawner : MonoBehaviour
         enemyDatabase = Resources.Load<EnemyDatabase>("EnemyDatabase");
         if (enemyDatabase == null) 
             Debug.LogError("EnemyDatabase couldn't be found!");
+    }
+
+    private void Start()
+    {
+        SpawnEnemiesForLevel(1);
     }
 
     private void OnEnable()
@@ -44,6 +55,7 @@ public class EnemySpawner : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= waveTime)
         {
+            onWaveEnd?.Invoke(currentWave++);
             SpawnEnemiesForLevel(player.currentLevel);
             timer = 0f;
         }
@@ -65,7 +77,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (affordableEnemies.Count == 0) break;
 
-            EnemyData selectedData = affordableEnemies[Random.Range(0, affordableEnemies.Count)];
+            EnemyData selectedData = affordableEnemies[UnityEngine.Random.Range(0, affordableEnemies.Count)];
             int cost = Mathf.RoundToInt(selectedData.SpawnValue * difficultyMultiplier);
             SpawnEnemy(selectedData, difficultyMultiplier);
 
@@ -82,7 +94,7 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Transform point = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
         GameObject newEnemy = Instantiate(data.Prefab, point.position, Quaternion.identity);
         
         EnemyStats stats = newEnemy.GetComponent<EnemyStats>();

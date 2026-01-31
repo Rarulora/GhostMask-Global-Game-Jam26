@@ -53,7 +53,7 @@ public class PerkManager : MonoBehaviour
         }
     }
 
-    private void OnClickPerk(int perkIndex)
+    public void OnClickPerk(int perkIndex)
     {
         GameManager.Instance.StopPerkSelect();
     }
