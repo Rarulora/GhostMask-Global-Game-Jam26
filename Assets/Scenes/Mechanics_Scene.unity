@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 54435758}
   - component: {fileID: 54435757}
   - component: {fileID: 54435761}
+  - component: {fileID: 54435762}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -151,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97cb4699d8065484ba37ba5d9028ef84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!58 &54435758
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -253,6 +255,22 @@ MonoBehaviour:
   xpSlider: {fileID: 0}
   nextLevelXP: {fileID: 0}
   currentLevelNumber: {fileID: 0}
+--- !u!114 &54435762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54435756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0737730c41a0fce4faa9b823b1bcd82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMadness: 100
+  baseFillSpeed: 10
+  baseDrainSpeed: 5
+  minFillSpeed: 0.5
 --- !u!1 &95027221
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   separationRadius: 1
   separationForce: 0.5
+  shadowDistance: 5
+  shadowColor: {r: 0, g: 0, b: 0, a: 0.4}
   healRadius: 4
   healVFX: {fileID: 0}
 --- !u!114 &95027223
@@ -301,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b0d369cbdcd9d46b5b434ae63a91f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healVFX: {fileID: 0}
+  healVFXs: []
   _data: {fileID: 11400000, guid: 89e2a01461ea5c048a3c91345d34571c, type: 2}
 --- !u!58 &95027224
 CircleCollider2D:
@@ -589,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b0d369cbdcd9d46b5b434ae63a91f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healVFX: {fileID: 0}
+  healVFXs: []
   _data: {fileID: 11400000, guid: 0907a2596b9585c45af20c19c8c4e331, type: 2}
 --- !u!58 &194810692
 CircleCollider2D:
@@ -684,6 +704,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   separationRadius: 1
   separationForce: 0.5
+  shadowDistance: 5
+  shadowColor: {r: 0, g: 0, b: 0, a: 0.4}
   projectilePrefab: {fileID: 3595906661893404382, guid: 5c0ebda3ede8a9c4188826e690b37271, type: 3}
   firePoint0: {fileID: 1213104672}
   firePoint1: {fileID: 1861664509}
@@ -801,6 +823,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   separationRadius: 1
   separationForce: 0.5
+  shadowDistance: 5
+  shadowColor: {r: 0, g: 0, b: 0, a: 0.4}
 --- !u!114 &246612803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,7 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b0d369cbdcd9d46b5b434ae63a91f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healVFX: {fileID: 0}
+  healVFXs: []
   _data: {fileID: 11400000, guid: b34ed62ec9e13b6428dd4f429c9780b3, type: 2}
 --- !u!1 &271961233
 GameObject:
@@ -1540,6 +1564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   separationRadius: 1
   separationForce: 0.5
+  shadowDistance: 5
+  shadowColor: {r: 0, g: 0, b: 0, a: 0.4}
   explosionRadius: 2.5
   fuseTime: 1
   explosionVFX: {fileID: 0}
@@ -1555,7 +1581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b0d369cbdcd9d46b5b434ae63a91f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healVFX: {fileID: 0}
+  healVFXs: []
   _data: {fileID: 11400000, guid: e7ef39276b0ea5f44be57b67b8135c1f, type: 2}
 --- !u!58 &1914630956
 CircleCollider2D:
