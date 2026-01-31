@@ -4,13 +4,21 @@ using System.Collections;
 public class DashWeapon : WeaponBase
 {
 	private bool isDashing = false;
-	private Collider2D dashHitbox; // Oyuncunun üzerindeki Trigger Collider
 
-	public override void Initialize(WeaponData weaponData, Transform owner, Rigidbody2D rb)
+	// Dash yolunun genişliği (Karakterin genişliği kadar veya biraz daha fazla)
+	[SerializeField] private float dashPathWidth = 1.5f;
+
+	Collider2D coll;
+	private void OnDisable()
 	{
-		base.Initialize(weaponData, owner, rb);
-		// Dash hitbox'ını bul veya ekle (Child object'te olması iyidir)
-		// Basitlik adına oyuncunun collider'ını kullanabiliriz ama ayrı trigger daha iyidir.
+		EventManager.RaiseDashStatusChanged(false);
+	}
+
+	public override void Initialize(WeaponData weaponData, Transform owner, Transform firePoint, Rigidbody2D rb)
+	{
+		base.Initialize(weaponData, owner, firePoint, rb);
+		rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+		coll = owner.GetComponentInParent<Collider2D>();
 	}
 
 	public override void Attack()
@@ -23,49 +31,83 @@ public class DashWeapon : WeaponBase
 	{
 		canAttack = false;
 		isDashing = true;
+		coll.isTrigger = true;
+		EventManager.RaiseDashStatusChanged(true);
 
-		// 1. Dash Başlat (Hareketi kilitlemek gerekebilir, PlayerController ile konuşmalı)
-		// Şimdilik sadece fiziksel itme yapıyoruz.
-		Vector2 dashDir = playerRb.linearVelocity.normalized;
-		if (dashDir == Vector2.zero) dashDir = playerTransform.right; // Duruyorsa sağa
+		// 1. BAŞLANGIÇ POZİSYONUNU KAYDET
+		Vector2 startPos = playerTransform.position;
 
-		// Yerçekimi ve sürtünmeyi kapat (Kusursuz dash için)
+		// --- Mouse Yön Hesabı ---
+		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		mouseWorldPos.z = 0f;
+		Vector2 dashDir = (mouseWorldPos - playerTransform.position).normalized;
+		if (dashDir == Vector2.zero) dashDir = playerTransform.right;
+		// ------------------------
+
+		// Fiziği Hazırla
 		float originalDrag = playerRb.linearDamping;
 		playerRb.linearDamping = 0;
 		playerRb.linearVelocity = dashDir * data.DashSpeed;
 
-		// 2. Dash Sırasında Hasar Verme Döngüsü
+		// 2. DASH HAREKETİ (Burada hasar yok, sadece hareket)
 		float timer = 0f;
 		while (timer < data.DashDuration)
 		{
 			timer += Time.deltaTime;
-			CheckCollisions(); // Elle collision kontrolü (Raycast veya Overlap)
+			// CheckCollisions() BURADAN KALDIRILDI
 			yield return null;
 		}
 
-		// 3. Dash Bitir
-		playerRb.linearVelocity = Vector2.zero; // Durdur veya yavaşlat
+		// 3. DASH BİTTİ, FİZİĞİ DURDUR
+		playerRb.linearVelocity = Vector2.zero;
 		playerRb.linearDamping = originalDrag;
+
+		// 4. BİTİŞ POZİSYONUNU KAYDET VE HASARI HESAPLA
+		Vector2 endPos = playerTransform.position;
+		PerformPathDamage(startPos, endPos);
+
+		coll.isTrigger = false;
 		isDashing = false;
+		EventManager.RaiseDashStatusChanged(false);
 
 		// Cooldown
-		yield return new WaitForSeconds(1f / data.AttackRate);
+		yield return new WaitForSeconds(1f / GetStat(Enums.StatType.attackRate));
 		canAttack = true;
 	}
 
-	private void CheckCollisions()
+	// --- YENİ HASAR SİSTEMİ (BOXCAST) ---
+	private void PerformPathDamage(Vector2 start, Vector2 end)
 	{
-		// Dash atarken vücudumuzun etrafındaki düşmanları bul
-		Collider2D[] hits = Physics2D.OverlapCircleAll(playerTransform.position, 1f); // 1f karakter boyutu
+		// Başlangıç ve Bitiş arasındaki mesafe ve yön
+		Vector2 direction = (end - start).normalized;
+		float distance = Vector2.Distance(start, end);
+
+		// Physics2D.BoxCastAll: Bir kutuyu uzayda süpürür (Sweep).
+		// Origin: Başlangıç noktası
+		// Size: Kutunun boyutu (Genişlik, Kalınlık)
+		// Angle: Kutunun açısı (Dönme)
+		// Direction: Süpürme yönü
+		// Distance: Süpürme mesafesi
+		// LayerMask: Sadece düşmanları vurmak için (Opsiyonel ama performanslı olur)
+
+		RaycastHit2D[] hits = Physics2D.BoxCastAll(start, new Vector2(dashPathWidth, 0.1f), 0f, direction, distance);
+
+		// Debug Çizgisi (Sahne ekranında yolu görmek için - Oyunda görünmez)
+		Debug.DrawLine(start, end, Color.cyan, 1f);
+
 		foreach (var hit in hits)
 		{
-			if (hit.CompareTag("Enemy"))
+			if (hit.collider.CompareTag("Enemy"))
 			{
-				IDamageable enemy = hit.GetComponent<IDamageable>();
+				IDamageable enemy = hit.collider.GetComponent<IDamageable>();
 				if (enemy != null)
 				{
-					// Dash silahı geri tepme uygulamaz, içinden geçer
-					enemy.TakeDamage(data.Damage, false, Vector2.zero, 0);
+					// Tek seferlik, sert hasar.
+					// Knockback yok (0), çünkü içinden geçip kestik.
+					enemy.TakeDamage(GetStat(Enums.StatType.damage), false, Vector2.zero, 0);
+
+					// VFX İPUCU: Burada düşman üzerinde "Slash" efekti oluşturabilirsin.
+					// Instantiate(SlashVFX, hit.transform.position, ...);
 				}
 			}
 		}

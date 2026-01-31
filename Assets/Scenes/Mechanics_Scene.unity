@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 54435758}
   - component: {fileID: 54435757}
   - component: {fileID: 54435761}
-  - component: {fileID: 54435762}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -254,18 +253,6 @@ MonoBehaviour:
   xpSlider: {fileID: 0}
   nextLevelXP: {fileID: 0}
   currentLevelNumber: {fileID: 0}
---- !u!114 &54435762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54435756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a54a254506580ee43bfc39a2515e59b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &95027221
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 169371449}
   - component: {fileID: 169371450}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +498,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.879, z: 0}
   m_LocalScale: {x: 0.17201363, y: 0.65529, z: 0.65529}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 410161725}
   m_Father: {fileID: 2123187701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &183393015
@@ -871,6 +859,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c917cea6f8840428efa5fddbabe679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &410161724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410161725}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &410161725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410161724}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 183393014}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &595460028
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 675055137}
   - component: {fileID: 675055138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1055,7 +1074,7 @@ GameObject:
   m_Component:
   - component: {fileID: 774490114}
   - component: {fileID: 774490115}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1142,7 +1161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213104672}
   - component: {fileID: 1213104673}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1229,7 +1248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624847379}
   - component: {fileID: 1624847380}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1410,7 +1429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1861664509}
   - component: {fileID: 1861664510}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1751,6 +1770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2123187701}
+  - component: {fileID: 2123187702}
   m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -1774,6 +1794,20 @@ Transform:
   - {fileID: 183393014}
   m_Father: {fileID: 54435760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2123187702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123187700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54a254506580ee43bfc39a2515e59b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 410161725}
+  startWeapon: {fileID: 11400000, guid: 3be852c2793ef494ea83d06a5a34a175, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

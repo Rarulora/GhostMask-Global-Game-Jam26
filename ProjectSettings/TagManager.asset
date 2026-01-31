@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - LeaderboardManager
   - MainMenuManager
+  - Projectile
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - UI
   - Collectable
   - Enemy
-  - 
-  - 
+  - Player
+  - Projectile
   - 
   - 
   - 
