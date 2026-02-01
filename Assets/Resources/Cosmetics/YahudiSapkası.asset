@@ -16,7 +16,6 @@ MonoBehaviour:
   Name: asda
   description: asdaasd
   price: 5
-  achievementID: 
-  sprite: {fileID: 0}
+  sprite: {fileID: -663865025292417121, guid: 3e6d7705d427e7748b2ed11a7a3f0303, type: 3}
   method: 0
   type: 0
