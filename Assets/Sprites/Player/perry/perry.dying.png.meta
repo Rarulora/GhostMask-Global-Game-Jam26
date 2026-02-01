@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: a80261f27eef64e4faf2948499ad0933
+guid: faad2052f2bd59246b1d79a7eb7a6d0a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7300691136327181730
-    second: cat.idle_0
+      213: 7165800121792102583
+    second: perry.dying_0
   - first:
-      213: 3305949289901363383
-    second: cat.idle_1
+      213: -259491004235066839
+    second: perry.dying_1
   - first:
-      213: 5428125003272351958
-    second: cat.idle_2
+      213: 2368715139105348317
+    second: perry.dying_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -132,67 +132,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cat.idle_0
+      name: perry.dying_0
       rect:
         serializedVersion: 2
-        x: 59
-        y: 89
-        width: 572
-        height: 842
-      alignment: 9
-      pivot: {x: 0.7, y: 0.535}
+        x: 55
+        y: 111
+        width: 562
+        height: 674
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e5a106c971cbeaa90800000000000000
-      internalID: -7300691136327181730
+      spriteID: 7b08ed6ae39027360800000000000000
+      internalID: 7165800121792102583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cat.idle_1
+      name: perry.dying_1
       rect:
         serializedVersion: 2
-        x: 809
-        y: 89
-        width: 572
-        height: 812
-      alignment: 9
-      pivot: {x: 0.7, y: 0.535}
+        x: 1511
+        y: 111
+        width: 562
+        height: 618
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b0960e0d5711ed20800000000000000
-      internalID: 3305949289901363383
+      spriteID: 922d8267e4a166cf0800000000000000
+      internalID: -259491004235066839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cat.idle_2
+      name: perry.dying_2
       rect:
         serializedVersion: 2
-        x: 1529
-        y: 124
-        width: 602
-        height: 812
-      alignment: 9
-      pivot: {x: 0.7, y: 0.535}
+        x: 3247
+        y: 0
+        width: 702
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6d0f6785ee2945b40800000000000000
-      internalID: 5428125003272351958
+      spriteID: ddad6787edd5fd020800000000000000
+      internalID: 2368715139105348317
       vertices: []
       indices: 
       edges: []
@@ -201,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 098902e9fab56214d82965822cfc47b0
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -211,9 +211,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cat.idle_0: -7300691136327181730
-      cat.idle_1: 3305949289901363383
-      cat.idle_2: 5428125003272351958
+      perry.dying_0: 7165800121792102583
+      perry.dying_1: -259491004235066839
+      perry.dying_2: 2368715139105348317
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

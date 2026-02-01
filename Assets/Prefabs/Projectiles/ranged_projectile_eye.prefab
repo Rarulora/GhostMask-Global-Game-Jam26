@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: -2949197260815453150}
   - component: {fileID: -2853237568862407735}
   - component: {fileID: -4775998108101652777}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ranged_projectile_eye
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,4 +164,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 2.425
+  m_Radius: 0.485

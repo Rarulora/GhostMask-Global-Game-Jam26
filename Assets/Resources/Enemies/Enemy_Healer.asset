@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   spawnValue: 8
-  prefab: {fileID: 8957980288778079659, guid: 251f5a2cd1b1bde49bb28319f7e1c0a3, type: 3}
+  prefab: {fileID: 1146775627914693995, guid: 28cf483d17fa54343a6e2d9c2765070a, type: 3}
   maxHealth: 2
   moveSpeed: 3
   damage: 2

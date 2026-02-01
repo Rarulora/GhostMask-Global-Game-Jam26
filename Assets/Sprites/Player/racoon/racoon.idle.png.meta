@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: a80261f27eef64e4faf2948499ad0933
+guid: 2044260b9f1db554fb5da4574ff71446
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7300691136327181730
-    second: cat.idle_0
+      213: -3107670165676450793
+    second: racoon.idle_0
   - first:
-      213: 3305949289901363383
-    second: cat.idle_1
+      213: 2828875134710498474
+    second: racoon.idle_1
   - first:
-      213: 5428125003272351958
-    second: cat.idle_2
+      213: 6513648898360447219
+    second: racoon.idle_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -57,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -132,67 +132,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cat.idle_0
+      name: racoon.idle_0
       rect:
         serializedVersion: 2
         x: 59
         y: 89
         width: 572
-        height: 842
-      alignment: 9
-      pivot: {x: 0.7, y: 0.535}
+        height: 782
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e5a106c971cbeaa90800000000000000
-      internalID: -7300691136327181730
+      spriteID: 71c96cf03765fd4d0800000000000000
+      internalID: -3107670165676450793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cat.idle_1
+      name: racoon.idle_1
       rect:
         serializedVersion: 2
-        x: 809
+        x: 779
+        y: 89
+        width: 602
+        height: 752
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa4ca5e62fe224720800000000000000
+      internalID: 2828875134710498474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: racoon.idle_2
+      rect:
+        serializedVersion: 2
+        x: 1559
         y: 89
         width: 572
-        height: 812
-      alignment: 9
-      pivot: {x: 0.7, y: 0.535}
+        height: 752
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b0960e0d5711ed20800000000000000
-      internalID: 3305949289901363383
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cat.idle_2
-      rect:
-        serializedVersion: 2
-        x: 1529
-        y: 124
-        width: 602
-        height: 812
-      alignment: 9
-      pivot: {x: 0.7, y: 0.535}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d0f6785ee2945b40800000000000000
-      internalID: 5428125003272351958
+      spriteID: 3f0936a8921256a50800000000000000
+      internalID: 6513648898360447219
       vertices: []
       indices: 
       edges: []
@@ -201,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 098902e9fab56214d82965822cfc47b0
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -211,9 +211,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cat.idle_0: -7300691136327181730
-      cat.idle_1: 3305949289901363383
-      cat.idle_2: 5428125003272351958
+      racoon.idle_0: -3107670165676450793
+      racoon.idle_1: 2828875134710498474
+      racoon.idle_2: 6513648898360447219
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
