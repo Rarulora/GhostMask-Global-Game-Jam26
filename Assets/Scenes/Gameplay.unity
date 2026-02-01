@@ -2224,6 +2224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 90876209}
   iFrameDuration: 0.2
+  healthBar: {fileID: 0}
   spriteRenderer: {fileID: 90876207}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &222791356
@@ -2243,6 +2244,7 @@ MonoBehaviour:
   baseFillSpeed: 5
   baseDrainSpeed: 3
   minFillSpeed: 0.5
+  madnessBar: {fileID: 0}
 --- !u!114 &222791357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13108,7 +13110,7 @@ MonoBehaviour:
   - {fileID: 155414345}
   baseBudget: 20
   budgetGrowth: 1.2
-  difficultyGrowth: 1.1
+  difficultyGrowth: 1.3
   waveTime: 25
   currentWave: 1
 --- !u!4 &1970462184
