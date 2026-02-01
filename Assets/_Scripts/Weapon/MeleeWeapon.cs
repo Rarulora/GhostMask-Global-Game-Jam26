@@ -7,7 +7,7 @@ public class MeleeWeapon : WeaponBase
 	public override void Attack()
 	{
 		if (!canAttack) return;
-
+		PlayAnimation();
 		StartCoroutine(CooldownRoutine());
 
 		Collider2D[] hits = Physics2D.OverlapCircleAll(playerTransform.position, GetStat(Enums.StatType.range));
