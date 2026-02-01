@@ -33,7 +33,7 @@ public class MainMenuManager : MonoBehaviour
 
         if (playButton != null)
         {
-            playButton.onClick.AddListener(() => GameManager.Instance.Play());
+            playButton.onClick.AddListener(() => GameManager.Instance.CosmeticsMenu());
         }
 		if (leaderboardButton != null)
 		{

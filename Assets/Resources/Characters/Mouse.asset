@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Mouse
   m_EditorClassIdentifier: 
   id: 0
-  cname: 
-  description: 
+  cname: Fare
+  description: kuyrugunu siktimin orospu evladi
+  price: 0
+  icon: {fileID: 21300000, guid: 224d4c05cf60c6d41a7435c6b9004204, type: 3}
   health: 5
   damage: 1
   attackRate: 2

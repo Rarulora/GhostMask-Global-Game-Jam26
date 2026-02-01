@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   cname: Monkey
-  description: siker
+  description: Baba adamdir unityi siker
+  price: 0
+  icon: {fileID: 21300000, guid: 40d05a13466743342a65607073221e56, type: 3}
   health: 5
   damage: 1
   attackRate: 2

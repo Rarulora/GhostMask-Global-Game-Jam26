@@ -49,9 +49,7 @@ public class CosmeticMenuElement : MonoBehaviour
 		_isCharacter = true;
 		_cosmeticData = null;
 
-		// Note: CharacterSO provided didn't have an Icon property. 
-		// If you add one, assign it here: iconImage.sprite = data.Icon;
-		// For now, we hide the icon if null or use a placeholder.
+		if (iconImage) iconImage.sprite = data.Icon;
 
 		RefreshState();
 	}
