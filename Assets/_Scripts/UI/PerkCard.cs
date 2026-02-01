@@ -7,7 +7,7 @@ public class PerkCard : MonoBehaviour
     private Animator anim;
     private GameObject player;
 
-    // TODO: Ýçinde barýndýracaðý perk objesi
+    // TODO: ï¿½ï¿½inde barï¿½ndï¿½racaï¿½ï¿½ perk objesi
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI title;
@@ -52,7 +52,7 @@ public class PerkCard : MonoBehaviour
 	{
         selectButton.interactable = false;
 
-        // PerkManager singleton olduðu için direkt ulaþabiliriz
-        player.GetComponent<PerkManager>().OnClickPerk(_index);
+        // PerkManager singleton olduï¿½u iï¿½in direkt ulaï¿½abiliriz
+        PerkManager.I.OnClickPerk(_index);
 	}
 }
