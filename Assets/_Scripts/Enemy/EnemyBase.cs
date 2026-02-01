@@ -321,7 +321,6 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 		float wave = Mathf.Sin(Time.time * 2f + GetInstanceID()) * 0.2f;
 		finalDir += new Vector2(finalDir.y, -finalDir.x) * wave;
 		finalDir.Normalize();
-		Debug.Log(stats.MoveSpeed);
 		rb.MovePosition(rb.position + finalDir * stats.MoveSpeed * Time.fixedDeltaTime);
 		RotateTowardsTarget();
 	}

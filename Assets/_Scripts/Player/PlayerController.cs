@@ -231,10 +231,12 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        // TODO: Die animation
         int finalScore = Mathf.FloorToInt(ScoreManager.Instance.CurrentScore);
         int charID = (int)character;
         int atkID = (int)attackType;
+
+        GameManager.Instance.SaveData.gold += goldCollected;
+        GameManager.Instance.SaveGame();
 
         _ = LeaderboardManager.SubmitScoreAsync(finalScore, charID, atkID);
 
