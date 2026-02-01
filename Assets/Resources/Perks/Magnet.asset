@@ -20,3 +20,4 @@ MonoBehaviour:
   - Stat: 11
     Value: 1.3
     Type: 300
+  MaxLevel: 3
