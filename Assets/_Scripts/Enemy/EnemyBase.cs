@@ -14,7 +14,7 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 
 	[Header("Visibility Settings")]
 	[SerializeField] protected float shadowDistance = 5.0f; // Gölge olarak görünme mesafesi
-	[SerializeField] protected Color shadowColor = new Color(0, 0, 0, 0.4f); // Siyah ve %40 opaklık
+	[SerializeField] protected Color shadowColor = new Color(0, 0, 0, 0.1f); // Siyah ve %40 opaklık
 
 	[Header("Status Colors & Settings")]
 	[Tooltip("Saniyede kaç kez renk değişsin? (Birden fazla efekt varsa)")]
@@ -321,7 +321,7 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 		float wave = Mathf.Sin(Time.time * 2f + GetInstanceID()) * 0.2f;
 		finalDir += new Vector2(finalDir.y, -finalDir.x) * wave;
 		finalDir.Normalize();
-
+		Debug.Log(stats.MoveSpeed);
 		rb.MovePosition(rb.position + finalDir * stats.MoveSpeed * Time.fixedDeltaTime);
 		RotateTowardsTarget();
 	}

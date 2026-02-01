@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementController : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer[] srList;
     [SerializeField] private Animator anim;
     private float _moveSpeed;
 
@@ -24,6 +25,7 @@ public class MovementController : MonoBehaviour
 	void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        if(srList.Length == 0) srList = GetComponentsInChildren<SpriteRenderer>();
     }
 
 	private void Update()
@@ -43,7 +45,15 @@ public class MovementController : MonoBehaviour
 			if (!Mathf.Approximately(_moveInput.magnitude, 0)) anim?.SetBool("isMoving", true);
 			else anim?.SetBool("isMoving", false);
 		}
-
+        if(_moveInput.x < 0) Flip(true);
+        else Flip(false);
         _rb.linearVelocity = _moveInput * _moveSpeed;
+    }
+
+    void Flip(bool isFlip)
+    {
+        if(srList.Length == 0) return;
+        foreach(var sr in srList)
+            sr.flipX = isFlip;
     }
 }

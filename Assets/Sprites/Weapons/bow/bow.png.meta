@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: 2ec2cd7c99f70d145964938de64ecd49
+guid: 09a56243c46022148bb8be5bfe2075a6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5207917597236734424
-    second: rat.idle_0
+      213: 5968496545626408874
+    second: bow (1)_0
   - first:
-      213: -848618375296547537
-    second: rat.idle_1
+      213: -3298351032913565475
+    second: bow (1)_1
   - first:
-      213: -1103536036834211013
-    second: rat.idle_2
+      213: 953648303698141331
+    second: bow (1)_2
+  - first:
+      213: -7954966553312017799
+    second: bow (1)_3
+  - first:
+      213: -9003966167296520244
+    second: bow (1)_4
+  - first:
+      213: 115316483517966366
+    second: bow (1)_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -132,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rat.idle_0
+      name: bow (1)_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 89
-        width: 576
-        height: 902
+        x: 295
+        y: 295
+        width: 335
+        height: 335
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 826d23db982c9b7b0800000000000000
-      internalID: -5207917597236734424
+      spriteID: aa7453d5cfb54d250800000000000000
+      internalID: 5968496545626408874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat.idle_1
+      name: bow (1)_1
       rect:
         serializedVersion: 2
-        x: 809
-        y: 89
-        width: 572
-        height: 872
+        x: 1183
+        y: 295
+        width: 411
+        height: 335
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f258496751a1934f0800000000000000
-      internalID: -848618375296547537
+      spriteID: dd8e4a20637e932d0800000000000000
+      internalID: -3298351032913565475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rat.idle_2
+      name: bow (1)_4
       rect:
         serializedVersion: 2
-        x: 1559
-        y: 89
-        width: 572
-        height: 872
+        x: 2108
+        y: 221
+        width: 408
+        height: 483
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,8 +200,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3b87af32d37fa0f0800000000000000
-      internalID: -1103536036834211013
+      spriteID: ccfc7a4d97c7b0380800000000000000
+      internalID: -9003966167296520244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bow (1)_5
+      rect:
+        serializedVersion: 2
+        x: 3070
+        y: 147
+        width: 372
+        height: 631
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e18e5d41bbfa99100800000000000000
+      internalID: 115316483517966366
       vertices: []
       indices: 
       edges: []
@@ -201,7 +232,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 18038d113f93919498d4dc05bba62515
+    spriteID: c8804768afece2a4bb7be421bb7397ca
     internalID: 0
     vertices: []
     indices: 
@@ -211,9 +242,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      rat.idle_0: -5207917597236734424
-      rat.idle_1: -848618375296547537
-      rat.idle_2: -1103536036834211013
+      bow (1)_0: 5968496545626408874
+      bow (1)_1: -3298351032913565475
+      bow (1)_2: 953648303698141331
+      bow (1)_3: -7954966553312017799
+      bow (1)_4: -9003966167296520244
+      bow (1)_5: 115316483517966366
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
