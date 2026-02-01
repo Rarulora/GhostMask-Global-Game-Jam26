@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PerkCard : MonoBehaviour
 {
     private Animator anim;
+    private GameObject player;
 
     // TODO: Ýçinde barýndýracaðý perk objesi
 
@@ -19,6 +20,7 @@ public class PerkCard : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void Show()
@@ -51,6 +53,6 @@ public class PerkCard : MonoBehaviour
         selectButton.interactable = false;
 
         // PerkManager singleton olduðu için direkt ulaþabiliriz
-        PerkManager.I.OnClickPerk(_index);
+        player.GetComponent<PerkManager>().OnClickPerk(_index);
 	}
 }
