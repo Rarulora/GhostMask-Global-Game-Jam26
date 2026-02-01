@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healVFXs:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8658274643599716644, guid: e38eec277cbb3a64ab574d41db637f8b, type: 3}
+  - {fileID: 1782174069863640799, guid: f40c8b0fb54d0a747b0d57873bd840b7, type: 3}
   _data: {fileID: 11400000, guid: b34ed62ec9e13b6428dd4f429c9780b3, type: 2}
 --- !u!58 &7490600058611683871
 CircleCollider2D:
