@@ -16,9 +16,9 @@ MonoBehaviour:
   Category: 1
   Style: 2
   Icon: {fileID: 1784401183296663280, guid: ce7a5b7c4480a4a45a75475f75e87910, type: 3}
-  damage: 1
-  attackRate: 1
-  range: 2
+  damage: 5
+  attackRate: 0.75
+  range: 3
   knockbackForce: 12.2
   projectileCount: 0
   projectileSpeed: 0
