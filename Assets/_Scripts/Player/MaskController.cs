@@ -11,9 +11,6 @@ public class MaskController : MonoBehaviour
 	[SerializeField] private float baseDrainSpeed = 5f; // Maske yokken (ÝYÝ) saniyede azalma hýzý
 	[SerializeField] private float minFillSpeed = 0.5f; // Direnç ne kadar yüksek olursa olsun min dolma hýzý
 
-	[SerializeField] private Animator madnessBar;
-	private bool vibrating = false;
-
 	private float _currentMadness = 0f;
 	private bool _isMaskActive = false;
 
@@ -47,18 +44,6 @@ public class MaskController : MonoBehaviour
 	{
 		HandleInput();
 		HandleMadness();
-
-        if (!vibrating && CurrentMadness <= MaxMadness * 0.15)
-        {
-            vibrating = true;
-            madnessBar.SetBool("Vibrate", true);
-        }
-
-		if (vibrating && CurrentMadness > MaxMadness * 0.15)
-		{
-			vibrating = false;
-            madnessBar.SetBool("Vibrate", false);
-        }
     }
 
     private void OnPlayerDeath()
