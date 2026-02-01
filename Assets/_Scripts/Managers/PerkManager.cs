@@ -74,9 +74,7 @@ public class PerkManager : MonoBehaviour
 											   .Where(p => p.WeaponToUnlock != null)
 											   .Cast<PerkBase>().ToList();
 
-			FillCards(GetRandomPerks(weaponPerks, 2));
-            perk1.Show();
-            perk2.Show();
+			FillCards(GetRandomPerks(weaponPerks, 3));
         }
 		else if (currentLevel >= thresholdLevelForAttackTypePerks && currentLevel <= maxLevelForAttackTypePerks && !choosedAttackType)
 		{
@@ -95,28 +93,23 @@ public class PerkManager : MonoBehaviour
 												  .Cast<PerkBase>().ToList();
 
 				FillCards(GetRandomPerks(stylePerks, 3));
-                perk1.Show();
-                perk2.Show();
-                perk3.Show();
             }
 			else
 			{
 				// Standart daðýtým
 				FillCards(GetBalancedRandomPerks());
-                perk1.Show();
-                perk2.Show();
-                perk3.Show();
             }
 		}
 		else
 		{
 			// Standart daðýtým (Max 1 weapon perk kuralý ile)
 			FillCards(GetBalancedRandomPerks());
-            perk1.Show();
-            perk2.Show();
-            perk3.Show();
         }
-	}
+
+		perk1.Show();
+        perk2.Show();
+        perk3.Show();
+    }
 
 	// --- MEVCUT FONKSÝYONUN (LOGIC EKLENDÝ) ---
 	// PerkCard butonuna týklandýðýnda Unity Event'ten int index (0, 1, 2) gönderilmeli
