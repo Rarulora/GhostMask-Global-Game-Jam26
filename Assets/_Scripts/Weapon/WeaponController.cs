@@ -74,7 +74,10 @@ public class WeaponController : MonoBehaviour
 		{
 			Destroy(currentWeaponBehavior);
 		}
-
+		if (currentWeaponData != null)
+		{
+			RemoveWeaponStats(currentWeaponData);
+		}
 		currentWeaponData = newData;
 
 		switch (newData.Category)
@@ -89,7 +92,10 @@ public class WeaponController : MonoBehaviour
 				currentWeaponBehavior = gameObject.AddComponent<DashWeapon>();
 				break;
 		}
-
+		if (currentWeaponData != null)
+		{
+			AddWeaponStats(currentWeaponData);
+		}
 		if (currentWeaponBehavior != null)
 		{
 			currentWeaponBehavior.Initialize(newData, transform, firePoint, rb);
@@ -99,5 +105,52 @@ public class WeaponController : MonoBehaviour
 
 			Debug.Log($"Silah Kuşandı: {newData.WeaponName}");
 		}
+	}
+
+	private void AddWeaponStats(WeaponData data)
+	{
+		var stats = StatsController.I;
+		if (stats == null) return;
+
+		// StatModifier oluştururken 'source' olarak 'data' (WeaponData) veriyoruz.
+		// Bu sayede silerken "Bu WeaponData'dan gelenleri sil" diyebileceğiz.
+
+		if (data.damage > 0)
+			stats.GetStat(StatType.damage).AddModifier(new StatModifier(data.damage, StatModType.Flat, data));
+
+		if (data.attackRate > 0)
+			stats.GetStat(StatType.attackRate).AddModifier(new StatModifier(data.attackRate, StatModType.Flat, data));
+
+		if (data.range > 0)
+			stats.GetStat(StatType.range).AddModifier(new StatModifier(data.range, StatModType.Flat, data));
+
+		if (data.knockbackForce > 0)
+			stats.GetStat(StatType.knockbackForce).AddModifier(new StatModifier(data.knockbackForce, StatModType.Flat, data));
+
+		if (data.projectileCount > 0)
+			stats.GetStat(StatType.projectileCount).AddModifier(new StatModifier(data.projectileCount, StatModType.Flat, data));
+
+		if (data.projectileSpeed > 0)
+			stats.GetStat(StatType.projectileSpeed).AddModifier(new StatModifier(data.projectileSpeed, StatModType.Flat, data));
+
+		if (data.pierce > 0)
+			stats.GetStat(StatType.pierce).AddModifier(new StatModifier(data.pierce, StatModType.Flat, data));
+	}
+
+	private void RemoveWeaponStats(WeaponData data)
+	{
+		var stats = StatsController.I;
+		if (stats == null) return;
+
+		// PlayerStat sınıfında daha önce yazdığımız RemoveAllModifiersFromSource metodunu kullanıyoruz.
+		// Tek tek modifier referansı tutmaya gerek kalmıyor.
+
+		stats.GetStat(StatType.damage).RemoveAllModifiersFromSource(data);
+		stats.GetStat(StatType.attackRate).RemoveAllModifiersFromSource(data);
+		stats.GetStat(StatType.range).RemoveAllModifiersFromSource(data);
+		stats.GetStat(StatType.knockbackForce).RemoveAllModifiersFromSource(data);
+		stats.GetStat(StatType.projectileCount).RemoveAllModifiersFromSource(data);
+		stats.GetStat(StatType.projectileSpeed).RemoveAllModifiersFromSource(data);
+		stats.GetStat(StatType.pierce).RemoveAllModifiersFromSource(data);
 	}
 }
