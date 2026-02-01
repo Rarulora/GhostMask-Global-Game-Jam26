@@ -63,6 +63,8 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
 			return;
 		}
 
+		AudioManager.Instance.PlaySFX(AudioManager.Instance.takeDamage);
+
 		// 3. Efektler (Knockback & Flash & I-Frame)
 		ApplyKnockback(knockbackDir, knockbackForce);
 		StartCoroutine(InvincibilityRoutine());

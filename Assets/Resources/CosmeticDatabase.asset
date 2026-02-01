@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: CosmeticDatabase
   m_EditorClassIdentifier: 
   data:
-  - {fileID: 11400000, guid: 22938aeb804942444b6e224ce8a268b3, type: 2}
-  - {fileID: 11400000, guid: 369cd2e0915584349be9b0211c0581c8, type: 2}
+  - {fileID: 11400000, guid: 8d7e24f566bd6da449a0eb8d2c211190, type: 2}
+  - {fileID: 11400000, guid: c45405af6ccfcaa43aa205ce51957830, type: 2}
+  - {fileID: 11400000, guid: 544aa54b9b539ce40a8545b86f6333d3, type: 2}
+  - {fileID: 11400000, guid: 08e8adcfc865bf742a6c594865ec5407, type: 2}

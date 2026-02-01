@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Raccoon
   m_EditorClassIdentifier: 
   id: 1
-  cname: Rakun
-  description: Cacoon
-  price: 0
+  cname: Racoon
+  description: Decent in every way.
+  price: 5
   icon: {fileID: 21300000, guid: 4c12e0e03d4a5f74294ab89e92e7f83d, type: 3}
-  sprite: {fileID: -3107670165676450793, guid: 2044260b9f1db554fb5da4574ff71446, type: 3}
+  sprite: {fileID: 21300000, guid: 4c12e0e03d4a5f74294ab89e92e7f83d, type: 3}
   animatorController: {fileID: 9100000, guid: 88e4eaa8f69f1234281a19640e217bb4, type: 2}
-  health: 5
-  damage: 1
-  attackRate: 2
+  health: 6
+  damage: 1.5
+  attackRate: 2.5
   moveSpeed: 4

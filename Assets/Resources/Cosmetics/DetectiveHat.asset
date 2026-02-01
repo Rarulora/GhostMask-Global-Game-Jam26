@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44d28de4c14a484448334460b17f6465, type: 3}
-  m_Name: YahudiMaskesi
+  m_Name: DetectiveHat
   m_EditorClassIdentifier: 
-  ID: 1
-  Name: asda
-  description: asdaasd
-  price: 0
-  sprite: {fileID: -8258728375015105676, guid: ce7a5b7c4480a4a45a75475f75e87910, type: 3}
+  ID: 2
+  Name: Detective Hat
+  description: Reminds me of someone...
+  price: 7
+  sprite: {fileID: 21300000, guid: 5e1967dcc138bd04c8adaf43dd72c581, type: 3}
   method: 0
-  type: 1
+  type: 0

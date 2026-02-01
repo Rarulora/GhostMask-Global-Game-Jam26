@@ -7,7 +7,7 @@ public class MeleeWeapon : WeaponBase
 	public override void Attack()
 	{
 		if (!canAttack) return;
-
+		PlayAnimation();
 		StartCoroutine(CooldownRoutine());
 
 		Collider2D[] hits = Physics2D.OverlapCircleAll(playerTransform.position, GetStat(Enums.StatType.range));
@@ -34,11 +34,11 @@ public class MeleeWeapon : WeaponBase
 						Vector2 knockbackDir = (hit.transform.position - playerTransform.position).normalized;
 						enemy.TakeDamage(GetStat(Enums.StatType.damage), isCrit, knockbackDir, GetStat(Enums.StatType.knockbackForce));
 					}
-					
+					CameraController.Instance.ShakeCamera(0.1f, 0.2f);
 				}
 			}
 		}
-		CameraController.Instance.ShakeCamera(0.1f, 0.2f);
+		
 	}
 
 	private void OnDrawGizmosSelected()

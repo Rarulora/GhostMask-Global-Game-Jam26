@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   cname: Cat
-  description: anani siker
-  price: 0
+  description: Real deal.
+  price: 15
   icon: {fileID: 21300000, guid: 69dad9fe7dde52f4f801b40bf4eaf1a4, type: 3}
   sprite: {fileID: -7300691136327181730, guid: a80261f27eef64e4faf2948499ad0933, type: 3}
   animatorController: {fileID: 9100000, guid: 94c68974d3dd32349bef7ddf130911fe, type: 2}
-  health: 9
-  damage: 1
+  health: 7
+  damage: 2
   attackRate: 3
-  moveSpeed: 4
+  moveSpeed: 3

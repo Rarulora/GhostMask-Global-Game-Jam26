@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Mouse
   m_EditorClassIdentifier: 
   id: 0
-  cname: Fare
-  description: kuyrugunu siktimin orospu evladi
+  cname: Mouse
+  description: Agile but weak.
   price: 0
   icon: {fileID: 21300000, guid: 224d4c05cf60c6d41a7435c6b9004204, type: 3}
   sprite: {fileID: -5207917597236734424, guid: 2ec2cd7c99f70d145964938de64ecd49, type: 3}

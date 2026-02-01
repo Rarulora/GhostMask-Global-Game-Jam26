@@ -17,6 +17,10 @@ public class AudioManager : MonoBehaviour
 
     [Header("Sound Effects")]
     public AudioClip cash;
+    public AudioClip click;
+    public AudioClip hit;
+    public AudioClip takeDamage;
+    public AudioClip explosion;
 
     [Header("Settings")]
     public float fadeDuration = 1.5f;
