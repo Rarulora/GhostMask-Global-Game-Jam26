@@ -28,18 +28,20 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
 	bool isInvinsible = false;
 	Coroutine invinsibleRoutine;
 
+	StatsController _stats;
+
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		_stats = GetComponent<StatsController>();
 		if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 		originalColor = spriteRenderer.color;
+		_maxHealth = _stats.GetStat(Enums.StatType.health).Value;
+		_currentHealth = _maxHealth;
 	}
 
 	private void Start()
 	{
-		_maxHealth = StatsController.I.GetStat(Enums.StatType.health).Value;
-		_currentHealth = _maxHealth;
-		// Başlangıçta UI'ı güncelle
 		EventManager.RaiseHealthChanged(_currentHealth, _maxHealth);
 	}
 
