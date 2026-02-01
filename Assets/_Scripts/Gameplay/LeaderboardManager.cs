@@ -171,39 +171,24 @@ public class LeaderboardManager : MonoBehaviour
         {
             await InitializeLeaderboardServicesAsync();
 
-            var saveData = GameManager.Instance.SaveData;
-            if (saveData == null) return;
+            string name = GameManager.Instance.SaveData.Name;
+            if (string.IsNullOrWhiteSpace(name))
+                name = $"Player_{UnityEngine.Random.Range(1000, 9999)}";
+            await AuthenticationService.Instance.UpdatePlayerNameAsync(name);
 
-            if (saveData.bestRunData == null)
-                saveData.bestRunData = new HighScoreData(0, 0, 0);
+            // Metadata hazýrla
+            var metadataDict = new Dictionary<string, string>
+        {
+            { "charID", currentRunCharID.ToString() },
+            { "atkID", currentRunAtkID.ToString() }
+        };
 
-            HighScoreData savedBestRun = saveData.bestRunData;
+            var scoreOptions = new AddPlayerScoreOptions { Metadata = metadataDict };
 
-            if (currentRunScore > savedBestRun.highScore)
-            {
-                saveData.bestRunData.highScore = currentRunScore;
-                saveData.bestRunData.character = (CharacterType)currentRunCharID;
-                saveData.bestRunData.attackType = (AttackType)currentRunAtkID;
+            // Direkt gönder
+            await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardID, currentRunScore, scoreOptions);
+            Debug.Log($"<color=green>Leaderboard Güncellendi: {currentRunScore}</color>");
 
-                GameManager.Instance.SaveGame();
-
-                string name = saveData.Name;
-                if (string.IsNullOrWhiteSpace(name))
-                    name = $"Player_{UnityEngine.Random.Range(1000, 9999)}";
-
-                await AuthenticationService.Instance.UpdatePlayerNameAsync(name);
-
-                var metadataDict = new Dictionary<string, string>
-                {
-                    { "charID", currentRunCharID.ToString() },
-                    { "atkID", currentRunAtkID.ToString() }
-                };
-
-                var scoreOptions = new AddPlayerScoreOptions { Metadata = metadataDict };
-
-                await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardID, currentRunScore, scoreOptions);
-                Debug.Log($"Skor yollandý: {currentRunScore}");
-            }
         }
         catch (System.Exception e) { Debug.LogException(e); }
     }
