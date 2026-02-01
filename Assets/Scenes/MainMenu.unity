@@ -852,6 +852,7 @@ MonoBehaviour:
   click: {fileID: 8300000, guid: 90260043d8f5a554e81341aaaaee6431, type: 3}
   hit: {fileID: 8300000, guid: 264981bfcf1c6c345b9ea4a567135b3b, type: 3}
   takeDamage: {fileID: 8300000, guid: 16e7c68df19170844bd95214db0d769b, type: 3}
+  explosion: {fileID: 8300000, guid: efddc05cb15c1ef4c81b44c98cb3f5e5, type: 3}
   fadeDuration: 1.5
   mainMenuSceneName: MainMenu
   gameplaySceneName: Gameplay
