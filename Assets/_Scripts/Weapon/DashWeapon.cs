@@ -14,9 +14,9 @@ public class DashWeapon : WeaponBase
 		EventManager.RaiseDashStatusChanged(false);
 	}
 
-	public override void Initialize(WeaponData weaponData, Transform owner, Transform firePoint, Rigidbody2D rb)
+	public override void Initialize(WeaponData weaponData, Transform owner, Transform firePoint, Rigidbody2D rb, Animator anim)
 	{
-		base.Initialize(weaponData, owner, firePoint, rb);
+		base.Initialize(weaponData, owner, firePoint, rb, anim);
 		rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 		coll = owner.GetComponentInParent<Collider2D>();
 	}
