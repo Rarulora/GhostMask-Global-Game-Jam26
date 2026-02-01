@@ -34,11 +34,11 @@ public class MeleeWeapon : WeaponBase
 						Vector2 knockbackDir = (hit.transform.position - playerTransform.position).normalized;
 						enemy.TakeDamage(GetStat(Enums.StatType.damage), isCrit, knockbackDir, GetStat(Enums.StatType.knockbackForce));
 					}
-					
+					CameraController.Instance.ShakeCamera(0.1f, 0.2f);
 				}
 			}
 		}
-		CameraController.Instance.ShakeCamera(0.1f, 0.2f);
+		
 	}
 
 	private void OnDrawGizmosSelected()

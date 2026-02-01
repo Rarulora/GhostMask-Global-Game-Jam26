@@ -5,6 +5,7 @@ public class WeaponController : MonoBehaviour
 {
 	[Header("Configurations")]
 	public Transform firePoint;
+	public Animator anim;
 	[Header("Weapon Database")]
 	[SerializeField] private WeaponData startWeapon;
 
@@ -98,7 +99,7 @@ public class WeaponController : MonoBehaviour
 		}
 		if (currentWeaponBehavior != null)
 		{
-			currentWeaponBehavior.Initialize(newData, transform, firePoint, rb);
+			currentWeaponBehavior.Initialize(newData, transform, firePoint, rb, anim);
 
 			// Yeni silah geldiğinde scale'i sıfırla ki ters kalmasın
 			transform.localScale = Vector3.one;
