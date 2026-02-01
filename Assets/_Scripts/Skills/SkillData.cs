@@ -1,7 +1,7 @@
 using UnityEngine;
 using Enums;
 
-public enum Skilltype
+public enum SkillType
 {
     Attack,
     Movement,
@@ -21,5 +21,5 @@ public class SkillData : ScriptableObject
     public string desc;
     public StatType affectedStat;
     public StatModType affectType;
-    public Skilltype type;
+    public SkillType type;
 }

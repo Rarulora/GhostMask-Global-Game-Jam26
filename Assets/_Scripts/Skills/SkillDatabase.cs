@@ -17,7 +17,7 @@ public class SkillDatabase : ScriptableObject
         return null;
     }
 
-    public SkillData[] GetSkillsByType(Skilltype type)
+    public SkillData[] GetSkillsByType(SkillType type)
     {
         List<SkillData> list = new List<SkillData>();
         foreach (var datum in data)

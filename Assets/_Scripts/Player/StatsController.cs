@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using System.Linq;
 
 public class StatsController : MonoBehaviour
 {
@@ -38,7 +39,13 @@ public class StatsController : MonoBehaviour
 
 		InitializeStats();
 	}
-	private void Update()
+
+    private void Start()
+    {
+        AssignStatModifiersForPurchasedSkills(GetPurchasedSkills());
+    }
+
+    private void Update()
 	{
 		for (int i = _timedModifiers.Count - 1; i >= 0; i--)
 		{
@@ -114,6 +121,31 @@ public class StatsController : MonoBehaviour
 		}
 		moveSpeed.BaseValue = data.MoveSpeed;
 	}
+
+	private SkillData[] GetPurchasedSkills()
+	{
+		int[] purchasedSkillIDs = GameManager.Instance.SaveData.gainedSkillIDs;
+		SkillDatabase skillDatabase = Resources.Load<SkillDatabase>("SkillDatabase");
+
+		List<SkillData> purchasedSkills = new List<SkillData>();
+		foreach (var skill in skillDatabase.data)
+		{
+			if (purchasedSkillIDs.Contains<int>(skill.ID))
+                purchasedSkills.Add(skill);
+        }
+
+		return purchasedSkills.ToArray();
+	}
+
+	private void AssignStatModifiersForPurchasedSkills(SkillData[] purchasedSkills)
+	{
+		foreach (var skill in purchasedSkills)
+		{
+			StatModifier modifier = new StatModifier(skill.value, skill.affectType);
+			_stats[skill.affectedStat].AddModifier(modifier);
+		}
+	}
+
 	public void AddTimedModifier(StatType statType, float value, StatModType modType, float duration, string effectID = "")
 	{
 		if (!string.IsNullOrEmpty(effectID))
