@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Databases")]
     [SerializeField] private CharacterDatabase characterDatabase;
+    [SerializeField] private CosmeticDatabase cosmeticDatabase;
 
     public GameBaseState CurrentState { get; private set; }
     private GameStateFactory _states;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     public SaveData SaveData => saveData;
 
     public CharacterDatabase CharacterDatabase => characterDatabase;
+    public CosmeticDatabase CosmeticDatabase => cosmeticDatabase;
 
 	public const string MAIN_MENU_SCENE = "MainMenu";
 	public const string GAMEPLAY_SCENE = "Gameplay";
@@ -63,6 +65,9 @@ public class GameManager : MonoBehaviour
     {
         if (characterDatabase == null)
             characterDatabase = Resources.Load<CharacterDatabase>("CharacterDatabase");
+
+        if (cosmeticDatabase == null)
+            cosmeticDatabase = Resources.Load<CosmeticDatabase>("CosmeticDatabase");
     }
 
 	public void ChangeName(string name)
@@ -119,6 +124,10 @@ public class GameManager : MonoBehaviour
     {
 		SceneManager.LoadScene(MAIN_MENU_SCENE);
 		SwitchState(_states.MainMenu());
+    }
+    public void CosmeticsMenu()
+    {
+        SceneManager.LoadScene(COSMETICS_SCENE);
     }
 
     public void Pause() => SwitchState(_states.Pause());
