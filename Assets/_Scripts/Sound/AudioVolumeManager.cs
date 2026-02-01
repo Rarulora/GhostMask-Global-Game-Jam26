@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AudioVolumeManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class AudioVolumeManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Button continueButton;
+    [SerializeField] private Menu pauseMenu;
 
     [Header("Sliders")]
     [SerializeField] private Slider masterSlider;
@@ -28,6 +30,27 @@ public class AudioVolumeManager : MonoBehaviour
         OnSliderValueChange(masterSlider);
         OnSliderValueChange(musicSlider);
         OnSliderValueChange(sfxSlider);
+
+        if (mainMenuButton != null)
+        {
+            mainMenuButton.onClick.AddListener(OnMainMenuClicked);
+        }
+
+        if (continueButton != null)
+        {
+            continueButton.onClick.AddListener(OnContinueClicked);
+        }
+    }
+
+    private void OnMainMenuClicked()
+    {
+        GameManager.Instance.MainMenu();
+    }
+
+    private void OnContinueClicked()
+    {
+        pauseMenu.SetState(false);
+        GameManager.Instance.SwitchState(GameManager.Instance.States.Play());
     }
 
     public void OnSliderValueChange(Slider slider)
