@@ -13,7 +13,7 @@ public class DynamicStatPerk : PerkBase
 
 	[Header("Condition")]
 	public bool HaveCondition = false;
-	public int ConditionPerkID = 0;
+	public string ConditionPerkID = "";
 
 	public override void OnEquip(GameObject player)
 	{

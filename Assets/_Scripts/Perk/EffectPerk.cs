@@ -25,7 +25,7 @@ public class EffectPerk : PerkBase
 	// This is just data container.
 	[Header("Condition")]
 	public bool HaveCondition = false;
-	public int ConditionPerkID = 0;
+	public string ConditionPerkID = "";
 	public override void OnEquip(GameObject player)
 	{
 		// Register this perk to the manager
