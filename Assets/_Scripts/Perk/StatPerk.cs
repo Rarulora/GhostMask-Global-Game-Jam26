@@ -15,6 +15,8 @@ public class StatPerk : PerkBase
 
 	public List<ModifierData> Modifiers;
 
+	public int MaxLevel = 1;
+
 	public override void OnEquip(GameObject player)
 	{
 		var statsController = StatsController.I;
