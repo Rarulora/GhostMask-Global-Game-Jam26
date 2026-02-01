@@ -101,7 +101,7 @@ public class AudioVolumeManager : MonoBehaviour
         PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         ScoreManager scoreManager = player.GetComponent<ScoreManager>();
 
-        scoreText.text = $"Score: {scoreManager.CurrentScore}";
+        scoreText.text = $"Score: {Mathf.FloorToInt(scoreManager.CurrentScore)}";
         if (scoreManager.CurrentScore > GameManager.Instance.SaveData.bestRunData.highScore)
         {
             HighScoreData newBestRunData = new HighScoreData(scoreManager.CurrentScore, player.character, player.attackType);
