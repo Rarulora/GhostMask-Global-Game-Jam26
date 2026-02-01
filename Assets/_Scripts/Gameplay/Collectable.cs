@@ -9,10 +9,16 @@ public enum CollectableType
 
 public class Collectable : MonoBehaviour
 {
+    [Header("Drop Animation (Parabolic)")]
+    [SerializeField] private AnimationCurve dropCurve; // Editörden ayarlanacak "Tümsek" eðrisi
+    [SerializeField] private float dropHeight = 1.5f; // Ne kadar yükseðe zýplayacak
+    [SerializeField] private float dropDuration = 0.5f; // Yere düþmesi ne kadar sürecek
+
     [Header("Flags")]
     private bool detected = false;
     private bool knockedBack = false;
     private bool collected = false;
+    private bool isSpawning = false; // Havada süzülürken toplanmasýn diye
 
     [Header("Movement")]
     public float knockBackSpeed = 25f;
@@ -30,15 +36,47 @@ public class Collectable : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        if (dropCurve == null || dropCurve.length == 0)
+        {
+            dropCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1), new Keyframe(1, 0));
+        }
     }
 
     private void Update()
     {
-        if (detected && !knockedBack && !collected)
+        if (detected && !knockedBack && !collected && !isSpawning)
         {
             knockedBack = true;
             StartCoroutine(KnockbackRoutine());
         }
+    }
+
+    public void InitializeDrop(Vector3 startPos, Vector3 targetPos)
+    {
+        StartCoroutine(DropAnimationRoutine(startPos, targetPos));
+    }
+
+    private IEnumerator DropAnimationRoutine(Vector3 startPos, Vector3 targetPos)
+    {
+        isSpawning = true;
+        float elapsed = 0f;
+
+        while (elapsed < dropDuration)
+        {
+            elapsed += Time.deltaTime;
+            float percent = elapsed / dropDuration;
+
+            Vector3 currentPos = Vector3.Lerp(startPos, targetPos, percent);
+            float heightOffset = dropCurve.Evaluate(percent) * dropHeight;
+            currentPos.y += heightOffset;
+
+            transform.position = currentPos;
+
+            yield return null;
+        }
+
+        transform.position = targetPos;
+        isSpawning = false;
     }
 
     private IEnumerator KnockbackRoutine()

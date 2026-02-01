@@ -1390,6 +1390,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -1984,6 +1992,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -2289,6 +2305,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -2539,6 +2563,7 @@ Transform:
   - {fileID: 2044180525}
   - {fileID: 443164510}
   - {fileID: 1970462184}
+  - {fileID: 696876763}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &438943972
@@ -2767,6 +2792,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -2939,6 +2972,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -3591,6 +3632,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -4003,6 +4052,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685934099}
   m_CullTransparentMesh: 1
+--- !u!1 &696876762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 696876763}
+  - component: {fileID: 696876764}
+  m_Layer: 0
+  m_Name: LootManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &696876763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696876762}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 438884733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &696876764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696876762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d17424dd1c65cc45a9b65396ba2db0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldPrefab: {fileID: 2389803935049385828, guid: a74069064b330904ab11fe8956ef1964, type: 3}
+  xpPrefab: {fileID: 2389803935049385828, guid: d99dc59807c919a4791cea25e9938f3d, type: 3}
+  dropRadius: 1.5
+  minGold: 1
+  maxGold: 3
 --- !u!1 &814819811
 GameObject:
   m_ObjectHideFlags: 0
@@ -5016,6 +5114,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -5581,6 +5687,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -5796,6 +5910,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -6079,6 +6201,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -9234,6 +9364,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
@@ -9588,6 +9726,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2409eed7206f2a41a4f8eff8d328233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dropHeight: 1.5
+  dropDuration: 0.5
   knockBackSpeed: 25
   startMoveSpeed: 5
   accelerationAmount: 25
