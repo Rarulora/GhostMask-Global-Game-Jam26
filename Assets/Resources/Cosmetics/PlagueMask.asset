@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44d28de4c14a484448334460b17f6465, type: 3}
-  m_Name: "YahudiSapkas\u0131"
+  m_Name: PlagueMask
   m_EditorClassIdentifier: 
-  ID: 2
-  Name: asda
-  description: asdaasd
-  price: 0
-  sprite: {fileID: -663865025292417121, guid: 3e6d7705d427e7748b2ed11a7a3f0303, type: 3}
+  ID: 3
+  Name: Plague Mask
+  description: Extra protective for diseases.
+  price: 10
+  sprite: {fileID: 21300000, guid: 7691ae8a449d86d408932e6f7db17106, type: 3}
   method: 0
-  type: 0
+  type: 1
