@@ -16,7 +16,7 @@ public class MeleeWeapon : WeaponBase
 		// Böylece "transform.right" yerine ofsetli yönü kullanıyoruz.
 		float centerAngle = transform.eulerAngles.z + 100f;
 		Vector2 facingDir = DirFromAngle(centerAngle);
-
+		bool hitSomeEnemies = false;
 		foreach (var hit in hits)
 		{
 			if (hit.CompareTag("Enemy"))
@@ -33,12 +33,17 @@ public class MeleeWeapon : WeaponBase
 					{
 						Vector2 knockbackDir = (hit.transform.position - playerTransform.position).normalized;
 						enemy.TakeDamage(GetStat(Enums.StatType.damage), isCrit, knockbackDir, GetStat(Enums.StatType.knockbackForce));
+						hitSomeEnemies = true;
 					}
-					CameraController.Instance.ShakeCamera(0.1f, 0.2f);
+					
 				}
 			}
 		}
-		
+		if (hitSomeEnemies)
+		{
+			CameraController.Instance.ShakeCamera(0.1f, 0.2f);
+			if (GameFeelManager.I != null) GameFeelManager.I.DoHitStop(0.2f);
+		}
 	}
 
 	private void OnDrawGizmosSelected()

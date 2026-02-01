@@ -29,7 +29,7 @@ public class GameFeelManager : MonoBehaviour
 		// Zamaný neredeyse durdur (0 yaparsan bazen fizik sapýtabilir, 0.1 güvenlidir)
 		// Ama tam donma istiyorsan 0 yap.
 		float originalScale = Time.timeScale;
-		Time.timeScale = 0.0f;
+		Time.timeScale = 0.1f;
 
 		// WaitForSecondsRealtime kullanmalýsýn çünkü Time.timeScale 0 iken normal süre akmaz.
 		yield return new WaitForSecondsRealtime(duration);
