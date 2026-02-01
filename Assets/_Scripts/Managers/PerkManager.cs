@@ -76,7 +76,7 @@ public class PerkManager : MonoBehaviour
 
 			FillCards(GetRandomPerks(weaponPerks, 2));
             perk1.Show();
-            perk3.Show();
+            perk2.Show();
         }
 		else if (currentLevel >= thresholdLevelForAttackTypePerks && currentLevel <= maxLevelForAttackTypePerks && !choosedAttackType)
 		{
@@ -211,8 +211,8 @@ public class PerkManager : MonoBehaviour
 
 		// PerkCard scriptinde "Setup(PerkBase data)" metodu olmalý
 		if (perks.Count > 0) perk1.Setup(perks[0], 0); else perk1.gameObject.SetActive(false);
-		if (perks.Count > 1) perk3.Setup(perks[1], 1); else perk3.gameObject.SetActive(false);
-		if (perks.Count > 2) perk2.Setup(perks[2], 2); else perk2.gameObject.SetActive(false);
+		if (perks.Count > 1) perk2.Setup(perks[1], 1); else perk2.gameObject.SetActive(false);
+		if (perks.Count > 2) perk3.Setup(perks[2], 2); else perk3.gameObject.SetActive(false);
 	}
 
 	// ========================================================================
