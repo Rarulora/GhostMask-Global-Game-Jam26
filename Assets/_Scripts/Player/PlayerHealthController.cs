@@ -98,7 +98,7 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
 		// Fiziksel etkileşimi kes ama objeyi yok etme (Animasyon oynayabilir)
 		rb.linearVelocity = Vector2.zero;
 		rb.simulated = false; // Çarpışmaları kapat
-
+		GameManager.Instance.SwitchState(GameManager.Instance.States.GameOver());
 		// Opsiyonel: Ölüm animasyonu
 		if(anim != null) anim?.SetTrigger("Death");
 
