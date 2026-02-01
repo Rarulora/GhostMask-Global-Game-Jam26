@@ -63,7 +63,7 @@ public class Enemy_Bomber : EnemyBase
 		}
 
 		// Efekt oluştur
-		if (explosionVFX) Instantiate(explosionVFX, transform.position, Quaternion.identity);
+		if (explosionVFX) explosionVFX.GetComponent<ParticleSystem>().Play();
 
 		TakeDamage(99999f, true, Vector2.zero, 0);
 	}

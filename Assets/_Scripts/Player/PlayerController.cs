@@ -53,13 +53,20 @@ public class PlayerController : MonoBehaviour
         InitializePlayerData();
 
 
-		EventManager.OnPlayerDeath += Die;
+		
         CalculateNextLevelXP();
 
         EventManager.RaiseCharacterChanged
             (GameManager.Instance.CharacterDatabase.GetCharacterByID(GameManager.Instance.SaveData.equippedCharacterID));
 	}
-
+	private void OnEnable()
+	{
+		EventManager.OnPlayerDeath += Die;
+	}
+	private void OnDisable()
+	{
+		EventManager.OnPlayerDeath -= Die;
+	}
 	private void Start()
     {
         UpdateUI();
