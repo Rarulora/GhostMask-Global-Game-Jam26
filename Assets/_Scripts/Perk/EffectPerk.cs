@@ -29,6 +29,6 @@ public class EffectPerk : PerkBase
 	public override void OnEquip(GameObject player)
 	{
 		// Register this perk to the manager
-		player.GetComponent<PerkManager>().RegisterEffectPerk(this);
+		PerkManager.I.RegisterEffectPerk(this);
 	}
 }

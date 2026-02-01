@@ -235,12 +235,22 @@ public class PlayerController : MonoBehaviour
         int charID = (int)character;
         int atkID = (int)attackType;
 
-        GameManager.Instance.SaveData.gold += goldCollected;
+        var saveData = GameManager.Instance.SaveData;
+        saveData.gold += goldCollected;
+
+        if (saveData.bestRunData == null || finalScore > saveData.bestRunData.highScore)
+        {
+            if (saveData.bestRunData == null)
+                saveData.bestRunData = new HighScoreData();
+
+            saveData.bestRunData.highScore = finalScore;
+            saveData.bestRunData.character = (CharacterType)charID;
+            saveData.bestRunData.attackType = (AttackType)atkID;
+
+            _ = LeaderboardManager.SubmitScoreAsync(finalScore, charID, atkID);
+        }
+
         GameManager.Instance.SaveGame();
-
-        _ = LeaderboardManager.SubmitScoreAsync(finalScore, charID, atkID);
-
-        // TODO: open game over panel
     }
 
     public float GetLostHealth() => HealthController.MaxHealth - HealthController.CurrentHealth;
