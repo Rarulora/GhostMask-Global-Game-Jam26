@@ -10,6 +10,7 @@ TagManager:
   - Projectile
   - Wall
   - Menu
+  - Melee
   layers:
   - Default
   - TransparentFX

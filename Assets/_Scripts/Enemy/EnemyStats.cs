@@ -24,8 +24,12 @@ public class EnemyStats : MonoBehaviour
 	// Durum Kontrolü
 	public bool IsDead => CurrentHealth <= 0;
 
+    void Awake()
+    {
+        Initialize(1);
+    }
 
-	public void Initialize(float difficultyMultiplier)
+    public void Initialize(float difficultyMultiplier)
 	{
 		if (_data == null)
 		{
