@@ -26,6 +26,7 @@ public class AudioManager : MonoBehaviour
     public float fadeDuration = 1.5f;
     public string mainMenuSceneName = "MainMenu";
     public string gameplaySceneName = "Gameplay";
+    public string creditsSceneName = "Credits";
 
     private bool isGameplay = false;
     private List<AudioClip> playlist;
@@ -95,6 +96,25 @@ public class AudioManager : MonoBehaviour
             ShufflePlaylist();
             PlayNextGameplayTrack();
         }
+        else if (scene.name == creditsSceneName)
+        {
+            musicSource.Stop();
+            musicSource.volume = 0;
+        }
+    }
+
+    private IEnumerator FadeOutCurrentMusic()
+    {
+        float startVolume = musicSource.volume;
+
+        while (musicSource.volume > 0)
+        {
+            musicSource.volume -= startVolume * Time.deltaTime / (fadeDuration / 2);
+            yield return null;
+        }
+
+        musicSource.Stop();
+        musicSource.volume = 0;
     }
 
     private void PlayNextGameplayTrack()
