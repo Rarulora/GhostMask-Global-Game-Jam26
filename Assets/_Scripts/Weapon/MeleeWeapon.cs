@@ -34,6 +34,7 @@ public class MeleeWeapon : WeaponBase
 						Vector2 knockbackDir = (hit.transform.position - playerTransform.position).normalized;
 						enemy.TakeDamage(GetStat(Enums.StatType.damage), isCrit, knockbackDir, GetStat(Enums.StatType.knockbackForce));
 						hitSomeEnemies = true;
+						PerkManager.I.TriggerOnHit(enemy, hit.transform.position);
 					}
 					
 				}
