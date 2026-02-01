@@ -18,6 +18,7 @@ public class RangedWeapon : WeaponBase
 		int pierceCount = Mathf.RoundToInt(StatsController.I.GetValue(StatType.pierce));
 		float critMult = StatsController.I.GetValue(StatType.critMultiplier);
 
+
 		// Güvenlik: En az 1 mermi atılmalı
 		if (projCount < 1) projCount = 1;
 
