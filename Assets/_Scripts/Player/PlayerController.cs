@@ -153,6 +153,8 @@ public class PlayerController : MonoBehaviour
         int atkID = (int)attackType;
 
         _ = LeaderboardManager.SubmitScoreAsync(finalScore, charID, atkID);
+
+        // TODO: open game over panel
     }
 
     public float GetLostHealth() => HealthController.MaxHealth - HealthController.CurrentHealth;
