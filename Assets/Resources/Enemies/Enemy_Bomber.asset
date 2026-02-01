@@ -17,7 +17,7 @@ MonoBehaviour:
   prefab: {fileID: 7977020192699088649, guid: 27384c86390e4564d93ea223fdc2945b, type: 3}
   maxHealth: 5
   moveSpeed: 3
-  damage: 1
+  damage: 9999
   attackRate: 0.2
   attackRange: 1.5
   projectileSpeed: 5

@@ -7,6 +7,9 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
 	[Header("Health Settings")]
 	[SerializeField] private float iFrameDuration = 0.2f; // Hasar aldıktan sonraki ölümsüzlük süresi
 
+	[SerializeField] private Animator healthBar;
+	private bool vibrating = false;
+
 	[Header("Visuals")]
 	[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private Color damageColor = Color.red;
@@ -45,8 +48,23 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
         EventManager.RaiseHealthChanged(_currentHealth, _maxHealth);
 	}
 
-	// --- IDAMAGEABLE ARAYÜZÜ ---
-	public void TakeDamage(float amount, bool isCritical, Vector2 knockbackDir, float knockbackForce)
+    private void Update()
+    {
+        if (!vibrating && CurrentHealth <= MaxHealth * 0.15)
+		{
+			vibrating = true;
+			healthBar.SetBool("Vibrate", true);
+		}
+
+        if (vibrating && CurrentHealth > MaxHealth * 0.15)
+        {
+            vibrating = false;
+            healthBar.SetBool("Vibrate", false);
+        }
+    }
+
+    // --- IDAMAGEABLE ARAYÜZÜ ---
+    public void TakeDamage(float amount, bool isCritical, Vector2 knockbackDir, float knockbackForce)
 	{
 		if (_isDead || _isInvincible) return;
 

@@ -1,25 +1,28 @@
 fileFormatVersion: 2
-guid: 09a56243c46022148bb8be5bfe2075a6
+guid: a268e406330879e45a49ece6e53d28fe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5968496545626408874
-    second: bow (1)_0
+      213: 8120725784858804034
+    second: "sepetablas\xFCpri_0"
   - first:
-      213: -3298351032913565475
-    second: bow (1)_1
+      213: -2723480455180927240
+    second: "sepetablas\xFCpri_1"
   - first:
-      213: 953648303698141331
-    second: bow (1)_2
+      213: 5960572301398072644
+    second: "sepetablas\xFCpri_2"
   - first:
-      213: -7954966553312017799
-    second: bow (1)_3
+      213: -4258814085516324819
+    second: "sepetablas\xFCpri_3"
   - first:
-      213: -9003966167296520244
-    second: bow (1)_4
+      213: 3913118540865723255
+    second: "sepetablas\xFCpri_4"
   - first:
-      213: 115316483517966366
-    second: bow (1)_5
+      213: -2730148102156536677
+    second: "sepetablas\xFCpri_5"
+  - first:
+      213: -4318081797140268196
+    second: "sepetablas\xFCpri_6"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,7 +90,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -124,106 +127,159 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bow (1)_0
+      name: "sepetablas\xFCpri_0"
       rect:
         serializedVersion: 2
-        x: 295
-        y: 295
-        width: 335
-        height: 335
+        x: 14
+        y: 0
+        width: 1232
+        height: 930
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa7453d5cfb54d250800000000000000
-      internalID: 5968496545626408874
+      spriteID: 24f3ddc631d92b070800000000000000
+      internalID: 8120725784858804034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow (1)_1
+      name: "sepetablas\xFCpri_1"
       rect:
         serializedVersion: 2
-        x: 1183
-        y: 295
-        width: 411
-        height: 335
+        x: 1259
+        y: 0
+        width: 1232
+        height: 930
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd8e4a20637e932d0800000000000000
-      internalID: -3298351032913565475
+      spriteID: 8feb834a4f0443ad0800000000000000
+      internalID: -2723480455180927240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow (1)_4
+      name: "sepetablas\xFCpri_2"
       rect:
         serializedVersion: 2
-        x: 2108
-        y: 221
-        width: 408
-        height: 483
+        x: 2504
+        y: 0
+        width: 1232
+        height: 930
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ccfc7a4d97c7b0380800000000000000
-      internalID: -9003966167296520244
+      spriteID: 44d5dda7de438b250800000000000000
+      internalID: 5960572301398072644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow (1)_5
+      name: "sepetablas\xFCpri_3"
       rect:
         serializedVersion: 2
-        x: 3070
-        y: 147
-        width: 372
-        height: 631
+        x: 3749
+        y: 0
+        width: 1232
+        height: 930
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e18e5d41bbfa99100800000000000000
-      internalID: 115316483517966366
+      spriteID: d209e544727a5e4c0800000000000000
+      internalID: -4258814085516324819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "sepetablas\xFCpri_4"
+      rect:
+        serializedVersion: 2
+        x: 4994
+        y: 0
+        width: 1232
+        height: 930
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77bdb4094903e4630800000000000000
+      internalID: 3913118540865723255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "sepetablas\xFCpri_5"
+      rect:
+        serializedVersion: 2
+        x: 6239
+        y: 0
+        width: 1232
+        height: 930
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b94b0ca14c09c1ad0800000000000000
+      internalID: -2730148102156536677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "sepetablas\xFCpri_6"
+      rect:
+        serializedVersion: 2
+        x: 7484
+        y: 0
+        width: 4966
+        height: 930
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5bbf52db771314c0800000000000000
+      internalID: -4318081797140268196
       vertices: []
       indices: 
       edges: []
@@ -232,7 +288,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c8804768afece2a4bb7be421bb7397ca
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -242,12 +298,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bow (1)_0: 5968496545626408874
-      bow (1)_1: -3298351032913565475
-      bow (1)_2: 953648303698141331
-      bow (1)_3: -7954966553312017799
-      bow (1)_4: -9003966167296520244
-      bow (1)_5: 115316483517966366
+      "sepetablas\xFCpri_0": 8120725784858804034
+      "sepetablas\xFCpri_1": -2723480455180927240
+      "sepetablas\xFCpri_2": 5960572301398072644
+      "sepetablas\xFCpri_3": -4258814085516324819
+      "sepetablas\xFCpri_4": 3913118540865723255
+      "sepetablas\xFCpri_5": -2730148102156536677
+      "sepetablas\xFCpri_6": -4318081797140268196
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
