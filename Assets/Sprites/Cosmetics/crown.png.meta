@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 29af58d73d5addc42a693c93fffced6c
+guid: 776eb119d15dd804b86989a06428d10e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3071597665808022757
-    second: assasin.idle (1)_0
-  - first:
-      213: -4288151174749544649
-    second: assasin.idle (1)_1
-  - first:
-      213: 8108265779401576390
-    second: assasin.idle (1)_2
-  - first:
-      213: -2781458761947446767
-    second: assasin.idle (1)_3
-  - first:
-      213: -1517736253480036350
-    second: assasin.idle (1)_4
+      213: -8222406987496834216
+    second: crown_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -138,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: assasin.idle (1)_0
+      name: crown_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 60
-        width: 612
-        height: 795
+        x: 0
+        y: 0
+        width: 475
+        height: 380
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,96 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ecf7639dc180aa20800000000000000
-      internalID: 3071597665808022757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: assasin.idle (1)_1
-      rect:
-        serializedVersion: 2
-        x: 975
-        y: 60
-        width: 612
-        height: 795
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 73f11e5e93d6d74c0800000000000000
-      internalID: -4288151174749544649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: assasin.idle (1)_2
-      rect:
-        serializedVersion: 2
-        x: 1890
-        y: 60
-        width: 673
-        height: 795
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6cfcfa554c8568070800000000000000
-      internalID: 8108265779401576390
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: assasin.idle (1)_3
-      rect:
-        serializedVersion: 2
-        x: 2805
-        y: 60
-        width: 795
-        height: 734
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11289b82ef54669d0800000000000000
-      internalID: -2781458761947446767
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: assasin.idle (1)_4
-      rect:
-        serializedVersion: 2
-        x: 3720
-        y: 60
-        width: 734
-        height: 795
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20817943beaefeae0800000000000000
-      internalID: -1517736253480036350
+      spriteID: 85bbf87b86424ed80800000000000000
+      internalID: -8222406987496834216
       vertices: []
       indices: 
       edges: []
@@ -251,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -261,11 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      assasin.idle (1)_0: 3071597665808022757
-      assasin.idle (1)_1: -4288151174749544649
-      assasin.idle (1)_2: 8108265779401576390
-      assasin.idle (1)_3: -2781458761947446767
-      assasin.idle (1)_4: -1517736253480036350
+      crown_0: -8222406987496834216
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

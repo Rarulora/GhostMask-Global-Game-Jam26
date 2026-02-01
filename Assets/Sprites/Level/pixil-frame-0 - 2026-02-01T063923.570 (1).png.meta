@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: c0ad46dc2fdee8d44b64d409ad987826
+guid: c9f4a07fa60be594a8b8aab86c9cd368
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 45315328049268331
-    second: rat.run_0
-  - first:
-      213: -5136119504044461282
-    second: rat.run_1
+      213: 885355028562449695
+    second: pixil-frame-0 - 2026-02-01T063923.570 (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -112,30 +109,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rat.run_0
+      name: pixil-frame-0 - 2026-02-01T063923.570 (1)_0
       rect:
         serializedVersion: 2
-        x: 149
-        y: 89
-        width: 542
-        height: 902
+        x: 0
+        y: 0
+        width: 1280
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b66c14ffc0ef0a000800000000000000
-      internalID: 45315328049268331
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rat.run_1
-      rect:
-        serializedVersion: 2
-        x: 869
-        y: 89
-        width: 572
-        height: 872
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e13797df586d8b8b0800000000000000
-      internalID: -5136119504044461282
+      spriteID: f15129925b9694c00800000000000000
+      internalID: 885355028562449695
       vertices: []
       indices: 
       edges: []
@@ -176,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -186,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      rat.run_0: 45315328049268331
-      rat.run_1: -5136119504044461282
+      pixil-frame-0 - 2026-02-01T063923.570 (1)_0: 885355028562449695
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
