@@ -77,74 +77,63 @@ public class PlayerController : MonoBehaviour
         CheckForCollectables();
     }
 
-	void InitializePlayerData()
-	{
-		// Eriþimleri kýsaltalým
-		var saveData = GameManager.Instance.SaveData;
-		var cosmeticDB = GameManager.Instance.CosmeticDatabase;
-		var charDB = GameManager.Instance.CharacterDatabase;
+    void InitializePlayerData()
+    {
+        // Eriþimleri kýsaltalým
+        var saveData = GameManager.Instance.SaveData;
+        var cosmeticDB = GameManager.Instance.CosmeticDatabase;
+        var charDB = GameManager.Instance.CharacterDatabase;
 
-		// --- 1. ÞAPKA (HAT) AYARLAMA ---
-		if (saveData.equippedHatID == 0)
-		{
-			// Þapka takýlý deðil, görünmez yap
-			hatCosmeticSR.sprite = null;
-			// Veya performans için: hatCosmeticSR.enabled = false;
-		}
-		else
-		{
-			CosmeticData hat = cosmeticDB.GetDataByID(saveData.equippedHatID);
-			if (hat != null && hat.sprite != null)
-			{
-				hatCosmeticSR.sprite = hat.sprite;
-				// hatCosmeticSR.enabled = true; // Eðer kapatýyorsan açmayý unutma
-			}
-			else
-			{
-				// ID var ama veri bulunamadý (Hata durumu)
-				hatCosmeticSR.sprite = null;
-			}
-		}
+        character = (CharacterType)saveData.equippedCharacterID;
 
-		// --- 2. MASKE (MASK) AYARLAMA ---
-		if (saveData.equippedMaskID == 0)
-		{
-			maskCosmeticSR.sprite = null;
-		}
-		else
-		{
-			CosmeticData mask = cosmeticDB.GetDataByID(saveData.equippedMaskID);
-			if (mask != null && mask.sprite != null)
-			{
-				maskCosmeticSR.sprite = mask.sprite;
-			}
-			else
-			{
-				maskCosmeticSR.sprite = null;
-			}
-		}
+        if (saveData.equippedHatID == 0)
+        {
+            hatCosmeticSR.sprite = null;
+        }
+        else
+        {
+            CosmeticData hat = cosmeticDB.GetDataByID(saveData.equippedHatID);
+            if (hat != null && hat.sprite != null)
+            {
+                hatCosmeticSR.sprite = hat.sprite;
+            }
+            else
+            {
+                hatCosmeticSR.sprite = null;
+            }
+        }
 
-		// --- 3. KARAKTER (CHARACTER) AYARLAMA ---
-		// Karakter her zaman var olmalý (ID 0 olsa bile default karakter vardýr)
-		CharacterDataSO character = charDB.GetCharacterByID(saveData.equippedCharacterID);
+        if (saveData.equippedMaskID == 0)
+        {
+            maskCosmeticSR.sprite = null;
+        }
+        else
+        {
+            CosmeticData mask = cosmeticDB.GetDataByID(saveData.equippedMaskID);
+            if (mask != null && mask.sprite != null)
+            {
+                maskCosmeticSR.sprite = mask.sprite;
+            }
+            else
+            {
+                maskCosmeticSR.sprite = null;
+            }
+        }
 
-		if (character != null)
-		{
-			// Karakterin Sprite'ý (Idle duruþu vs.)
-			if (character.Sprite != null)
-				characterSR.sprite = character.Sprite;
+        CharacterDataSO characterData = charDB.GetCharacterByID(saveData.equippedCharacterID);
+        if (characterData != null)
+        {
+            // Karakterin Sprite'ý (Idle duruþu vs.)
+            if (characterData.Sprite != null)
+                characterSR.sprite = characterData.Sprite;
 
-			// Karakterin Animasyon Kontrolcüsü (Farklý karakterlerin farklý animasyonlarý olabilir)
-			if (character.AnimatorController != null)
-				anim.runtimeAnimatorController = character.AnimatorController;
-		}
-		else
-		{
-			Debug.LogError($"Character Data Not Found for ID: {saveData.equippedCharacterID}");
-		}
-	}
+            // Karakterin Animasyon Kontrolcüsü
+            if (characterData.AnimatorController != null)
+                anim.runtimeAnimatorController = characterData.AnimatorController;
+        }
+    }
 
-	public void IncreaseGold(int amount = 1)
+    public void IncreaseGold(int amount = 1)
     {
         goldCollected += amount;
     }
@@ -232,22 +221,29 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         int finalScore = Mathf.FloorToInt(ScoreManager.Instance.CurrentScore);
-        int charID = (int)character;
-        int atkID = (int)attackType;
+        int currentCharID = (int)character;
+        int currentAtkID = (int)attackType;
 
         var saveData = GameManager.Instance.SaveData;
         saveData.gold += goldCollected;
 
-        if (saveData.bestRunData == null || finalScore > saveData.bestRunData.highScore)
+        if (saveData.bestRunData == null)
+            saveData.bestRunData = new HighScoreData();
+
+        if (finalScore > saveData.bestRunData.highScore)
         {
-            if (saveData.bestRunData == null)
-                saveData.bestRunData = new HighScoreData();
-
             saveData.bestRunData.highScore = finalScore;
-            saveData.bestRunData.character = (CharacterType)charID;
-            saveData.bestRunData.attackType = (AttackType)atkID;
+            saveData.bestRunData.character = (CharacterType)currentCharID;
+            saveData.bestRunData.attackType = (AttackType)currentAtkID;
+        }
 
-            _ = LeaderboardManager.SubmitScoreAsync(finalScore, charID, atkID);
+        if (saveData.bestRunData.highScore > 0)
+        {
+            _ = LeaderboardManager.SubmitScoreAsync(
+                Mathf.FloorToInt(saveData.bestRunData.highScore),       // Þu anki skoru deðil, REKORU yolla
+                (int)saveData.bestRunData.character,  // Rekorun kýrýldýðý karakteri yolla
+                (int)saveData.bestRunData.attackType  // Rekorun saldýrý tipini yolla
+            );
         }
 
         GameManager.Instance.SaveGame();
