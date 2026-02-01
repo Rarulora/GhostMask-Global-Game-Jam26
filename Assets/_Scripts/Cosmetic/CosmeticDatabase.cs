@@ -1,6 +1,6 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using Enums;
 
 [CreateAssetMenu(fileName = "Cosmetic Database", menuName = "Database/CosmeticDatabase")]
 public class CosmeticDatabase : ScriptableObject

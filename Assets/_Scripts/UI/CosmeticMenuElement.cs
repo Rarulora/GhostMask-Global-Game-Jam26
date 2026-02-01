@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq; // Needed for array checks
+using System.Linq;
+using Enums; // CosmeticType için
 
 [RequireComponent(typeof(Button))]
 public class CosmeticMenuElement : MonoBehaviour
@@ -12,23 +13,27 @@ public class CosmeticMenuElement : MonoBehaviour
 	[SerializeField] private GameObject equippedBadge;
 	[SerializeField] private GameObject selectionOutline;
 
-	[Header("Colors")]
+	[Header("Visual Settings")]
 	[SerializeField] private Color normalColor = Color.white;
 	[SerializeField] private Color selectedColor = new Color(0.9f, 0.9f, 0.9f);
+	[SerializeField] private float selectedScale = 1.15f; // Seçilince ne kadar büyüsün?
 
-	// Internal Data
 	private CosmeticsUI _controller;
 	private CharacterDataSO _charData;
 	private CosmeticData _cosmeticData;
 	private bool _isCharacter;
 
+	// Public Properties for Filtering
+	public bool IsCharacter => _isCharacter;
+
+	// Eðer kozmetikse tipini dön, deðilse null (veya varsayýlan) dön
+	public CosmeticType? CosmeticType => _isCharacter ? null : _cosmeticData.type;
+
 	public int ID => _isCharacter ? _charData.ID : _cosmeticData.ID;
 	public string Name => _isCharacter ? _charData.Name : _cosmeticData.Name;
 	public string Description => _isCharacter ? _charData.Description : _cosmeticData.description;
 	public int Price => _isCharacter ? _charData.Price : (int)_cosmeticData.price;
-	public Sprite Icon => _isCharacter ? null : _cosmeticData.sprite; // Note: CharacterSO didn't have a sprite in your provided code, handle accordingly.
 
-	// State
 	public bool IsOwned { get; private set; }
 	public bool IsEquipped { get; private set; }
 
@@ -40,8 +45,7 @@ public class CosmeticMenuElement : MonoBehaviour
 		_btn.onClick.AddListener(OnClick);
 	}
 
-	// --- Setup Methods ---
-
+	// --- SETUP KARAKTER ---
 	public void Setup(CosmeticsUI controller, CharacterDataSO data)
 	{
 		_controller = controller;
@@ -50,10 +54,10 @@ public class CosmeticMenuElement : MonoBehaviour
 		_cosmeticData = null;
 
 		if (iconImage) iconImage.sprite = data.Icon;
-
 		RefreshState();
 	}
 
+	// --- SETUP KOZMETÝK ---
 	public void Setup(CosmeticsUI controller, CosmeticData data)
 	{
 		_controller = controller;
@@ -62,19 +66,16 @@ public class CosmeticMenuElement : MonoBehaviour
 		_charData = null;
 
 		if (iconImage) iconImage.sprite = data.sprite;
-
 		RefreshState();
 	}
 
-	// --- State Management ---
-
+	// --- STATE REFRESH ---
 	public void RefreshState()
 	{
 		SaveData save = GameManager.Instance.SaveData;
 
 		if (_isCharacter)
 		{
-			// ID 0 is usually default, assume owned. Or check array.
 			IsOwned = ID == 0 || save.purchasedCharacterIDs.Contains(ID);
 			IsEquipped = save.equippedCharacterID == ID;
 		}
@@ -82,10 +83,10 @@ public class CosmeticMenuElement : MonoBehaviour
 		{
 			IsOwned = ID == 0 || save.purchasedCosmeticIDs.Contains(ID);
 
-			// Check specific slots based on type
-			if (_cosmeticData.type == CosmeticType.Hat)
+			if (_cosmeticData.type == Enums.CosmeticType.Hat)
 				IsEquipped = save.equippedHatID == ID;
-			// Add Wing logic here if CosmeticType expands
+			else if (_cosmeticData.type == Enums.CosmeticType.Mask)
+				IsEquipped = save.equippedMaskID == ID;
 		}
 
 		UpdateVisuals();
@@ -97,10 +98,17 @@ public class CosmeticMenuElement : MonoBehaviour
 		if (equippedBadge) equippedBadge.SetActive(IsEquipped);
 	}
 
+	// --- FOCUS / SELECT VISUALS ---
 	public void SetSelected(bool isSelected)
 	{
 		if (selectionOutline) selectionOutline.SetActive(isSelected);
-		if (backgroundImage) backgroundImage.color = isSelected ? selectedColor : normalColor;
+
+		if (backgroundImage)
+			backgroundImage.color = isSelected ? selectedColor : normalColor;
+
+		// SCALE UP LOGIC
+		Vector3 targetScale = isSelected ? Vector3.one * selectedScale : Vector3.one;
+		transform.localScale = targetScale;
 	}
 
 	private void OnClick()

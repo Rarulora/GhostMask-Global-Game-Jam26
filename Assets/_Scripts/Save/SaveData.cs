@@ -14,7 +14,7 @@ public class SaveData
     public int[] gainedSkillIDs;
 
     public int equippedHatID;
-    public int equippedWingID;
+    public int equippedMaskID;
     public int equippedCharacterID;
 
     public int gold;
@@ -30,7 +30,7 @@ public class SaveData
         gainedAchievementIDs = new int[0];
         gainedSkillIDs = new int[0];
         equippedHatID = 0; // ID'si 0 olan þapka ve kanat yok, gözükmüyor yani
-        equippedWingID = 0;
+        equippedMaskID = 0;
         equippedCharacterID = 0;
         gold = 0;
         bestRunData = new HighScoreData(0, (CharacterType)0, (AttackType)0);
@@ -46,7 +46,7 @@ public class SaveData
         this.gainedAchievementIDs = gainedAchievementIDs;
         this.gainedSkillIDs = gainedSkillIDs;
         this.equippedHatID = equippedHatID;
-        this.equippedWingID = equippedWingID;
+        this.equippedMaskID = equippedWingID;
         this.equippedCharacterID = equippedCharacterID;
         this.gold = gold;
         this.bestRunData = bestRunData;
@@ -62,7 +62,7 @@ public class SaveData
         this.gainedAchievementIDs = gainedAchievementIDs;
         this.gainedSkillIDs = gainedSkillIDs;
         this.equippedHatID = equippedHatID;
-        this.equippedWingID = equippedWingID;
+        this.equippedMaskID = equippedWingID;
         this.equippedCharacterID = equippedCharacterID;
         this.gold = gold;
         bestRunData = new HighScoreData(highScore, character, attackType, selectedPerkNames);
