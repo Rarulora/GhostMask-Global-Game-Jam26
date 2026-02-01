@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b06d6510b03cdc7468ba4e16aba5435c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdDuration: 3
+  holdDuration: 1.5
   fillImage: {fileID: 1747737625}
   OnHoldComplete:
     m_PersistentCalls:
@@ -5987,6 +5987,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5fc09a1669b72db489bd4e735c8e319d, type: 3}
   - {fileID: 8300000, guid: f91c7ee292c47ad4088cf3d06f671c6d, type: 3}
   cash: {fileID: 8300000, guid: 728679b264fc80d44804c53aad0fd71c, type: 3}
+  click: {fileID: 0}
+  hit: {fileID: 0}
+  takeDamage: {fileID: 0}
+  explosion: {fileID: 0}
   fadeDuration: 1.5
   mainMenuSceneName: MainMenu
   gameplaySceneName: Gameplay
