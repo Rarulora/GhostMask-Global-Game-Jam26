@@ -74,8 +74,10 @@ public class PerkManager : MonoBehaviour
 											   .Where(p => p.WeaponToUnlock != null)
 											   .Cast<PerkBase>().ToList();
 
-			FillCards(GetRandomPerks(weaponPerks, 3));
-		}
+			FillCards(GetRandomPerks(weaponPerks, 2));
+            perk1.Show();
+            perk3.Show();
+        }
 		else if (currentLevel >= thresholdLevelForAttackTypePerks && currentLevel <= maxLevelForAttackTypePerks && !choosedAttackType)
 		{
 			// Olasýlýk Hesabý (Senin kodun)
@@ -93,22 +95,27 @@ public class PerkManager : MonoBehaviour
 												  .Cast<PerkBase>().ToList();
 
 				FillCards(GetRandomPerks(stylePerks, 3));
-			}
+                perk1.Show();
+                perk2.Show();
+                perk3.Show();
+            }
 			else
 			{
 				// Standart daðýtým
 				FillCards(GetBalancedRandomPerks());
-			}
+                perk1.Show();
+                perk2.Show();
+                perk3.Show();
+            }
 		}
 		else
 		{
 			// Standart daðýtým (Max 1 weapon perk kuralý ile)
 			FillCards(GetBalancedRandomPerks());
-		}
-
-		perk1.Show();
-		perk2.Show();
-		perk3.Show();
+            perk1.Show();
+            perk2.Show();
+            perk3.Show();
+        }
 	}
 
 	// --- MEVCUT FONKSÝYONUN (LOGIC EKLENDÝ) ---
@@ -204,8 +211,8 @@ public class PerkManager : MonoBehaviour
 
 		// PerkCard scriptinde "Setup(PerkBase data)" metodu olmalý
 		if (perks.Count > 0) perk1.Setup(perks[0], 0); else perk1.gameObject.SetActive(false);
-		if (perks.Count > 1) perk2.Setup(perks[1], 1); else perk2.gameObject.SetActive(false);
-		if (perks.Count > 2) perk3.Setup(perks[2], 2); else perk3.gameObject.SetActive(false);
+		if (perks.Count > 1) perk3.Setup(perks[1], 1); else perk3.gameObject.SetActive(false);
+		if (perks.Count > 2) perk2.Setup(perks[2], 2); else perk2.gameObject.SetActive(false);
 	}
 
 	// ========================================================================
