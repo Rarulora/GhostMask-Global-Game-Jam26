@@ -1,6 +1,8 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SkillTreeManager : MonoBehaviour
 {
@@ -13,9 +15,16 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] private DetailMenu detailMenu;
     [SerializeField] private TextMeshProUGUI goldText;
 
+    [SerializeField] private Button backButton;
+
     private void Start()
     {
         Initialize();
+
+        if (backButton != null)
+        {
+            backButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
+        }
     }
 
     private void Update()
