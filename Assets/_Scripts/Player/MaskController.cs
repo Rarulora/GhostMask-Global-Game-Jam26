@@ -26,19 +26,29 @@ public class MaskController : MonoBehaviour
 		}
 		I = this;
 	}
+
+	private void OnEnable()
+	{
+		EventManager.OnPlayerDeath += OnPlayerDeath;
+	}
+	private void OnDisable()
+	{
+		EventManager.OnPlayerDeath -= OnPlayerDeath;
+	}
 	private void Start()
 	{
 		UpdateMadnessUI();
-		// Test amaçlý log, oyun bitince silebilirsin
-		InvokeRepeating(nameof(Test), 0, .5f);
 	}
-
-	void Test() => Debug.Log($"Madness: {Mathf.RoundToInt(_currentMadness)} / Mask: {_isMaskActive}");
 
 	void Update()
 	{
 		HandleInput();
 		HandleMadness();
+	}
+
+	private void OnPlayerDeath()
+	{
+		MaskStatusChange(false);
 	}
 
 	private void HandleInput()

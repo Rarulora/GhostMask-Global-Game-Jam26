@@ -55,7 +55,7 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
 
 		// UI Güncelle
 		EventManager.RaiseHealthChanged(_currentHealth, _maxHealth);
-
+		CameraController.Instance.ShakeCamera(0.15f, 0.3f);
 		// 2. Ölüm Kontrolü
 		if (_currentHealth <= 0)
 		{

@@ -80,6 +80,11 @@ public class RangedWeapon : WeaponBase
 					);
 				}
 			}
+
+			if (isCrit)
+			{
+				CameraController.Instance.ShakeCamera(0.1f, 0.2f); // Hafif titreme
+			}
 		}
 	}
 }
