@@ -438,7 +438,7 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 		col.enabled = false;
 		rb.linearVelocity = Vector2.zero;
 		rb.simulated = false;
-
+		EventManager.RaiseEnemyKilled(this);
 		StartCoroutine(DisableRoutine());
 	}
 

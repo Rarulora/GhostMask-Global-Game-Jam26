@@ -135,6 +135,8 @@ public class WeaponController : MonoBehaviour
 
 		if (data.pierce > 0)
 			stats.GetStat(StatType.pierce).AddModifier(new StatModifier(data.pierce, StatModType.Flat, data));
+
+		Debug.Log(stats.GetValue(StatType.projectileSpeed));
 	}
 
 	private void RemoveWeaponStats(WeaponData data)

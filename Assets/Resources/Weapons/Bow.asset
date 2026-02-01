@@ -16,6 +16,13 @@ MonoBehaviour:
   Category: 2
   Style: 3
   Icon: {fileID: 0}
+  damage: 1
+  attackRate: 0.25
+  range: 10
+  knockbackForce: 0.5
+  projectileCount: 1
+  projectileSpeed: 8
+  pierce: 1
   ProjectilePrefab: {fileID: 3471397800984625270, guid: ca1ae0d5780cda5428801c9352c297b2, type: 3}
   HitVFX: {fileID: 0}
   DashSpeed: 21.6
