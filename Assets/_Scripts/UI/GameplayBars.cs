@@ -22,10 +22,19 @@ public class GameplayBars : MonoBehaviour
         healthBar.maxValue = healthController.MaxHealth;
         healthBar.value = healthController.CurrentHealth;
         madnessBar.maxValue = maskController.MaxMadness;
-        madnessBar.value = maskController.CurrentMadness;
+        madnessBar.value = maskController.CurrentMadness;   
+    }
 
+    private void OnEnable()
+    {
         EventManager.OnHealthChanged += OnHealthChange;
         EventManager.OnMadnessChanged += OnMadnessChange;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnHealthChanged -= OnHealthChange;
+        EventManager.OnMadnessChanged -= OnMadnessChange;
     }
 
     private void OnHealthChange(float current, float max)

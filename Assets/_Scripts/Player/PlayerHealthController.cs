@@ -36,13 +36,13 @@ public class PlayerHealthController : MonoBehaviour, IDamageable
 		_stats = GetComponent<StatsController>();
 		if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 		originalColor = spriteRenderer.color;
-		_maxHealth = _stats.GetStat(Enums.StatType.health).Value;
-		_currentHealth = _maxHealth;
 	}
 
 	private void Start()
 	{
-		EventManager.RaiseHealthChanged(_currentHealth, _maxHealth);
+        _maxHealth = _stats.GetStat(Enums.StatType.health).Value;
+        _currentHealth = _maxHealth;
+        EventManager.RaiseHealthChanged(_currentHealth, _maxHealth);
 	}
 
 	// --- IDAMAGEABLE ARAYÜZÜ ---
