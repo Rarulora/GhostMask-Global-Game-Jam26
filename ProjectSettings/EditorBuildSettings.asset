@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SkillTree.unity
     guid: 79a82decc30ee2d4db3450de377a26bb
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 192221e556314df4eb2717addfdb053a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

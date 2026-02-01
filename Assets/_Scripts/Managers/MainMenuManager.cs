@@ -5,9 +5,6 @@ using UnityEngine.Audio;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("Sound")]
-    [SerializeField] private AudioMixer mixer;
-
     [Header("UI")]
     [SerializeField] private NameInputPanel nameInputPanel;
 
@@ -15,6 +12,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private Button leaderboardButton;
     [SerializeField] private Button skillTreeButton;
+    [SerializeField] private Button creditsButton;
     [SerializeField] private Button exitButton;
 
     [Header("Panels")]
@@ -42,6 +40,10 @@ public class MainMenuManager : MonoBehaviour
         if (skillTreeButton != null)
         {
             skillTreeButton.onClick.AddListener(() => SceneManager.LoadScene("SkillTree"));
+        }
+        if (creditsButton != null)
+        {
+            creditsButton.onClick.AddListener(() => SceneManager.LoadScene("Credits"));
         }
         if (exitButton != null)
         {
