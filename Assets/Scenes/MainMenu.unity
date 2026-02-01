@@ -849,6 +849,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f91c7ee292c47ad4088cf3d06f671c6d, type: 3}
   - {fileID: 8300000, guid: 5fc09a1669b72db489bd4e735c8e319d, type: 3}
   cash: {fileID: 8300000, guid: 728679b264fc80d44804c53aad0fd71c, type: 3}
+  click: {fileID: 8300000, guid: 90260043d8f5a554e81341aaaaee6431, type: 3}
+  hit: {fileID: 8300000, guid: 264981bfcf1c6c345b9ea4a567135b3b, type: 3}
+  takeDamage: {fileID: 8300000, guid: 16e7c68df19170844bd95214db0d769b, type: 3}
   fadeDuration: 1.5
   mainMenuSceneName: MainMenu
   gameplaySceneName: Gameplay
@@ -1935,7 +1938,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 266209530}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 105705155}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 90260043d8f5a554e81341aaaaee6431, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &266209530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7385,7 +7400,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 910880662}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 105705155}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 90260043d8f5a554e81341aaaaee6431, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &910880662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8249,7 +8276,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1102370924}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 105705155}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 90260043d8f5a554e81341aaaaee6431, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1123344898
 GameObject:
   m_ObjectHideFlags: 0
@@ -9360,7 +9399,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1300868619}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 105705155}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 90260043d8f5a554e81341aaaaee6431, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1300868619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11480,6 +11531,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 105705155}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 90260043d8f5a554e81341aaaaee6431, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

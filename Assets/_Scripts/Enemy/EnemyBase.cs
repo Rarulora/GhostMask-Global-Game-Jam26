@@ -368,7 +368,6 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 	{
 		if (isDead) return;
 
-
 		stats.TakeDamage(amount);
 
 		DamagePopup.Create(transform.position, amount, isCritical);
@@ -376,6 +375,8 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 		// Flash Efekti
 		if (flashRoutine != null) StopCoroutine(flashRoutine);
 		flashRoutine = StartCoroutine(HitFlashRoutine());
+
+		AudioManager.Instance.PlaySFX(AudioManager.Instance.hit);
 
 		// Knockback
 		ApplyKnockback(knockbackDir, knockbackForce);
