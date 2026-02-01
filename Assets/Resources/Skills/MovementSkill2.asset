@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 4
   value: 1.1
-  price: 40
+  price: 10
   icon: {fileID: 0}
   title: "P\u0131ck Up Range Increase"
   desc: Increases the pick up range by 10 percent.

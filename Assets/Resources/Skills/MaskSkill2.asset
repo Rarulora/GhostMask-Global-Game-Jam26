@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 7
   value: 1.15
-  price: 40
+  price: 10
   icon: {fileID: 0}
   title: Mask Resistance II
   desc: Increases the mask resistance by 15 percent.

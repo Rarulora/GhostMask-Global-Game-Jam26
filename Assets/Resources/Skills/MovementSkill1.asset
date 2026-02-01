@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   value: 1.15
-  price: 20
+  price: 5
   icon: {fileID: 0}
   title: Speed Increase
   desc: Increases the move speed by 15 percent.

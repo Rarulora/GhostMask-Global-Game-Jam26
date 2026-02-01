@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 13
   value: 1.2
-  price: 40
+  price: 10
   icon: {fileID: 0}
   title: Experience Multiplier II
   desc: Increases the xp gained by 20 percent.

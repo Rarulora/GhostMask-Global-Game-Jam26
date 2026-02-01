@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   value: 1.15
-  price: 20
+  price: 5
   icon: {fileID: 0}
   title: Damage Increase
   desc: Increases the damage by 15 percent.

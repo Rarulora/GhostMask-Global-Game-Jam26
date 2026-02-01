@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ded5125b6796148a3d1bb0f9291873, type: 3}
-  m_Name: AttackSkill3
+  m_Script: {fileID: 11500000, guid: 44d28de4c14a484448334460b17f6465, type: 3}
+  m_Name: Mugiwara
   m_EditorClassIdentifier: 
-  ID: 2
-  value: 1.5
-  price: 20
-  icon: {fileID: 0}
-  title: Critical Hit God
-  desc: Increases the critical hit chance by 50 percent.
-  affectedStat: 5
-  affectType: 300
+  ID: 6
+  Name: Takke
+  description: Extra protective for diseases.
+  price: 10
+  sprite: {fileID: 21300000, guid: a2415dbbc55211146b6f2d2a9a2c72f9, type: 3}
+  method: 0
   type: 0

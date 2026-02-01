@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 11
   value: 1.45
-  price: 100
+  price: 20
   icon: {fileID: 0}
   title: Health Increase III
   desc: Increases the health by 45 percent.

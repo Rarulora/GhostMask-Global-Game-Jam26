@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 8
   value: 1.25
-  price: 100
+  price: 20
   icon: {fileID: 0}
   title: Mask Resistance III
   desc: Increases the mask resistance by 25 percent.
