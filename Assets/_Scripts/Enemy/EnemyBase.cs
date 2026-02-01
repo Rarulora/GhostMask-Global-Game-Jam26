@@ -22,6 +22,7 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 	[SerializeField] private Color stunColor = Color.white;
 	[SerializeField] private Color slowColor = new Color(0, 0.5f, 1f); // Mavi
 	[SerializeField] private Color burnColor = new Color(1f, 0.4f, 0f); // Turuncu
+	[SerializeField] private Color bleedColor = new Color(1f, 0.1f, 0f); // Turuncu
 	[SerializeField] private Color poisonColor = new Color(0.2f, 1f, 0.2f); // Yeşil
 
 	// --- DURUM BAYRAKLARI (FLAGS) ---
@@ -29,6 +30,7 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 	protected bool _isSlowed = false;
 	protected bool _isBurning = false;
 	protected bool _isPoisoned = false;
+	protected bool _isBleeding = false;
 
 	// --- BİLEŞENLER ---
 	protected EnemyStats stats;
@@ -55,6 +57,7 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 	private Coroutine slowRoutine;
 	private Coroutine burnRoutine;
 	private Coroutine poisonRoutine;
+	private Coroutine bleedRoutine;
 
 	private Vector3 originalScale;
 
@@ -145,6 +148,7 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 		if (_isSlowed) activeColors.Add(slowColor);
 		if (_isBurning) activeColors.Add(burnColor);
 		if (_isPoisoned) activeColors.Add(poisonColor);
+		if (_isBleeding) activeColors.Add(bleedColor);
 
 		// Hiç efekt yoksa orijinal rengi dön
 		if (activeColors.Count == 0) return originalColor;
@@ -217,6 +221,10 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 				if (poisonRoutine != null) StopCoroutine(poisonRoutine);
 				poisonRoutine = StartCoroutine(PoisonRoutine(duration, potency));
 				break;
+			case EffectType.Bleed:
+				if(bleedRoutine != null) StopCoroutine(bleedRoutine);
+				bleedRoutine = StartCoroutine(BleedRoutine(duration, potency));
+				break;
 		}
 	}
 
@@ -261,7 +269,21 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 
 		_isBurning = false; // Flag Kapat
 	}
+	private IEnumerator BleedRoutine(float duration, float damagePerSec)
+	{
+		_isBleeding = true; // Flag Aç
 
+		float timer = 0f;
+		while (timer < duration)
+		{
+			yield return new WaitForSeconds(1f);
+			// Knockback olmadan hasar ver
+			TakeDamage(damagePerSec, false, Vector2.zero, 0);
+			timer += 1f;
+		}
+
+		_isBleeding = false; // Flag Kapat
+	}
 	private IEnumerator PoisonRoutine(float duration, float damagePerSec)
 	{
 		_isPoisoned = true; // Flag Aç

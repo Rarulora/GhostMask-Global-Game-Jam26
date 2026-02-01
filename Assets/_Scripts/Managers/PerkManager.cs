@@ -147,43 +147,46 @@ public class PerkManager : MonoBehaviour
 		GameManager.Instance.StopPerkSelect();
 	}
 
-	// ========================================================================
-	// YENÝ: YARDIMCI SEÇÝM FONKSÝYONLARI (LOGIC)
-	// ========================================================================
+    // ========================================================================
+    // YENÝ: YARDIMCI SEÇÝM FONKSÝYONLARI (LOGIC)
+    // ========================================================================
 
-	private List<PerkBase> GetBalancedRandomPerks()
-	{
-		List<PerkBase> candidates = new List<PerkBase>(_allPerksDatabase);
-		List<PerkBase> selected = new List<PerkBase>();
+    private List<PerkBase> GetBalancedRandomPerks()
+    {
+        // ADIM 1: Aday Listesini Hazýrla ve Filtrele
+        // _allPerksDatabase içinden AbilityPerk OLMAYANLARI alýyoruz.
+        List<PerkBase> candidates = _allPerksDatabase
+            .Where(p => !(p is AbilityPerk)) // Kural: AbilityPerk gelmemeli
+                                             // .Where(p => !IsPerkMaxedOut(p)) // ÖNEMLÝ: Eðer perk max level ise listeye alma (bu kontrol sende varsa ekle)
+            .ToList();
 
-		// Kural: Max 1 Weapon Perk
-		bool weaponPerkAdded = false;
+        List<PerkBase> selected = new List<PerkBase>();
+        int slotsToFill = 3;
 
-		for (int i = 0; i < 3; i++)
-		{
-			if (candidates.Count == 0) break;
+        // Güvenlik Önlemi: Eðer filtreden sonra elinde 3'ten az kart kaldýysa,
+        // hata vermemesi için kalanlarýn hepsini döndür.
+        if (candidates.Count <= slotsToFill)
+        {
+            return candidates;
+        }
 
-			PerkBase pick = candidates[Random.Range(0, candidates.Count)];
+        // ADIM 2: Seçim Döngüsü
+        for (int i = 0; i < slotsToFill; i++)
+        {
+            // Rastgele bir index seç
+            int randomIndex = Random.Range(0, candidates.Count);
+            PerkBase pick = candidates[randomIndex];
 
-			// Eðer silah perki geldiyse ve zaten bir tane seçtiysek, bunu atla
-			if (pick is AbilityPerk ab && ab.WeaponToUnlock != null)
-			{
-				if (weaponPerkAdded)
-				{
-					i--; // Hakký yakma, tekrar dene
-					candidates.Remove(pick); // Listeden çýkar
-					continue;
-				}
-				weaponPerkAdded = true;
-			}
+            selected.Add(pick);
 
-			selected.Add(pick);
-			candidates.Remove(pick); // Ayný perki 2 kere koyma
-		}
-		return selected;
-	}
+            // Seçilen perki aday listesinden çýkar (ki ayný kart 2 kere gelmesin)
+            candidates.RemoveAt(randomIndex);
+        }
 
-	private List<PerkBase> GetRandomPerks(List<PerkBase> pool, int count)
+        return selected;
+    }
+
+    private List<PerkBase> GetRandomPerks(List<PerkBase> pool, int count)
 	{
 		List<PerkBase> result = new List<PerkBase>();
 		List<PerkBase> tempPool = new List<PerkBase>(pool);
@@ -198,21 +201,49 @@ public class PerkManager : MonoBehaviour
 		return result;
 	}
 
-	private void FillCards(List<PerkBase> perks)
-	{
-		_currentOfferedPerks = perks;
+    private void FillCards(List<PerkBase> perks)
+    {
+        _currentOfferedPerks = perks;
 
-		// PerkCard scriptinde "Setup(PerkBase data)" metodu olmalý
-		if (perks.Count > 0) perk1.Setup(perks[0], 0); else perk1.gameObject.SetActive(false);
-		if (perks.Count > 1) perk2.Setup(perks[1], 1); else perk2.gameObject.SetActive(false);
-		if (perks.Count > 2) perk3.Setup(perks[2], 2); else perk3.gameObject.SetActive(false);
-	}
+        // Kart 1
+        if (perks.Count > 0)
+        {
+            perk1.gameObject.SetActive(true); // Önce aç
+            perk1.Setup(perks[0], 0);
+        }
+        else
+        {
+            perk1.gameObject.SetActive(false);
+        }
 
-	// ========================================================================
-	// YENÝ: PERK UYGULAMA VE RUNTIME LOGIC (BRAIN)
-	// ========================================================================
+        // Kart 2
+        if (perks.Count > 1)
+        {
+            perk2.gameObject.SetActive(true); // Önce aç
+            perk2.Setup(perks[1], 1);
+        }
+        else
+        {
+            perk2.gameObject.SetActive(false);
+        }
 
-	public void EquipPerk(PerkBase perk)
+        // Kart 3
+        if (perks.Count > 2)
+        {
+            perk3.gameObject.SetActive(true); // Önce aç
+            perk3.Setup(perks[2], 2);
+        }
+        else
+        {
+            perk3.gameObject.SetActive(false);
+        }
+    }
+
+    // ========================================================================
+    // YENÝ: PERK UYGULAMA VE RUNTIME LOGIC (BRAIN)
+    // ========================================================================
+
+    public void EquipPerk(PerkBase perk)
 	{
 		// 1. Ýsim Deðiþikliði: ApplyPerk -> OnEquip
 		perk.OnEquip(PlayerController.I.gameObject);

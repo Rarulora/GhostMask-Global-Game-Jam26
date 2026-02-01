@@ -11,6 +11,10 @@ public class DynamicStatPerk : PerkBase
 	// Special flag for Madness since it's not a standard stat
 	public SourceExtension sourceExtensionStat;
 
+	[Header("Condition")]
+	public bool HaveCondition = false;
+	public string ConditionPerkID = "";
+
 	public override void OnEquip(GameObject player)
 	{
 		// Add a component to player that handles the update logic

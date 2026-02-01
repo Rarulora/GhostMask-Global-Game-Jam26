@@ -57,6 +57,10 @@ public class Projectile : MonoBehaviour
 			{
 				// Hasarı ve Kritik bilgisini iletiyoruz
 				target.TakeDamage(damage, isCritical, direction, 1f); // Knockback eklenebilir
+				if (targetTag == "Enemy")
+				{
+					PerkManager.I.TriggerOnHit(target, transform.position);
+				}
 			}
 
 			// --- PIERCE MANTIĞI ---
