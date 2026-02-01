@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     public GameBaseState CurrentState { get; private set; }
     private GameStateFactory _states;
+    public GameStateFactory States => _states;
 
     private SaveData saveData;
     public SaveData SaveData => saveData;
@@ -109,7 +110,6 @@ public class GameManager : MonoBehaviour
     {
         CurrentState.ExitState();
         CurrentState = newState;
-        Debug.Log(newState.ToString());
         CurrentState.EnterState();
         //GameEvents.RaiseGameStateChanged(CurrentState);
     }
