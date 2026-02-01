@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8d1e9ceb192184091e6d06ccf2edb3, type: 3}
+  m_Name: Hammer
+  m_EditorClassIdentifier: 
+  WeaponName: Hammer
+  Category: 1
+  Style: 2
+  Icon: {fileID: 1784401183296663280, guid: ce7a5b7c4480a4a45a75475f75e87910, type: 3}
+  ProjectilePrefab: {fileID: 0}
+  HitVFX: {fileID: 0}
+  DashSpeed: 21.6
+  DashDuration: 0.21

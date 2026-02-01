@@ -15,11 +15,11 @@ MonoBehaviour:
   id: 5
   spawnValue: 8
   prefab: {fileID: 8957980288778079659, guid: 251f5a2cd1b1bde49bb28319f7e1c0a3, type: 3}
-  maxHealth: 2
-  moveSpeed: 3
+  maxHealth: 1
+  moveSpeed: 5
   damage: 1
-  attackRate: 0.1
-  attackRange: 5
+  attackRate: 0.8
+  attackRange: 1
   projectileSpeed: 5
   pierce: 0
   xpDrop: 1
