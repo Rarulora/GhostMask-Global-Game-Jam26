@@ -78,6 +78,8 @@ public class EnemyStats : MonoBehaviour
 
 		CurrentHealth -= amount;
 
+		
+
 		if (CurrentHealth <= 0)
 		{
 			CurrentHealth = 0;

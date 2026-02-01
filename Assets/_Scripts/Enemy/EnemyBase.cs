@@ -369,7 +369,10 @@ public class EnemyBase : MonoBehaviour, IDamageable, IStatusEffectable
 	{
 		if (isDead) return;
 
+
 		stats.TakeDamage(amount);
+
+		DamagePopup.Create(transform.position, amount, isCritical);
 
 		// Flash Efekti
 		if (flashRoutine != null) StopCoroutine(flashRoutine);
