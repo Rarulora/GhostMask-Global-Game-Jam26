@@ -9,7 +9,7 @@ public class RangedWeapon : WeaponBase
 	public override void Attack()
 	{
 		if (!canAttack) return;
-
+		PlayAnimation();
 		// 1. STATLARI ÇEK
 		// StatsController.I.GetValue helper fonksiyonunu yazdığını varsayıyorum, yoksa .GetStat().Value kullan.
 		float currentDamage = StatsController.I.GetValue(StatType.damage);

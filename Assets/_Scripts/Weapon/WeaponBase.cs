@@ -8,16 +8,18 @@ public abstract class WeaponBase : MonoBehaviour
 	protected Transform playerTransform;
 	protected Transform firePoint;
 	protected Rigidbody2D playerRb;
+	protected Animator anim;
 	protected bool canAttack = true;
 
 
 	// Silahı başlatan fonksiyon
-	public virtual void Initialize(WeaponData weaponData, Transform owner, Transform firePoint, Rigidbody2D rb)
+	public virtual void Initialize(WeaponData weaponData, Transform owner, Transform firePoint, Rigidbody2D rb, Animator anim)
 	{
 		data = weaponData;
 		playerTransform = owner;
 		this.firePoint = firePoint;
 		playerRb = rb;
+		this.anim = anim;
 	}
 
 	// Her silah bunu kendine göre dolduracak
@@ -39,5 +41,9 @@ public abstract class WeaponBase : MonoBehaviour
 	protected bool IsCrit()
 	{
 		return (Random.value * 100f) <= StatsController.I.GetValue(StatType.critChance);
+	}
+	protected void PlayAnimation()
+	{
+		anim.Play("Attack_" + data.WeaponName);
 	}
 }
