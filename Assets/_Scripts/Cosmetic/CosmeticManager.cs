@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+using Enums;
 public class CosmeticManager : MonoBehaviour
 {
     private Dictionary<int, bool> cosmeticPurchaseStatus = new Dictionary<int, bool>();

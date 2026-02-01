@@ -1,14 +1,6 @@
 using UnityEngine;
+using Enums;
 
-public enum CosmeticBuyMethod
-{
-    Gold,
-}
-
-public enum CosmeticType
-{
-    Hat,
-}
 
 [CreateAssetMenu(fileName = "Cosmetic Data", menuName = "Database/CosmeticData")]
 public class CosmeticData : ScriptableObject

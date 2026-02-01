@@ -9,6 +9,7 @@ public class CharacterDataSO : ScriptableObject
 	[SerializeField] private string description;
 	[SerializeField] private int price;
 	[SerializeField] private Sprite icon;
+	[SerializeField] private Sprite sprite;
 	[Header("Stats")]
 	[SerializeField] private float health = 5f;
 	[SerializeField] private float damage = 1f;
@@ -20,6 +21,7 @@ public class CharacterDataSO : ScriptableObject
 	public string Name => cname;
 	public string Description => description;
 	public Sprite Icon => icon;
+	public Sprite Sprite => sprite;
 	public int Price => price;
 	public float Health => health;
 	public float Damage => damage;

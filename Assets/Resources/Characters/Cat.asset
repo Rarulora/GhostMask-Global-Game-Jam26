@@ -17,6 +17,7 @@ MonoBehaviour:
   description: anani siker
   price: 0
   icon: {fileID: 21300000, guid: 69dad9fe7dde52f4f801b40bf4eaf1a4, type: 3}
+  sprite: {fileID: 21300000, guid: 69dad9fe7dde52f4f801b40bf4eaf1a4, type: 3}
   health: 5
   damage: 1
   attackRate: 2

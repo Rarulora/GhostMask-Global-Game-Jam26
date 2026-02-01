@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44d28de4c14a484448334460b17f6465, type: 3}
-  m_Name: "YahudiSapkas\u0131"
+  m_Name: YahudiMaskesi
   m_EditorClassIdentifier: 
-  ID: 2
+  ID: 1
   Name: asda
   description: asdaasd
   price: 0
-  sprite: {fileID: -663865025292417121, guid: 3e6d7705d427e7748b2ed11a7a3f0303, type: 3}
+  sprite: {fileID: -8258728375015105676, guid: ce7a5b7c4480a4a45a75475f75e87910, type: 3}
   method: 0
-  type: 0
+  type: 1

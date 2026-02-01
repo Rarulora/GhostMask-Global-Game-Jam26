@@ -17,6 +17,7 @@ MonoBehaviour:
   description: Cacoon
   price: 0
   icon: {fileID: 21300000, guid: 4c12e0e03d4a5f74294ab89e92e7f83d, type: 3}
+  sprite: {fileID: 21300000, guid: 4c12e0e03d4a5f74294ab89e92e7f83d, type: 3}
   health: 5
   damage: 1
   attackRate: 2

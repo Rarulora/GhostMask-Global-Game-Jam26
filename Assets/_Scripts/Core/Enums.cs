@@ -96,4 +96,15 @@
 		lostHealth,
 		currentHealth
 	}
+
+	public enum CosmeticBuyMethod
+	{
+		Gold,
+	}
+
+	public enum CosmeticType
+	{
+		Hat,
+		Mask
+	}
 }
