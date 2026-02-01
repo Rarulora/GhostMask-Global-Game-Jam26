@@ -32,11 +32,16 @@ public class CameraController : MonoBehaviour
 	}
 	private void OnEnable()
 	{
-		EventManager.OnPlayerDeath += () => StopAllCoroutines();
+		EventManager.OnPlayerDeath += OnPlayerDeath;
 	}
 	private void OnDisable()
 	{
-		EventManager.OnPlayerDeath -= () => StopAllCoroutines();
+		EventManager.OnPlayerDeath -= OnPlayerDeath;
+	}
+	private void OnPlayerDeath()
+	{
+		StopAllCoroutines();
+		enabled = false;
 	}
 	private void Start()
 	{
