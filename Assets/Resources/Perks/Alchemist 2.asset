@@ -27,3 +27,5 @@ MonoBehaviour:
   RequiresMaskOn: 0
   RequiresMaskOff: 0
   HealthThreshold: 0
+  HaveCondition: 1
+  ConditionPerkID: 22
