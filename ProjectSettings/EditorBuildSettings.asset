@@ -6,26 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: b7df10d86ac7aab458e37cc8b9f00a2b
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Cosmetics.unity
     guid: 11da4706e495e60408a3b5ec7a5a932e
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: b7df10d86ac7aab458e37cc8b9f00a2b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MayhosScene.unity
     guid: efb5a5e9bd17f46469a3442025dc88a7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Mechanics_Scene.unity
     guid: b15143db03fda4e478820db896db87ee
   - enabled: 1
-    path: Assets/Scenes/Gameplay.unity
-    guid: 0553b9fd12b77d9449edba2aa3c687c1
-  - enabled: 1
     path: Assets/Scenes/SkillTree.unity
     guid: 79a82decc30ee2d4db3450de377a26bb
+  - enabled: 1
+    path: Assets/Scenes/Gameplay.unity
+    guid: 0553b9fd12b77d9449edba2aa3c687c1
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 192221e556314df4eb2717addfdb053a

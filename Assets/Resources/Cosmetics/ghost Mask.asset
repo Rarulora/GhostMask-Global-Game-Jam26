@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d28de4c14a484448334460b17f6465, type: 3}
   m_Name: ghost Mask
   m_EditorClassIdentifier: 
-  ID: 5
+  ID: 6
   Name: Ghost Mask
   description: WooOoOOOO
   price: 10

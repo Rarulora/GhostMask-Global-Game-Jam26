@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d28de4c14a484448334460b17f6465, type: 3}
   m_Name: JasonMask
   m_EditorClassIdentifier: 
-  ID: 1
+  ID: 2
   Name: Baseball Mask
   description: Creepy.
   price: 7

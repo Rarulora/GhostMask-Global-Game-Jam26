@@ -1,4 +1,3 @@
-using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Database/CharacterData", fileName = "Character Data")]
@@ -11,7 +10,7 @@ public class CharacterDataSO : ScriptableObject
 	[SerializeField] private int price;
 	[SerializeField] private Sprite icon;
 	[SerializeField] private Sprite sprite;
-	[SerializeField] private AnimatorController animatorController;
+	[SerializeField] private RuntimeAnimatorController animatorController;
 	[Header("Stats")]
 	[SerializeField] private float health = 5f;
 	[SerializeField] private float damage = 1f;
@@ -24,7 +23,7 @@ public class CharacterDataSO : ScriptableObject
 	public string Description => description;
 	public Sprite Icon => icon;
 	public Sprite Sprite => sprite;
-	public AnimatorController AnimatorController => animatorController;
+	public RuntimeAnimatorController AnimatorController => animatorController;
 	public int Price => price;
 	public float Health => health;
 	public float Damage => damage;

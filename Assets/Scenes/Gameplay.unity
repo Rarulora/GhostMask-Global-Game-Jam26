@@ -2224,7 +2224,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 90876209}
   iFrameDuration: 0.2
-  healthBar: {fileID: 1771710919}
   spriteRenderer: {fileID: 90876207}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &222791356
@@ -2244,7 +2243,6 @@ MonoBehaviour:
   baseFillSpeed: 5
   baseDrainSpeed: 3
   minFillSpeed: 0.5
-  madnessBar: {fileID: 910780799}
 --- !u!114 &222791357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8599,8 +8597,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286552465
-  m_fontColor: {r: 0.5686275, g: 0.6, b: 0.49803925, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11354,8 +11352,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286552465
-  m_fontColor: {r: 0.5686275, g: 0.6, b: 0.49803925, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13491,8 +13489,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286552465
-  m_fontColor: {r: 0.5686275, g: 0.6, b: 0.49803922, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13826,8 +13824,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286552465
-  m_fontColor: {r: 0.566768, g: 0.5999999, b: 0.49698105, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

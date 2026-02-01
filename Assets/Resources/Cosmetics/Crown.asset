@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d28de4c14a484448334460b17f6465, type: 3}
   m_Name: Crown
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 1
   Name: Crown
   description: A king's legitimator.
   price: 5
