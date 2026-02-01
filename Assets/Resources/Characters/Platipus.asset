@@ -18,6 +18,7 @@ MonoBehaviour:
   price: 0
   icon: {fileID: 21300000, guid: bf268906104d22c4d904c2d7cdf08a8e, type: 3}
   sprite: {fileID: 21300000, guid: bf268906104d22c4d904c2d7cdf08a8e, type: 3}
+  animatorController: {fileID: 0}
   health: 5
   damage: 1
   attackRate: 2

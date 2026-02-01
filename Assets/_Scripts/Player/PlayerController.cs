@@ -1,6 +1,7 @@
 using Enums;
 using System;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,13 @@ public class PlayerController : MonoBehaviour
     public CharacterType character;
     public AttackType attackType;
 
-    [Header("Collectable")]
+    [Header("Cosmetic Settings")]
+    [SerializeField] private SpriteRenderer hatCosmeticSR;
+    [SerializeField] private SpriteRenderer maskCosmeticSR;
+	[SerializeField] private SpriteRenderer characterSR;
+    [SerializeField] private Animator anim;
+
+	[Header("Collectable")]
     public float collectRadius = 2f;
     public LayerMask collectableLayer;
 
@@ -43,7 +50,10 @@ public class PlayerController : MonoBehaviour
 
         HealthController = GetComponent<PlayerHealthController>();
 
-        EventManager.OnPlayerDeath += Die;
+        InitializePlayerData();
+
+
+		EventManager.OnPlayerDeath += Die;
         CalculateNextLevelXP();
 
         EventManager.RaiseCharacterChanged
@@ -60,7 +70,74 @@ public class PlayerController : MonoBehaviour
         CheckForCollectables();
     }
 
-    public void IncreaseGold(int amount = 1)
+	void InitializePlayerData()
+	{
+		// Eriþimleri kýsaltalým
+		var saveData = GameManager.Instance.SaveData;
+		var cosmeticDB = GameManager.Instance.CosmeticDatabase;
+		var charDB = GameManager.Instance.CharacterDatabase;
+
+		// --- 1. ÞAPKA (HAT) AYARLAMA ---
+		if (saveData.equippedHatID == 0)
+		{
+			// Þapka takýlý deðil, görünmez yap
+			hatCosmeticSR.sprite = null;
+			// Veya performans için: hatCosmeticSR.enabled = false;
+		}
+		else
+		{
+			CosmeticData hat = cosmeticDB.GetDataByID(saveData.equippedHatID);
+			if (hat != null && hat.sprite != null)
+			{
+				hatCosmeticSR.sprite = hat.sprite;
+				// hatCosmeticSR.enabled = true; // Eðer kapatýyorsan açmayý unutma
+			}
+			else
+			{
+				// ID var ama veri bulunamadý (Hata durumu)
+				hatCosmeticSR.sprite = null;
+			}
+		}
+
+		// --- 2. MASKE (MASK) AYARLAMA ---
+		if (saveData.equippedMaskID == 0)
+		{
+			maskCosmeticSR.sprite = null;
+		}
+		else
+		{
+			CosmeticData mask = cosmeticDB.GetDataByID(saveData.equippedMaskID);
+			if (mask != null && mask.sprite != null)
+			{
+				maskCosmeticSR.sprite = mask.sprite;
+			}
+			else
+			{
+				maskCosmeticSR.sprite = null;
+			}
+		}
+
+		// --- 3. KARAKTER (CHARACTER) AYARLAMA ---
+		// Karakter her zaman var olmalý (ID 0 olsa bile default karakter vardýr)
+		CharacterDataSO character = charDB.GetCharacterByID(saveData.equippedCharacterID);
+
+		if (character != null)
+		{
+			// Karakterin Sprite'ý (Idle duruþu vs.)
+			if (character.Sprite != null)
+				characterSR.sprite = character.Sprite;
+
+			// Karakterin Animasyon Kontrolcüsü (Farklý karakterlerin farklý animasyonlarý olabilir)
+			if (character.AnimatorController != null)
+				anim.runtimeAnimatorController = character.AnimatorController;
+		}
+		else
+		{
+			Debug.LogError($"Character Data Not Found for ID: {saveData.equippedCharacterID}");
+		}
+	}
+
+	public void IncreaseGold(int amount = 1)
     {
         goldCollected += amount;
     }
