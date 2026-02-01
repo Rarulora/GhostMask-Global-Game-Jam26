@@ -102,24 +102,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (saveData.equippedMaskID == 0)
-        {
-            maskCosmeticSR.sprite = null;
-        }
-        else
-        {
-            CosmeticData mask = cosmeticDB.GetDataByID(saveData.equippedMaskID);
-            if (mask != null && mask.sprite != null)
-            {
-                maskCosmeticSR.sprite = mask.sprite;
-            }
-            else
-            {
-                maskCosmeticSR.sprite = null;
-            }
-        }
+		CosmeticData mask = cosmeticDB.GetDataByID(saveData.equippedMaskID);
+		if (mask != null && mask.sprite != null)
+		{
+			maskCosmeticSR.sprite = mask.sprite;
+		}
+		else
+		{
+			maskCosmeticSR.sprite = null;
+		}
 
-        CharacterDataSO characterData = charDB.GetCharacterByID(saveData.equippedCharacterID);
+		CharacterDataSO characterData = charDB.GetCharacterByID(saveData.equippedCharacterID);
         if (characterData != null)
         {
             // Karakterin Sprite'ý (Idle duruþu vs.)
