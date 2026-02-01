@@ -30,7 +30,14 @@ public class CameraController : MonoBehaviour
 
 		_cam = GetComponent<Camera>();
 	}
-
+	private void OnEnable()
+	{
+		EventManager.OnPlayerDeath += () => StopAllCoroutines();
+	}
+	private void OnDisable()
+	{
+		EventManager.OnPlayerDeath -= () => StopAllCoroutines();
+	}
 	private void Start()
 	{
 		if (target == null)

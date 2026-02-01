@@ -370,11 +370,16 @@ public class CosmeticsUI : MonoBehaviour
 		}
 		else
 		{
-			CosmeticData cosData = GameManager.Instance.CosmeticDatabase.data.FirstOrDefault(x => x.ID == element.ID);
-			if (cosData != null)
+			// HATA BURADAYDI: Database'den ID ile arama yapýnca çakýþan ID'lerde yanlýþ tipi buluyordu.
+			// ÇÖZÜM: Element zaten tipini biliyor, direkt ona soruyoruz.
+
+			if (element.CosmeticType == CosmeticType.Hat)
 			{
-				if (cosData.type == CosmeticType.Hat) data.equippedHatID = element.ID;
-				else if (cosData.type == CosmeticType.Mask) data.equippedMaskID = element.ID;
+				data.equippedHatID = element.ID;
+			}
+			else if (element.CosmeticType == CosmeticType.Mask)
+			{
+				data.equippedMaskID = element.ID;
 			}
 		}
 
@@ -387,20 +392,17 @@ public class CosmeticsUI : MonoBehaviour
 	private void UnequipItem(CosmeticMenuElement element)
 	{
 		SaveData data = GameManager.Instance.SaveData;
-		CosmeticData cosData = GameManager.Instance.CosmeticDatabase.data.FirstOrDefault(x => x.ID == element.ID);
 
-		if (cosData != null)
+		// Burada da veritabaný aramasýna gerek yok.
+		// Element þapka ise direkt þapka slotunu boþalt.
+		if (element.CosmeticType == CosmeticType.Hat)
 		{
-			// Sadece HAT tipi kozmetikler çýkarýlabilir.
-			if (cosData.type == CosmeticType.Hat)
-			{
-				data.equippedHatID = 0;
+			data.equippedHatID = 0;
 
-				GameManager.Instance.SaveGame();
-				RefreshAllElements();
-				UpdatePreviewVisuals();
-				UpdateInfoPanel();
-			}
+			GameManager.Instance.SaveGame();
+			RefreshAllElements();
+			UpdatePreviewVisuals();
+			UpdateInfoPanel();
 		}
 	}
 

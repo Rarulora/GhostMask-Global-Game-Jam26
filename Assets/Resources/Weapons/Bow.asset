@@ -22,7 +22,7 @@ MonoBehaviour:
   knockbackForce: 0.5
   projectileCount: 1
   projectileSpeed: 30
-  pierce: 1
+  pierce: 0
   ProjectilePrefab: {fileID: 3471397800984625270, guid: ca1ae0d5780cda5428801c9352c297b2, type: 3}
   HitVFX: {fileID: 0}
   DashSpeed: 21.6

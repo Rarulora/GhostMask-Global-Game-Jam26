@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d8e949983735f489a855dcb1cb3aaa, type: 3}
-  m_Name: Melee
+  m_Script: {fileID: 11500000, guid: 55fffb61bc483114ba2e26faa7b44771, type: 3}
+  m_Name: Vitality 1
   m_EditorClassIdentifier: 
-  ID: 31
-  PerkName: Melee
-  Description: Use melee attacks.
+  ID: 33
+  PerkName: Piercing
+  Description: Increases pierce count by 1
   Icon: {fileID: 0}
-  WeaponToUnlock: {fileID: 11400000, guid: 83792a06f2421ea4ca4aad92e03ff24d, type: 2}
-  EventID: 
+  Modifiers:
+  - Stat: 15
+    Value: 1
+    Type: 100
+  MaxLevel: 3
