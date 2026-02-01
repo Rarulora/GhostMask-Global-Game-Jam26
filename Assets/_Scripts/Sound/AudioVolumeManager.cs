@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AudioVolumeManager : MonoBehaviour
@@ -32,14 +31,10 @@ public class AudioVolumeManager : MonoBehaviour
         OnSliderValueChange(sfxSlider);
 
         if (mainMenuButton != null)
-        {
             mainMenuButton.onClick.AddListener(OnMainMenuClicked);
-        }
 
         if (continueButton != null)
-        {
             continueButton.onClick.AddListener(OnContinueClicked);
-        }
     }
 
     private void OnMainMenuClicked()
