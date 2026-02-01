@@ -40,6 +40,9 @@ public class CosmeticsUI : MonoBehaviour
 	[SerializeField] private TMP_Text elementBuyButtonText;
 	[SerializeField] private TMP_Text playerGoldText;
 
+	[Header("Sepet")]
+	[SerializeField] private Animator sepetAnim;
+
 	// --- State ---
 	private List<CosmeticMenuElement> _spawnedElements = new List<CosmeticMenuElement>();
 	private CosmeticMenuElement _selectedElement;
@@ -187,7 +190,7 @@ public class CosmeticsUI : MonoBehaviour
 		if (characterPreviewImage)
 		{
 			CharacterDataSO charData = GameManager.Instance.CharacterDatabase.data.FirstOrDefault(x => x.ID == data.equippedCharacterID);
-			if (charData != null) characterPreviewImage.sprite = charData.Icon;
+			if (charData != null) characterPreviewImage.sprite = charData.Sprite;
 			characterPreviewImage.gameObject.SetActive(true);
 		}
 
@@ -340,9 +343,23 @@ public class CosmeticsUI : MonoBehaviour
 			UpdateGoldUI();
 			RefreshAllElements();
 			UpdateInfoPanel();
+			CheckAllBuyed();
 		}
 	}
+	private void CheckAllBuyed()
+	{
+		SaveData data = GameManager.Instance.SaveData;
+		int allDataCount = 0;
+		int currentCount = 0;
+		allDataCount += GameManager.Instance.CharacterDatabase.data.Length;
+		allDataCount += GameManager.Instance.CosmeticDatabase.data.Length;
 
+		currentCount += data.purchasedCharacterIDs.Length;
+		currentCount += data.purchasedCosmeticIDs.Length;
+
+		if (currentCount >= allDataCount)
+			sepetAnim.SetTrigger("Special");
+	}
 	private void EquipItem(CosmeticMenuElement element)
 	{
 		SaveData data = GameManager.Instance.SaveData;
