@@ -18,9 +18,9 @@ MonoBehaviour:
   maxHealth: 2
   moveSpeed: 3
   damage: 1
-  attackRate: 0.25
+  attackRate: 1e-11
   attackRange: 10
-  projectileSpeed: 5
+  projectileSpeed: 8
   pierce: 0
   xpDrop: 5
   goldDrop: 1

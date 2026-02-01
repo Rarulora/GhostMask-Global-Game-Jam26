@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d28de4c14a484448334460b17f6465, type: 3}
   m_Name: Mask
   m_EditorClassIdentifier: 
-  ID: 3
+  ID: 4
   Name: Mask
-  description: Can  you see now?
+  description: Can you see now?
   price: 0
   sprite: {fileID: 21300000, guid: 6c31f4c87303a2240b0d7745b66cae02, type: 3}
   method: 0

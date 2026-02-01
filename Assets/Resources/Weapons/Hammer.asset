@@ -19,7 +19,7 @@ MonoBehaviour:
   damage: 5
   attackRate: 0.75
   range: 3
-  knockbackForce: 12.2
+  knockbackForce: 20
   projectileCount: 0
   projectileSpeed: 0
   pierce: 0

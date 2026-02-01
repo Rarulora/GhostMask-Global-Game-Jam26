@@ -13060,10 +13060,10 @@ MonoBehaviour:
   - {fileID: 391521814}
   - {fileID: 133839203}
   - {fileID: 155414345}
-  baseBudget: 40
+  baseBudget: 20
   budgetGrowth: 1.2
   difficultyGrowth: 1.1
-  waveTime: 20
+  waveTime: 25
   currentWave: 1
 --- !u!4 &1970462184
 Transform:
