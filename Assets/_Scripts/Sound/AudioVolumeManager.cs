@@ -8,6 +8,8 @@ public class AudioVolumeManager : MonoBehaviour
     [Header("Sound")]
     [SerializeField] private AudioMixer mixer;
 
+    [SerializeField] private Button pauseButton;
+
     [Header("Pause Menu UI")]
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Button continueButton;
@@ -38,6 +40,10 @@ public class AudioVolumeManager : MonoBehaviour
         OnSliderValueChange(musicSlider);
         OnSliderValueChange(sfxSlider);
 
+        masterSlider.onValueChanged.AddListener((v) => OnSliderValueChange(masterSlider));
+        musicSlider.onValueChanged.AddListener((v) => OnSliderValueChange(musicSlider));
+        sfxSlider.onValueChanged.AddListener((v) => OnSliderValueChange(sfxSlider));
+
         if (mainMenuButton != null)
             mainMenuButton.onClick.AddListener(OnMainMenuClicked);
 
@@ -46,6 +52,9 @@ public class AudioVolumeManager : MonoBehaviour
 
         if (mainMenuButtonGO != null)
             mainMenuButtonGO.onClick.AddListener(OnMainMenuClicked);
+
+        if (pauseButton != null)
+            pauseButton.onClick.AddListener(() => GameManager.Instance.Pause());
     }
 
     private void OnEnable()

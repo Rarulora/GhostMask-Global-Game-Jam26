@@ -236,6 +236,9 @@ public class PlayerController : MonoBehaviour
         int charID = (int)character;
         int atkID = (int)attackType;
 
+        GameManager.Instance.SaveData.gold += goldCollected;
+        GameManager.Instance.SaveGame();
+
         _ = LeaderboardManager.SubmitScoreAsync(finalScore, charID, atkID);
 
         // TODO: open game over panel
