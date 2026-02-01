@@ -23,6 +23,9 @@ public class EffectPerk : PerkBase
 
 	// Runtime logic is handled by PerkManager, not here.
 	// This is just data container.
+	[Header("Condition")]
+	public bool HaveCondition = false;
+	public int ConditionPerkID = 0;
 	public override void OnEquip(GameObject player)
 	{
 		// Register this perk to the manager
