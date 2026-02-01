@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c8d1e9ceb192184091e6d06ccf2edb3, type: 3}
-  m_Name: Bow
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  WeaponName: Bow
-  Category: 2
-  Style: 3
+  WeaponName: Sword
+  Category: 1
+  Style: 1
   Icon: {fileID: 0}
   damage: 1
-  attackRate: 2
-  range: 10
+  attackRate: 1
+  range: 2
   knockbackForce: 0.5
-  projectileCount: 1
-  projectileSpeed: 50
-  pierce: 1
-  ProjectilePrefab: {fileID: 3471397800984625270, guid: ca1ae0d5780cda5428801c9352c297b2, type: 3}
+  projectileCount: 0
+  projectileSpeed: 0
+  pierce: 0
+  ProjectilePrefab: {fileID: 0}
   HitVFX: {fileID: 0}
   DashSpeed: 21.6
   DashDuration: 0.21

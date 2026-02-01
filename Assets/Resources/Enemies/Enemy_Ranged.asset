@@ -22,7 +22,7 @@ MonoBehaviour:
   attackRange: 10
   projectileSpeed: 5
   pierce: 0
-  xpDrop: 1
+  xpDrop: 5
   goldDrop: 1
   goldDropChance: 0.03
   mass: 5
