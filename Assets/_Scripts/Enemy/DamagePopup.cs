@@ -35,7 +35,7 @@ public class DamagePopup : MonoBehaviour
 
     public void Setup(float damageAmount, bool isCritical)
     {
-        textMesh.text = Mathf.RoundToInt(damageAmount).ToString();
+        textMesh.text = damageAmount.ToString("0.#");
 
         if (!isCritical)
         {

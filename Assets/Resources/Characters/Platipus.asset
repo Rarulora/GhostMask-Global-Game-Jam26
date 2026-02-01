@@ -17,7 +17,7 @@ MonoBehaviour:
   description: It flies away, but can be caught in one move.
   price: 10
   icon: {fileID: 21300000, guid: bf268906104d22c4d904c2d7cdf08a8e, type: 3}
-  sprite: {fileID: 21300000, guid: bf268906104d22c4d904c2d7cdf08a8e, type: 3}
+  sprite: {fileID: 7377778231300358174, guid: 9cd0d2c985d0081478cf84a04e1c2bc5, type: 3}
   animatorController: {fileID: 9100000, guid: c7f99afb80677fd43b884f2121abd096, type: 2}
   health: 3.5
   damage: 1.5
