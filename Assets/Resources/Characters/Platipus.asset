@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Platipus
   m_EditorClassIdentifier: 
   id: 2
-  cname: Perry
-  description: Orrrrrrrrrrrrrrrrnitorenk
-  price: 0
+  cname: Platipus
+  description: It flies away, but can be caught in one move.
+  price: 10
   icon: {fileID: 21300000, guid: bf268906104d22c4d904c2d7cdf08a8e, type: 3}
   sprite: {fileID: 21300000, guid: bf268906104d22c4d904c2d7cdf08a8e, type: 3}
-  animatorController: {fileID: 0}
-  health: 5
-  damage: 1
-  attackRate: 2
-  moveSpeed: 4
+  animatorController: {fileID: 9100000, guid: c7f99afb80677fd43b884f2121abd096, type: 2}
+  health: 3.5
+  damage: 1.5
+  attackRate: 2.5
+  moveSpeed: 6

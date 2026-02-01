@@ -64,6 +64,7 @@ public class Enemy_Bomber : EnemyBase
 
 		// Efekt oluştur
 		if (explosionVFX) explosionVFX.GetComponent<ParticleSystem>().Play();
+		AudioManager.Instance.PlaySFX(AudioManager.Instance.explosion);
 
 		TakeDamage(99999f, true, Vector2.zero, 0);
 	}
