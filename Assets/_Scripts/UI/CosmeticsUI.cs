@@ -24,7 +24,7 @@ public class CosmeticsUI : MonoBehaviour
 	[SerializeField] private Color normalTabColor = Color.white;
 	[SerializeField] private Color selectedTabColor = new Color(0.6f, 1f, 0.6f); // Açýk yeþil
 	[SerializeField] private float selectedScaleAmount = 1.15f; // %15 büyüme
-	[SerializeField] private float animationSpeed = 10f; // Lerp hýzý (Update'de kullanýlabilir, þimdilik direkt atama)
+	[SerializeField] private float animationSpeed = 10f;
 
 	[Header("Preview Images (Scene)")]
 	[SerializeField] private Image characterPreviewImage;
@@ -87,7 +87,6 @@ public class CosmeticsUI : MonoBehaviour
 		_spawnedElements.Clear();
 
 		// 1. Karakterleri Yükle
-		// Not: CharacterDatabase'e GameManager üzerinden eriþiyoruz.
 		foreach (var ch in GameManager.Instance.CharacterDatabase.data)
 		{
 			var e = Instantiate(cosmeticMenuElementPrefab, cosmeticMenuRoot).GetComponent<CosmeticMenuElement>();
@@ -114,7 +113,6 @@ public class CosmeticsUI : MonoBehaviour
 
 	private void OnCategoryClicked(FilterType clickedType)
 	{
-		// Eðer zaten seçili olan kategoriye týklandýysa filtreyi kaldýr (Show All)
 		if (_currentFilter == clickedType)
 		{
 			_currentFilter = FilterType.All;
@@ -129,7 +127,7 @@ public class CosmeticsUI : MonoBehaviour
 
 	private void ApplyFilter(FilterType type)
 	{
-		_currentFilter = type; // State'i güncelle
+		_currentFilter = type;
 
 		// 1. Elemanlarý Filtrele
 		foreach (var elem in _spawnedElements)
@@ -155,13 +153,12 @@ public class CosmeticsUI : MonoBehaviour
 			elem.gameObject.SetActive(shouldShow);
 		}
 
-		// 2. Tab Görsellerini Güncelle (Renk + Scale)
+		// 2. Tab Görsellerini Güncelle
 		UpdateTabVisuals();
 	}
 
 	private void UpdateTabVisuals()
 	{
-		// Helper fonksiyon ile butonlarý güncelle
 		SetTabState(characterTabButton, _currentFilter == FilterType.Character);
 		SetTabState(hatTabButton, _currentFilter == FilterType.Hat);
 		SetTabState(maskTabButton, _currentFilter == FilterType.Mask);
@@ -171,13 +168,11 @@ public class CosmeticsUI : MonoBehaviour
 	{
 		if (btn == null) return;
 
-		// Renk Deðiþimi
 		var colors = btn.colors;
 		colors.normalColor = isActive ? selectedTabColor : normalTabColor;
 		colors.selectedColor = isActive ? selectedTabColor : normalTabColor;
 		btn.colors = colors;
 
-		// Scale Deðiþimi
 		Vector3 targetScale = isActive ? Vector3.one * selectedScaleAmount : Vector3.one;
 		btn.transform.localScale = targetScale;
 	}
@@ -188,16 +183,33 @@ public class CosmeticsUI : MonoBehaviour
 	{
 		SaveData data = GameManager.Instance.SaveData;
 
-		// Karakter
+		// 1. Karakter (Zorunlu)
 		if (characterPreviewImage)
 		{
 			CharacterDataSO charData = GameManager.Instance.CharacterDatabase.data.FirstOrDefault(x => x.ID == data.equippedCharacterID);
-			// CharacterDataSO içinde Sprite yoksa bu satýrý açma veya dummy sprite kullan
 			if (charData != null) characterPreviewImage.sprite = charData.Icon;
 			characterPreviewImage.gameObject.SetActive(true);
 		}
 
-		// Hat
+		// 2. Maske (Zorunlu - Artýk ID 0 olsa bile göstermeye çalýþacak)
+		if (maskPreviewImage)
+		{
+			// Maske de karakter gibi davranýr, ID 0 olsa bile (Varsayýlan Maske) veritabanýndan çekip gösteririz.
+			CosmeticData maskData = GameManager.Instance.CosmeticDatabase.data.FirstOrDefault(x => x.ID == data.equippedMaskID);
+
+			if (maskData != null)
+			{
+				maskPreviewImage.sprite = maskData.sprite;
+				maskPreviewImage.gameObject.SetActive(true);
+			}
+			else
+			{
+				// Eðer veritabanýnda o ID (veya 0 ID) yoksa mecburen kapatýyoruz ama normalde açýk kalmalý.
+				maskPreviewImage.gameObject.SetActive(false);
+			}
+		}
+
+		// 3. Þapka (Opsiyonel - ID 0 ise kapalý)
 		if (hatPreviewImage)
 		{
 			if (data.equippedHatID != 0)
@@ -210,21 +222,6 @@ public class CosmeticsUI : MonoBehaviour
 				}
 			}
 			else hatPreviewImage.gameObject.SetActive(false);
-		}
-
-		// Mask
-		if (maskPreviewImage)
-		{
-			if (data.equippedMaskID != 0)
-			{
-				CosmeticData maskData = GameManager.Instance.CosmeticDatabase.data.FirstOrDefault(x => x.ID == data.equippedMaskID);
-				if (maskData != null)
-				{
-					maskPreviewImage.sprite = maskData.sprite;
-					maskPreviewImage.gameObject.SetActive(true);
-				}
-			}
-			else maskPreviewImage.gameObject.SetActive(false);
 		}
 	}
 
@@ -253,13 +250,16 @@ public class CosmeticsUI : MonoBehaviour
 		if (_selectedElement.IsEquipped)
 		{
 			elementPriceText.text = "Owned";
-			if (_selectedElement.IsCharacter)
+
+			// KARAKTER VEYA MASKE ÝSE -> ZORUNLU (Equipped yazar, Unequip olmaz)
+			if (_selectedElement.IsCharacter || _selectedElement.CosmeticType == CosmeticType.Mask)
 			{
 				elementBuyButtonText.text = "Equipped";
-				elementBuyButton.interactable = false;
+				elementBuyButton.interactable = false; // Týklanamaz
 			}
 			else
 			{
+				// ÞAPKA ÝSE -> Çýkarýlabilir
 				elementBuyButtonText.text = "Unequip";
 			}
 		}
@@ -283,16 +283,23 @@ public class CosmeticsUI : MonoBehaviour
 	{
 		if (_selectedElement == null) return;
 
+		// 1. Zaten takýlýysa
 		if (_selectedElement.IsEquipped)
 		{
-			if (!_selectedElement.IsCharacter) UnequipItem(_selectedElement);
+			// Sadece ÞAPKA ise çýkarýlabilir. Maske ve Karakter çýkarýlamaz.
+			if (!_selectedElement.IsCharacter && _selectedElement.CosmeticType != CosmeticType.Mask)
+			{
+				UnequipItem(_selectedElement);
+			}
 			return;
 		}
 
+		// 2. Satýn alýnmýþsa -> Equip
 		if (_selectedElement.IsOwned)
 		{
 			EquipItem(_selectedElement);
 		}
+		// 3. Satýn alýnmamýþsa -> Buy
 		else
 		{
 			BuyItem(_selectedElement);
@@ -346,7 +353,6 @@ public class CosmeticsUI : MonoBehaviour
 		}
 		else
 		{
-			// Veritabanýndan tipi bul
 			CosmeticData cosData = GameManager.Instance.CosmeticDatabase.data.FirstOrDefault(x => x.ID == element.ID);
 			if (cosData != null)
 			{
@@ -368,13 +374,16 @@ public class CosmeticsUI : MonoBehaviour
 
 		if (cosData != null)
 		{
-			if (cosData.type == CosmeticType.Hat) data.equippedHatID = 0;
-			else if (cosData.type == CosmeticType.Mask) data.equippedMaskID = 0;
+			// Sadece HAT tipi kozmetikler çýkarýlabilir.
+			if (cosData.type == CosmeticType.Hat)
+			{
+				data.equippedHatID = 0;
 
-			GameManager.Instance.SaveGame();
-			RefreshAllElements();
-			UpdatePreviewVisuals();
-			UpdateInfoPanel();
+				GameManager.Instance.SaveGame();
+				RefreshAllElements();
+				UpdatePreviewVisuals();
+				UpdateInfoPanel();
+			}
 		}
 	}
 
