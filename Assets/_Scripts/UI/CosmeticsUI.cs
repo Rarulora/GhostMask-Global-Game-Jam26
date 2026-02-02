@@ -3,7 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Enums; // CosmeticType Enum'ý için
+using Enums;
 
 public class CosmeticsUI : MonoBehaviour
 {
@@ -22,8 +22,8 @@ public class CosmeticsUI : MonoBehaviour
 
 	[Header("Visual Settings")]
 	[SerializeField] private Color normalTabColor = Color.white;
-	[SerializeField] private Color selectedTabColor = new Color(0.6f, 1f, 0.6f); // Açýk yeþil
-	[SerializeField] private float selectedScaleAmount = 1.15f; // %15 büyüme
+	[SerializeField] private Color selectedTabColor = new Color(0.6f, 1f, 0.6f);
+	[SerializeField] private float selectedScaleAmount = 1.15f;
 	[SerializeField] private float animationSpeed = 10f;
 
 	[Header("Preview Images (Scene)")]
@@ -56,9 +56,10 @@ public class CosmeticsUI : MonoBehaviour
 		InitButtons();
 		InitMenuElements();
 		UpdateGoldUI();
-		UpdatePreviewVisuals();
 
-		// Baþlangýçta hepsi gözüksün ve tab görselleri güncellensin
+		// Baþlangýçta kayýtlý olanlarý yükle (Reset)
+		ResetPreviewToSaveData();
+
 		ApplyFilter(FilterType.All);
 
 		if (elementInfoPanel) elementInfoPanel.SetActive(false);
@@ -89,7 +90,6 @@ public class CosmeticsUI : MonoBehaviour
 		foreach (Transform child in cosmeticMenuRoot) Destroy(child.gameObject);
 		_spawnedElements.Clear();
 
-		// 1. Karakterleri Yükle
 		foreach (var ch in GameManager.Instance.CharacterDatabase.data)
 		{
 			var e = Instantiate(cosmeticMenuElementPrefab, cosmeticMenuRoot).GetComponent<CosmeticMenuElement>();
@@ -97,7 +97,6 @@ public class CosmeticsUI : MonoBehaviour
 			_spawnedElements.Add(e);
 		}
 
-		// 2. Kozmetikleri Yükle
 		foreach (var co in GameManager.Instance.CosmeticDatabase.data)
 		{
 			var e = Instantiate(cosmeticMenuElementPrefab, cosmeticMenuRoot).GetComponent<CosmeticMenuElement>();
@@ -116,6 +115,10 @@ public class CosmeticsUI : MonoBehaviour
 
 	private void OnCategoryClicked(FilterType clickedType)
 	{
+		// Kategori deðiþince önizlemeyi sýfýrlayalým ki karýþýklýk olmasýn
+		// (Ýsteðe baðlý: istersen sýfýrlamayabilirsin ama kafa karýþtýrabilir)
+		ResetPreviewToSaveData();
+
 		if (_currentFilter == clickedType)
 		{
 			_currentFilter = FilterType.All;
@@ -132,7 +135,6 @@ public class CosmeticsUI : MonoBehaviour
 	{
 		_currentFilter = type;
 
-		// 1. Elemanlarý Filtrele
 		foreach (var elem in _spawnedElements)
 		{
 			bool shouldShow = false;
@@ -156,7 +158,6 @@ public class CosmeticsUI : MonoBehaviour
 			elem.gameObject.SetActive(shouldShow);
 		}
 
-		// 2. Tab Görsellerini Güncelle
 		UpdateTabVisuals();
 	}
 
@@ -180,13 +181,14 @@ public class CosmeticsUI : MonoBehaviour
 		btn.transform.localScale = targetScale;
 	}
 
-	// --- PREVIEW LOGIC ---
+	// --- PREVIEW LOGIC (GÜNCELLENDÝ) ---
 
-	private void UpdatePreviewVisuals()
+	// Bu fonksiyon ARTIK SADECE SAVE DATA'YI YÜKLER (Resetlemek için)
+	private void ResetPreviewToSaveData()
 	{
 		SaveData data = GameManager.Instance.SaveData;
 
-		// 1. Karakter (Zorunlu)
+		// 1. Karakter
 		if (characterPreviewImage)
 		{
 			CharacterDataSO charData = GameManager.Instance.CharacterDatabase.data.FirstOrDefault(x => x.ID == data.equippedCharacterID);
@@ -194,12 +196,10 @@ public class CosmeticsUI : MonoBehaviour
 			characterPreviewImage.gameObject.SetActive(true);
 		}
 
-		// 2. Maske (Zorunlu - Artýk ID 0 olsa bile göstermeye çalýþacak)
+		// 2. Maske
 		if (maskPreviewImage)
 		{
-			// Maske de karakter gibi davranýr, ID 0 olsa bile (Varsayýlan Maske) veritabanýndan çekip gösteririz.
 			CosmeticData maskData = GameManager.Instance.CosmeticDatabase.data.FirstOrDefault(x => x.ID == data.equippedMaskID);
-
 			if (maskData != null)
 			{
 				maskPreviewImage.sprite = maskData.sprite;
@@ -207,12 +207,11 @@ public class CosmeticsUI : MonoBehaviour
 			}
 			else
 			{
-				// Eðer veritabanýnda o ID (veya 0 ID) yoksa mecburen kapatýyoruz ama normalde açýk kalmalý.
 				maskPreviewImage.gameObject.SetActive(false);
 			}
 		}
 
-		// 3. Þapka (Opsiyonel - ID 0 ise kapalý)
+		// 3. Þapka
 		if (hatPreviewImage)
 		{
 			if (data.equippedHatID != 0)
@@ -234,7 +233,47 @@ public class CosmeticsUI : MonoBehaviour
 	{
 		_selectedElement = element;
 		foreach (var e in _spawnedElements) e.SetSelected(e == element);
+
 		UpdateInfoPanel();
+
+		// YENÝ: Týklandýðý an görseli önizlemeye yansýt
+		ApplyTemporaryPreview(element);
+	}
+
+	// YENÝ: Geçici olarak önizleme görselini deðiþtirir
+	private void ApplyTemporaryPreview(CosmeticMenuElement element)
+	{
+		// 1. Eðer element bir KARAKTER ise
+		if (element.IsCharacter)
+		{
+			// Element'in ID'si ile veritabanýndan sprite'ý buluyoruz
+			// (Not: CosmeticMenuElement scriptinde Sprite tutuyorsan direkt onu da kullanabilirsin)
+			// Þimdilik veritabanýndan çekelim garanti olsun:
+			CharacterDataSO charData = GameManager.Instance.CharacterDatabase.data.FirstOrDefault(x => x.ID == element.ID);
+			if (charData != null && characterPreviewImage != null)
+			{
+				characterPreviewImage.sprite = charData.Sprite;
+				characterPreviewImage.gameObject.SetActive(true);
+			}
+		}
+		// 2. Eðer element bir KOZMETÝK ise
+		else
+		{
+			CosmeticData cosData = GameManager.Instance.CosmeticDatabase.data.FirstOrDefault(x => x.ID == element.ID);
+			if (cosData != null)
+			{
+				if (cosData.type == CosmeticType.Hat && hatPreviewImage != null)
+				{
+					hatPreviewImage.sprite = cosData.sprite;
+					hatPreviewImage.gameObject.SetActive(true);
+				}
+				else if (cosData.type == CosmeticType.Mask && maskPreviewImage != null)
+				{
+					maskPreviewImage.sprite = cosData.sprite;
+					maskPreviewImage.gameObject.SetActive(true);
+				}
+			}
+		}
 	}
 
 	private void UpdateInfoPanel()
@@ -254,15 +293,13 @@ public class CosmeticsUI : MonoBehaviour
 		{
 			elementPriceText.text = "Owned";
 
-			// KARAKTER VEYA MASKE ÝSE -> ZORUNLU (Equipped yazar, Unequip olmaz)
 			if (_selectedElement.IsCharacter || _selectedElement.CosmeticType == CosmeticType.Mask)
 			{
 				elementBuyButtonText.text = "Equipped";
-				elementBuyButton.interactable = false; // Týklanamaz
+				elementBuyButton.interactable = false;
 			}
 			else
 			{
-				// ÞAPKA ÝSE -> Çýkarýlabilir
 				elementBuyButtonText.text = "Unequip";
 			}
 		}
@@ -286,10 +323,8 @@ public class CosmeticsUI : MonoBehaviour
 	{
 		if (_selectedElement == null) return;
 
-		// 1. Zaten takýlýysa
 		if (_selectedElement.IsEquipped)
 		{
-			// Sadece ÞAPKA ise çýkarýlabilir. Maske ve Karakter çýkarýlamaz.
 			if (!_selectedElement.IsCharacter && _selectedElement.CosmeticType != CosmeticType.Mask)
 			{
 				UnequipItem(_selectedElement);
@@ -297,12 +332,10 @@ public class CosmeticsUI : MonoBehaviour
 			return;
 		}
 
-		// 2. Satýn alýnmýþsa -> Equip
 		if (_selectedElement.IsOwned)
 		{
 			EquipItem(_selectedElement);
 		}
-		// 3. Satýn alýnmamýþsa -> Buy
 		else
 		{
 			BuyItem(_selectedElement);
@@ -344,8 +377,12 @@ public class CosmeticsUI : MonoBehaviour
 			RefreshAllElements();
 			UpdateInfoPanel();
 			CheckAllBuyed();
+
+			// Satýn alýnca otomatik equip etsin mi? 
+			// Genelde oyuncu aldýðý þeyi hemen dener. Ýstersen buraya EquipItem(element) ekleyebilirsin.
 		}
 	}
+
 	private void CheckAllBuyed()
 	{
 		SaveData data = GameManager.Instance.SaveData;
@@ -360,6 +397,7 @@ public class CosmeticsUI : MonoBehaviour
 		if (currentCount >= allDataCount)
 			sepetAnim.SetTrigger("Special");
 	}
+
 	private void EquipItem(CosmeticMenuElement element)
 	{
 		SaveData data = GameManager.Instance.SaveData;
@@ -370,9 +408,6 @@ public class CosmeticsUI : MonoBehaviour
 		}
 		else
 		{
-			// HATA BURADAYDI: Database'den ID ile arama yapýnca çakýþan ID'lerde yanlýþ tipi buluyordu.
-			// ÇÖZÜM: Element zaten tipini biliyor, direkt ona soruyoruz.
-
 			if (element.CosmeticType == CosmeticType.Hat)
 			{
 				data.equippedHatID = element.ID;
@@ -385,7 +420,7 @@ public class CosmeticsUI : MonoBehaviour
 
 		GameManager.Instance.SaveGame();
 		RefreshAllElements();
-		UpdatePreviewVisuals();
+		// ResetPreviewToSaveData(); // Buna gerek yok çünkü zaten seçili olaný gösteriyoruz
 		UpdateInfoPanel();
 	}
 
@@ -393,15 +428,16 @@ public class CosmeticsUI : MonoBehaviour
 	{
 		SaveData data = GameManager.Instance.SaveData;
 
-		// Burada da veritabaný aramasýna gerek yok.
-		// Element þapka ise direkt þapka slotunu boþalt.
 		if (element.CosmeticType == CosmeticType.Hat)
 		{
 			data.equippedHatID = 0;
 
 			GameManager.Instance.SaveGame();
 			RefreshAllElements();
-			UpdatePreviewVisuals();
+
+			// Þapka çýktýysa görseli kaldýr
+			if (hatPreviewImage) hatPreviewImage.gameObject.SetActive(false);
+
 			UpdateInfoPanel();
 		}
 	}
