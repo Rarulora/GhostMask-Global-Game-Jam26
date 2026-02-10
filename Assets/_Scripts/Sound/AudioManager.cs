@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
+
+    [Header("Mixer")]
+    [SerializeField] private AudioMixer mixer;
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
@@ -59,6 +63,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        ApplyVolumeForTheFirstTime();
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
@@ -176,5 +181,23 @@ public class AudioManager : MonoBehaviour
             sfxSource.pitch = 1f;
 
         sfxSource.PlayOneShot(clip, volume);
+    }
+
+    private void ApplyVolumeForTheFirstTime()
+    {
+        float value = PlayerPrefs.GetFloat("MasterVolume", 0.15f);
+        PlayerPrefs.SetFloat("MasterVolume", value);
+        float dB = value <= 0f ? -80f : Mathf.Log10(value) * 20f;
+        mixer.SetFloat("MasterVolume", dB);
+
+        value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        PlayerPrefs.SetFloat("MusicVolume", value);
+        dB = value <= 0f ? -80f : Mathf.Log10(value) * 20f;
+        mixer.SetFloat("MusicVolume", dB);
+
+        value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        PlayerPrefs.SetFloat("SFXVolume", value);
+        dB = value <= 0f ? -80f : Mathf.Log10(value) * 20f;
+        mixer.SetFloat("SFXVolume", dB);
     }
 }

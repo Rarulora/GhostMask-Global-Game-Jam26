@@ -922,6 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8659a88c3642c543ac712db9cd6a5d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 5fe313eeca2c59b428564fdf4786c482, type: 2}
   musicSource: {fileID: 2123637402}
   sfxSource: {fileID: 2123637401}
   mainMenuMusic: {fileID: 8300000, guid: 5d3f1d09f42ea2549a1def775942a009, type: 3}
