@@ -21,9 +21,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip hit;
     public AudioClip takeDamage;
     public AudioClip explosion;
+    public AudioClip levelUpSound;
 
     [Header("Settings")]
-    public float fadeDuration = 1.0f;
+    public float fadeDuration = 2f;
 
     public string mainMenuSceneName = "MainMenu";
     public string gameplaySceneName = "Gameplay";

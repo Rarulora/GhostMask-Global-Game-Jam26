@@ -78,7 +78,6 @@ public class PlayerController : MonoBehaviour
 
     void InitializePlayerData()
     {
-        // Eriþimleri kýsaltalým
         var saveData = GameManager.Instance.SaveData;
         var cosmeticDB = GameManager.Instance.CosmeticDatabase;
         var charDB = GameManager.Instance.CharacterDatabase;
@@ -115,11 +114,9 @@ public class PlayerController : MonoBehaviour
 		CharacterDataSO characterData = charDB.GetCharacterByID(saveData.equippedCharacterID);
         if (characterData != null)
         {
-            // Karakterin Sprite'ý (Idle duruþu vs.)
             if (characterData.Sprite != null)
                 characterSR.sprite = characterData.Sprite;
 
-            // Karakterin Animasyon Kontrolcüsü
             if (characterData.AnimatorController != null)
                 anim.runtimeAnimatorController = characterData.AnimatorController;
         }
@@ -176,12 +173,14 @@ public class PlayerController : MonoBehaviour
             currentLevel++;
             levelUp = true;
 
-            // TODO: PlayLevelUpEffect(); 
             CalculateNextLevelXP();
         }
 
         if (levelUp)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.levelUpSound);
             onLevelChanged?.Invoke(currentLevel);
+        }    
     }
 
     private void CalculateNextLevelXP()
