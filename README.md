@@ -8,13 +8,11 @@ Banish ghosts from our world in this fast-paced rogue-lite experience. To succee
 **The Catch:** The mask consumes your **insanity** like water. You must master the balance between wearing the mask to fight and taking it off to protect your mind.
 
 ## Gameplay Features
-* **Playable Characters:** Choose your hero from a diverse cast:
-    * Mouse
-    * Raccoon
-    * Cat
-    * Platypus
-    * Monkey
-* **Customization:** Select your favorite cosmetics, define your unique attack style, and pick powerful perks to kick ghosts out of our world!
+* **Playable Characters:** Choose your hero from a diverse cast: Mouse, Raccoon, Cat, Platypus, and Monkey.
+* **Skill Tree:** Unlock and evolve your abilities to become the ultimate ghost hunter.
+* **Perk System:** Strategize your run by selecting powerful perks that synergize with your playstyle.
+* **Leaderboard:** Compete with other players and see who can banish the most ghosts or survive the longest.
+* **Customization:** Select your favorite cosmetics and define your unique attack style.
 * **Controls:** Press **SPACE** to put the mask on or off.
 
 ## Contributions
