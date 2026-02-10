@@ -662,7 +662,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: APPLICATION:Minimal
+  webGLTemplate: APPLICATION:Default
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 2
@@ -781,11 +781,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: ed519848-6492-4a1b-93e3-e8b49b923377
+  cloudProjectId: 74c671e3-838d-4147-8f3c-5b0cb71ad52e
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: GGJ
-  organizationId: solidpanda
+  organizationId: refikk
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
