@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip mainMenuMusic;
     public List<AudioClip> gameplayMusics;
 
-    [Header("Sound Effects")]
+    [Header("Sound Effects (Library)")]
     public AudioClip cash;
     public AudioClip click;
     public AudioClip hit;
@@ -23,12 +23,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip explosion;
 
     [Header("Settings")]
-    public float fadeDuration = 1.5f;
+    public float fadeDuration = 1.0f;
+
     public string mainMenuSceneName = "MainMenu";
     public string gameplaySceneName = "Gameplay";
     public string creditsSceneName = "Credits";
 
-    private bool isGameplay = false;
     private List<AudioClip> playlist;
     private int currentTrackIndex = 0;
     private Coroutine currentFadeRoutine;
@@ -43,24 +43,6 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            return;
-        }
-    }
-
-    private void Start()
-    {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-
-        if (currentSceneName == mainMenuSceneName)
-        {
-            isGameplay = false;
-            PlayMusic(mainMenuMusic, true);
-        }
-        else if (currentSceneName == gameplaySceneName)
-        {
-            isGameplay = true;
-            ShufflePlaylist();
-            PlayNextGameplayTrack();
         }
     }
 
@@ -74,12 +56,20 @@ public class AudioManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    private void Start()
+    {
+        OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+    }
+
     private void Update()
     {
-        if (isGameplay && !musicSource.isPlaying && musicSource.clip != null)
+        if (IsGameplayScene(SceneManager.GetActiveScene().name) && !musicSource.isPlaying && musicSource.clip != null)
         {
-            if (musicSource.volume > 0.1f)
+            // Müzik tamamen durmuþsa (pause deðilse)
+            if (musicSource.time == 0 || musicSource.time >= musicSource.clip.length)
+            {
                 PlayNextGameplayTrack();
+            }
         }
     }
 
@@ -87,26 +77,38 @@ public class AudioManager : MonoBehaviour
     {
         if (scene.name == mainMenuSceneName)
         {
-            isGameplay = false;
             PlayMusic(mainMenuMusic, true);
         }
         else if (scene.name == gameplaySceneName)
         {
-            isGameplay = true;
             ShufflePlaylist();
             PlayNextGameplayTrack();
         }
         else if (scene.name == creditsSceneName)
         {
-            musicSource.Stop();
-            musicSource.volume = 0;
+            StartCoroutine(FadeOutCurrentMusic());
         }
     }
 
-    private IEnumerator FadeOutCurrentMusic()
+    private bool IsGameplayScene(string sceneName)
+    {
+        return sceneName == gameplaySceneName;
+    }
+
+    public void PlayMusic(AudioClip clip, bool loop)
+    {
+        if (clip == null) return;
+        if (musicSource.clip == clip && musicSource.isPlaying) return;
+
+        if (currentFadeRoutine != null) StopCoroutine(currentFadeRoutine);
+        currentFadeRoutine = StartCoroutine(FadeMusicRoutine(clip, loop));
+    }
+
+    private IEnumerator FadeMusicRoutine(AudioClip newClip, bool loop)
     {
         float startVolume = musicSource.volume;
 
+        // Fade Out
         while (musicSource.volume > 0)
         {
             musicSource.volume -= startVolume * Time.deltaTime / (fadeDuration / 2);
@@ -114,7 +116,43 @@ public class AudioManager : MonoBehaviour
         }
 
         musicSource.Stop();
-        musicSource.volume = 0;
+        musicSource.clip = newClip;
+        musicSource.loop = loop;
+        musicSource.Play();
+
+        // Fade In
+        while (musicSource.volume < 1f)
+        {
+            musicSource.volume += Time.deltaTime / (fadeDuration / 2);
+            yield return null;
+        }
+        musicSource.volume = 1f;
+    }
+
+    private IEnumerator FadeOutCurrentMusic()
+    {
+        while (musicSource.volume > 0)
+        {
+            musicSource.volume -= Time.deltaTime / fadeDuration;
+            yield return null;
+        }
+        musicSource.Stop();
+        musicSource.volume = 1f;
+    }
+
+    private void ShufflePlaylist()
+    {
+        if (gameplayMusics == null || gameplayMusics.Count == 0) return;
+        playlist = new List<AudioClip>(gameplayMusics);
+
+        for (int i = 0; i < playlist.Count; i++)
+        {
+            AudioClip temp = playlist[i];
+            int randomIndex = Random.Range(i, playlist.Count);
+            playlist[i] = playlist[randomIndex];
+            playlist[randomIndex] = temp;
+        }
+        currentTrackIndex = 0;
     }
 
     private void PlayNextGameplayTrack()
@@ -124,67 +162,18 @@ public class AudioManager : MonoBehaviour
         AudioClip nextClip = playlist[currentTrackIndex];
         PlayMusic(nextClip, false);
 
-        currentTrackIndex++;
-        if (currentTrackIndex >= playlist.Count)
-            currentTrackIndex = 0;
+        currentTrackIndex = (currentTrackIndex + 1) % playlist.Count;
     }
 
-    public void PlayMusic(AudioClip clip, bool loop)
+    public void PlaySFX(AudioClip clip, float volume = 1f, float pitchVariation = 0f)
     {
-        if (currentFadeRoutine != null) StopCoroutine(currentFadeRoutine);
-        currentFadeRoutine = StartCoroutine(FadeMusic(clip, loop));
-    }
+        if (clip == null) return;
 
-    private IEnumerator FadeMusic(AudioClip newClip, bool loop)
-    {
-        float startVolume = musicSource.volume;
+        if (pitchVariation > 0)
+            sfxSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation);
+        else
+            sfxSource.pitch = 1f;
 
-        while (musicSource.volume > 0)
-        {
-            musicSource.volume -= startVolume * Time.deltaTime / (fadeDuration / 2);
-            yield return null;
-        }
-
-        musicSource.Stop();
-        musicSource.volume = 0;
-
-        musicSource.clip = newClip;
-        musicSource.loop = loop;
-        musicSource.Play();
-
-        while (musicSource.volume < 1f)
-        {
-            musicSource.volume += Time.deltaTime / (fadeDuration / 2);
-            yield return null;
-        }
-
-        musicSource.volume = 1f;
-    }
-
-    private void ShufflePlaylist()
-    {
-        playlist = new List<AudioClip>(gameplayMusics);
-        currentTrackIndex = 0;
-
-        for (int i = 0; i < playlist.Count; i++)
-        {
-            AudioClip temp = playlist[i];
-            int randomIndex = Random.Range(i, playlist.Count);
-            playlist[i] = playlist[randomIndex];
-            playlist[randomIndex] = temp;
-        }
-    }
-
-    public void PlaySFX(AudioClip clip, float volume = 1f)
-    {
-        if (clip != null)
-        {
-            sfxSource.PlayOneShot(clip, volume);
-        }
-    }
-
-    public void PlaySFX(AudioClip clip)
-    {
-        PlaySFX(clip, 1f);
+        sfxSource.PlayOneShot(clip, volume);
     }
 }

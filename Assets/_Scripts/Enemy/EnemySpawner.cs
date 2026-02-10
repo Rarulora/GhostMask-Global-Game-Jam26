@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Settings")]
     public int baseBudget = 20;
     public float budgetGrowth = 1.2f;
-    public float difficultyGrowth = 1.1f; // D��manlar her level %10 g��lenir (ve pahalan�r)
+    public float difficultyGrowth = 1.1f; // Each level enemies' power increases by 10%, but also increases cost by 10%
 
     [Header("Wave")]
     public float waveTime = 60f;
@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
     private EnemyDatabase enemyDatabase;
     private const int MAX_ATTEMPTS = 50;
 
-    public Action<int> onWaveEnd; // mevcut dalga numaras�
+    public Action<int> onWaveEnd; // Current wave number
 
     private void Awake()
     {
