@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Deals bleed damage to enemies with a 100% chance.
   Icon: {fileID: 0}
   prequisite: {fileID: 11400000, guid: a5a114f1c398a5b4893c2c4e012a7e11, type: 2}
+  oneTime: 1
   Trigger: 1
   Chance: 100
   Cooldown: 0

@@ -16,6 +16,8 @@ MonoBehaviour:
   PerkName: Frostbite I
   Description: Deals frost damage to enemies with a 25% chance.
   Icon: {fileID: 0}
+  prequisite: {fileID: 0}
+  oneTime: 1
   Trigger: 1
   Chance: 25
   Cooldown: 0
@@ -27,3 +29,5 @@ MonoBehaviour:
   RequiresMaskOn: 0
   RequiresMaskOff: 0
   HealthThreshold: 0
+  HaveCondition: 0
+  ConditionPerkID: 

@@ -16,6 +16,8 @@ MonoBehaviour:
   PerkName: Blood for Sanity
   Description: Decreases madness when an enemy is killed while wearing a mask.
   Icon: {fileID: 0}
+  prequisite: {fileID: 0}
+  oneTime: 1
   Trigger: 2
   Chance: 100
   Cooldown: 0
@@ -27,3 +29,5 @@ MonoBehaviour:
   RequiresMaskOn: 1
   RequiresMaskOff: 0
   HealthThreshold: 0
+  HaveCondition: 0
+  ConditionPerkID: 

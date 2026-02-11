@@ -16,6 +16,8 @@ MonoBehaviour:
   PerkName: Pyromancer I
   Description: Deals burn damage to enemies with a 25% chance.
   Icon: {fileID: 0}
+  prequisite: {fileID: 0}
+  oneTime: 1
   Trigger: 1
   Chance: 25
   Cooldown: 0

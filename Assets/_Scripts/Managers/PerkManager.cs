@@ -143,7 +143,11 @@ public class PerkManager : MonoBehaviour
                     isPrerequisiteMet = false;
             }
 
-            if (isPrerequisiteMet)
+			bool isPickedBefore = false;
+			if (pick.oneTime && PlayerController.I.HasEquippedPerk(pick.ID))
+				isPickedBefore = true;
+
+            if (isPrerequisiteMet && !isPickedBefore)
             {
                 selected.Add(pick);
                 candidates.RemoveAt(randomIndex);

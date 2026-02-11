@@ -16,7 +16,11 @@ MonoBehaviour:
   PerkName: Momentum
   Description: The higher the move speed, the higher the damage.
   Icon: {fileID: 0}
+  prequisite: {fileID: 0}
+  oneTime: 1
   TargetStat: 2
   SourceStat: 1
   Multiplier: 0.1
-  UseMadnessAsSource: 0
+  sourceExtensionStat: 0
+  HaveCondition: 0
+  ConditionPerkID: 

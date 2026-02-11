@@ -16,7 +16,11 @@ MonoBehaviour:
   PerkName: Insanity
   Description: Damage increases in proportional to madness level.
   Icon: {fileID: 0}
+  prequisite: {fileID: 0}
+  oneTime: 1
   TargetStat: 2
   SourceStat: 0
   Multiplier: 0.1
-  UseMadnessAsSource: 1
+  sourceExtensionStat: 0
+  HaveCondition: 0
+  ConditionPerkID: 

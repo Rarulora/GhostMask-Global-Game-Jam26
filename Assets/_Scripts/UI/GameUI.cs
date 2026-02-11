@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,8 +52,26 @@ public class GameUI : MonoBehaviour
     public void SetMenuState(string id, bool isOpen)
     {
         if (_sceneMenus.TryGetValue(id, out Menu menu))
-            menu.SetState(isOpen);
+        {
+            if (isOpen)
+            {
+                menu.gameObject.SetActive(isOpen);
+                menu.SetState(isOpen);
+            }
+            else
+            {
+                menu.SetState(isOpen);
+                StartCoroutine(DisableWithDelay(menu.gameObject));
+            }
+        }   
         else
             Debug.LogWarning($"Menu with ID = '{id}' couldn't be found.");
+    }
+
+    private IEnumerator DisableWithDelay(GameObject obj, float delay = 0.55f)
+    {
+        yield return new WaitForSeconds(delay);
+        if (obj != null)
+            obj.SetActive(false);
     }
 }

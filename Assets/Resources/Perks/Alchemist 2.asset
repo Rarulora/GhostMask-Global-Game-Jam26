@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Deals poison damage to enemies with a 50% chance.
   Icon: {fileID: 0}
   prequisite: {fileID: 11400000, guid: c146a513ab65c6d4a95620db14c5834d, type: 2}
+  oneTime: 1
   Trigger: 1
   Chance: 50
   Cooldown: 0
