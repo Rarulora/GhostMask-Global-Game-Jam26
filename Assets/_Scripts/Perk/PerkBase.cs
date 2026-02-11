@@ -7,6 +7,7 @@ public abstract class PerkBase : ScriptableObject
 	public string PerkName;
 	[TextArea] public string Description;
 	public Sprite Icon;
+	public PerkBase prequisite;
 
 	// Called once when the perk is acquired
 	public virtual void OnEquip(GameObject player) { }

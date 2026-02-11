@@ -16,6 +16,7 @@ MonoBehaviour:
   PerkName: Frostbite III
   Description: Deals frost damage to enemies with a 100% chance.
   Icon: {fileID: 0}
+  prequisite: {fileID: 11400000, guid: 79020fd9111789c41a2adce61035e4d0, type: 2}
   Trigger: 1
   Chance: 100
   Cooldown: 0

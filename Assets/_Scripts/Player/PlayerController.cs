@@ -1,5 +1,6 @@
 using Enums;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,6 +34,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Slider xpSlider;
     [SerializeField] private TextMeshProUGUI nextLevelXP;
     [SerializeField] private TextMeshProUGUI currentLevelNumber;
+
+    [Header("Inventory")]
+    public List<string> AcquiredPerkIDs = new List<string>();
 
     public PlayerHealthController HealthController { get; private set; }
 
@@ -243,6 +247,15 @@ public class PlayerController : MonoBehaviour
     public float GetLostHealth() => HealthController.MaxHealth - HealthController.CurrentHealth;
     public float GetCurrentHealth() => HealthController.CurrentHealth;
     public float GetCurrentMadness() => MaskController.I.CurrentMadness;
+
+    public bool HasEquippedPerk(string perkID)
+    {
+        if (AcquiredPerkIDs.Contains(perkID))
+            return true;
+
+        return false;
+    }
+
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

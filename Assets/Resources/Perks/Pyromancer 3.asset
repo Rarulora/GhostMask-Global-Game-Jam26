@@ -16,6 +16,7 @@ MonoBehaviour:
   PerkName: Pyromancer III
   Description: Deals burn damage to enemies with a 100% chance.
   Icon: {fileID: 0}
+  prequisite: {fileID: 11400000, guid: 736b5422d38cf514080cc6099d14f65a, type: 2}
   Trigger: 1
   Chance: 100
   Cooldown: 0

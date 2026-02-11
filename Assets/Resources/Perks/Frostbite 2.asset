@@ -16,6 +16,7 @@ MonoBehaviour:
   PerkName: Frostbite II
   Description: Deals frost damage to enemies with a 50% chance.
   Icon: {fileID: 0}
+  prequisite: {fileID: 11400000, guid: 6c0131e198fab334b89f3385d7a3eb59, type: 2}
   Trigger: 1
   Chance: 50
   Cooldown: 0

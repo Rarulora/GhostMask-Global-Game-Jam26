@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Linq; // List filtreleme için gerekli
+using System.Linq;
 using UnityEngine;
-using Enums; // Enumlarýn olduðu namespace
+using Enums;
 
 public class PerkManager : MonoBehaviour
 {
@@ -17,17 +17,13 @@ public class PerkManager : MonoBehaviour
 	[SerializeField] private PerkCard perk2;
 	[SerializeField] private PerkCard perk3;
 
-	// --- YENÝ: DATABASE & ENVANTER ---
-	private List<PerkBase> _allPerksDatabase; // Tüm oyunun perk havuzu
-	private List<PerkBase> _currentOfferedPerks = new List<PerkBase>(); // Ekranda duran 3 perk
+	private List<PerkBase> _allPerksDatabase;
+	private List<PerkBase> _currentOfferedPerks = new List<PerkBase>();
 
-	// --- YENÝ: RUNTIME EFFECT LÝSTELERÝ ---
-	// Efekt perklerini kategorize edip saklýyoruz
 	private List<EffectPerk> _onHitPerks = new List<EffectPerk>();
 	private List<EffectPerk> _onKillPerks = new List<EffectPerk>();
 	private List<EffectPerk> _onTakeDamagePerks = new List<EffectPerk>();
 
-	// Cooldown takibi (Perk ID -> Ne zaman hazýr olacaðý)
 	private Dictionary<string, float> _cooldowns = new Dictionary<string, float>();
 	private bool _isMaskActive;
 
@@ -39,7 +35,7 @@ public class PerkManager : MonoBehaviour
 			return;
 		}
 		I = this;
-		// Resources/Perks klasöründeki tüm perkleri yükle
+
 		_allPerksDatabase = Resources.LoadAll<PerkBase>("Perks").ToList();
 	}
 
@@ -47,7 +43,6 @@ public class PerkManager : MonoBehaviour
 	{
 		PlayerController.onLevelChanged += ShowPerks;
 
-		// Runtime Event Baðlantýlarý
 		EventManager.OnEnemyKilled += HandleEnemyKilled;
 		EventManager.OnMaskChanged += (status) => _isMaskActive = status;
 	}
@@ -60,7 +55,6 @@ public class PerkManager : MonoBehaviour
 		EventManager.OnMaskChanged -= (status) => _isMaskActive = status;
 	}
 
-	// --- MEVCUT FONKSÝYONUN (ÝÇÝ DOLDURULDU) ---
 	private void ShowPerks(int currentLevel)
 	{
 		GameManager.Instance.StartPerkSelect();
@@ -68,41 +62,15 @@ public class PerkManager : MonoBehaviour
 
 		if (currentLevel == 2)
 		{
-			// Level 2: Sadece Silah Kategorisi Seçimi (Attack Type)
-			// AbilityPerk türünde ve "UnlockWeapon" özelliði olanlarý getir
 			var weaponPerks = _allPerksDatabase.OfType<AbilityPerk>()
 											   .Where(p => p.WeaponToUnlock != null)
 											   .Cast<PerkBase>().ToList();
 
 			FillCards(GetRandomPerks(weaponPerks, 3));
         }
-		else if (currentLevel >= thresholdLevelForAttackTypePerks && currentLevel <= maxLevelForAttackTypePerks && !choosedAttackType)
-		{
-			// Olasýlýk Hesabý (Senin kodun)
-			float range = maxLevelForAttackTypePerks - thresholdLevelForAttackTypePerks;
-			float progress = currentLevel - thresholdLevelForAttackTypePerks;
-			float probability = (progress + 1) / (range + 1);
-
-			if (Random.value <= probability)
-			{
-				choosedAttackType = true;
-				// BURASI ÖNEMLÝ: Alt kategori (Style) açan perkleri filtrele
-				// Örn: AbilityPerk olup WeaponStyle deðiþtirenler
-				var stylePerks = _allPerksDatabase.OfType<AbilityPerk>()
-												  .Where(p => !string.IsNullOrEmpty(p.EventID) && p.EventID.Contains("UnlockStyle"))
-												  .Cast<PerkBase>().ToList();
-
-				FillCards(GetRandomPerks(stylePerks, 3));
-            }
-			else
-			{
-				// Standart daðýtým
-				FillCards(GetBalancedRandomPerks());
-            }
-		}
 		else
 		{
-			// Standart daðýtým (Max 1 weapon perk kuralý ile)
+			// Standard (Max 1 weapon perk)
 			FillCards(GetBalancedRandomPerks());
         }
 
@@ -111,8 +79,6 @@ public class PerkManager : MonoBehaviour
         perk3.Show();
     }
 
-	// --- MEVCUT FONKSÝYONUN (LOGIC EKLENDÝ) ---
-	// PerkCard butonuna týklandýðýnda Unity Event'ten int index (0, 1, 2) gönderilmeli
 	public void OnClickPerk(int perkIndex)
 	{
 		if (perkIndex >= _currentOfferedPerks.Count) return;
@@ -137,50 +103,58 @@ public class PerkManager : MonoBehaviour
             }
 		}
 
-		// 1. Perki Uygula (Inventory'ye ekle, Statlarý iþle)
 		EquipPerk(selectedPerk);
 
-		// 2. Oyunu Devam Ettir
 		perk1.Hide();
 		perk2.Hide();
 		perk3.Hide();
 		GameManager.Instance.StopPerkSelect();
 	}
 
-    // ========================================================================
-    // YENÝ: YARDIMCI SEÇÝM FONKSÝYONLARI (LOGIC)
-    // ========================================================================
-
     private List<PerkBase> GetBalancedRandomPerks()
     {
-        // ADIM 1: Aday Listesini Hazýrla ve Filtrele
-        // _allPerksDatabase içinden AbilityPerk OLMAYANLARI alýyoruz.
         List<PerkBase> candidates = _allPerksDatabase
-            .Where(p => !(p is AbilityPerk)) // Kural: AbilityPerk gelmemeli
-                                             // .Where(p => !IsPerkMaxedOut(p)) // ÖNEMLÝ: Eðer perk max level ise listeye alma (bu kontrol sende varsa ekle)
+            .Where(p => !(p is AbilityPerk))
             .ToList();
 
         List<PerkBase> selected = new List<PerkBase>();
         int slotsToFill = 3;
 
-        // Güvenlik Önlemi: Eðer filtreden sonra elinde 3'ten az kart kaldýysa,
-        // hata vermemesi için kalanlarýn hepsini döndür.
         if (candidates.Count <= slotsToFill)
         {
             return candidates;
         }
 
-        // ADIM 2: Seçim Döngüsü
+        int attempts = 0;
+        int maxAttempts = 50;
+
         for (int i = 0; i < slotsToFill; i++)
         {
-            // Rastgele bir index seç
+            if (candidates.Count == 0 || attempts >= maxAttempts) break;
+
             int randomIndex = Random.Range(0, candidates.Count);
             PerkBase pick = candidates[randomIndex];
 
-            selected.Add(pick);
+            bool isPrerequisiteMet = true;
+            if (pick.prequisite != null)
+            {
+                bool hasAlready = PlayerController.I.HasEquippedPerk(pick.prequisite.ID);
+                if (!hasAlready)
+                    isPrerequisiteMet = false;
+            }
 
-            // Seçilen perki aday listesinden çýkar (ki ayný kart 2 kere gelmesin)
-            candidates.RemoveAt(randomIndex);
+            if (isPrerequisiteMet)
+            {
+                selected.Add(pick);
+                candidates.RemoveAt(randomIndex);
+
+                attempts = 0;
+            }
+            else
+            {
+                i--;
+                attempts++;
+            }
         }
 
         return selected;
@@ -205,10 +179,9 @@ public class PerkManager : MonoBehaviour
     {
         _currentOfferedPerks = perks;
 
-        // Kart 1
         if (perks.Count > 0)
         {
-            perk1.gameObject.SetActive(true); // Önce aç
+            perk1.gameObject.SetActive(true);
             perk1.Setup(perks[0], 0);
         }
         else
@@ -216,10 +189,9 @@ public class PerkManager : MonoBehaviour
             perk1.gameObject.SetActive(false);
         }
 
-        // Kart 2
         if (perks.Count > 1)
         {
-            perk2.gameObject.SetActive(true); // Önce aç
+            perk2.gameObject.SetActive(true);
             perk2.Setup(perks[1], 1);
         }
         else
@@ -227,10 +199,9 @@ public class PerkManager : MonoBehaviour
             perk2.gameObject.SetActive(false);
         }
 
-        // Kart 3
         if (perks.Count > 2)
         {
-            perk3.gameObject.SetActive(true); // Önce aç
+            perk3.gameObject.SetActive(true);
             perk3.Setup(perks[2], 2);
         }
         else
@@ -239,17 +210,12 @@ public class PerkManager : MonoBehaviour
         }
     }
 
-    // ========================================================================
-    // YENÝ: PERK UYGULAMA VE RUNTIME LOGIC (BRAIN)
-    // ========================================================================
-
     public void EquipPerk(PerkBase perk)
 	{
-		// 1. Ýsim Deðiþikliði: ApplyPerk -> OnEquip
 		perk.OnEquip(PlayerController.I.gameObject);
+        PlayerController.I.AcquiredPerkIDs.Add(perk.ID);
 
-		// 2. Effect Perk ise listelere kaydet (Runtime dinleme için)
-		if (perk is EffectPerk effectPerk)
+        if (perk is EffectPerk effectPerk)
 		{
 			RegisterEffectPerk(effectPerk);
 		}
@@ -267,7 +233,6 @@ public class PerkManager : MonoBehaviour
 		}
 	}
 
-	// --- SÝLAHLAR BU FONKSÝYONU ÇAÐIRACAK ---
 	public void TriggerOnHit(IDamageable target, Vector3 hitPos)
 	{
 		ProcessPerkList(_onHitPerks, target, hitPos);
@@ -287,28 +252,24 @@ public class PerkManager : MonoBehaviour
 	{
 		foreach (var perk in perks)
 		{
-			// Þart Kontrolleri
 			if (perk.RequiresMaskOn && !_isMaskActive) continue;
 			if (perk.RequiresMaskOff && _isMaskActive) continue;
 
-			// Cooldown Kontrolü
 			if (perk.Cooldown > 0)
 			{
 				if (_cooldowns.ContainsKey(perk.PerkName) && Time.time < _cooldowns[perk.PerkName]) continue;
 				_cooldowns[perk.PerkName] = Time.time + perk.Cooldown;
 			}
 
-			// Þans Kontrolü
 			if (Random.Range(0f, 100f) > perk.Chance) continue;
 			if (perk.targetIsPlayer) target = PlayerController.I.HealthController;
-			// Efekti Uygula
+
 			ApplyEffect(perk, target, pos);
 		}
 	}
 
 	private void ApplyEffect(EffectPerk perk, IDamageable target, Vector3 pos)
 	{
-		// VFX
 		if (perk.VFX != null) Instantiate(perk.VFX, pos, Quaternion.identity);
 
 		switch (perk.Effect)
@@ -328,7 +289,6 @@ public class PerkManager : MonoBehaviour
 				break;
 
 			case EffectType.Explosion:
-				// Basit bir alan hasarý örneði
 				var hits = Physics2D.OverlapCircleAll(pos, 3f);
 				foreach (var hit in hits) if (hit.CompareTag("Enemy"))
 						hit.GetComponent<IDamageable>()?.TakeDamage(perk.Value, false, Vector2.zero, 0);
@@ -338,6 +298,4 @@ public class PerkManager : MonoBehaviour
 				break;
 		}
 	}
-
-
 }

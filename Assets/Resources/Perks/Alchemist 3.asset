@@ -16,6 +16,7 @@ MonoBehaviour:
   PerkName: Alchemist III
   Description: Deals poison damage to enemies with a 100% chance.
   Icon: {fileID: 0}
+  prequisite: {fileID: 11400000, guid: c2ce03afe67a87544bbff45bbce0a207, type: 2}
   Trigger: 1
   Chance: 100
   Cooldown: 0

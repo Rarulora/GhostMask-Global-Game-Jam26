@@ -7,8 +7,6 @@ public class PerkCard : MonoBehaviour
     private Animator anim;
     private GameObject player;
 
-    // TODO: ��inde bar�nd�raca�� perk objesi
-
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI desc;

@@ -16,6 +16,7 @@ MonoBehaviour:
   PerkName: Surgeon II
   Description: Deals bleed damage to enemies with a 50% chance.
   Icon: {fileID: 0}
+  prequisite: {fileID: 11400000, guid: 890dcf561eaeec3409f426f811b44703, type: 2}
   Trigger: 1
   Chance: 50
   Cooldown: 0
