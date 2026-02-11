@@ -11264,7 +11264,7 @@ MonoBehaviour:
   - {fileID: 391521814}
   - {fileID: 133839203}
   - {fileID: 155414345}
-  baseBudget: 20
+  baseBudget: 40
   budgetGrowth: 1.2
   difficultyGrowth: 1.3
   waveTime: 25
